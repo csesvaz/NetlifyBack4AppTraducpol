@@ -4,11 +4,11 @@ export default {
   components: { InterfazInicio },
 };
 </script>
-</script>
 
 <template>
   <InterfazInicio />
 </template>
 
 <style scoped>
+
 </style>
