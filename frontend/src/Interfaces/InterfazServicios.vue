@@ -1,5 +1,9 @@
 <script>
+import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
 export default {
+  components: {
+    ListadoServiciosInterpretacion,
+  },
   data() {
     return {
       opcionInicial: true,
@@ -15,7 +19,6 @@ export default {
 
 <template>
   <div class="d-block fixed-top">
-    <BarraNavegacion />
     <div class="container align-items-start">
       <br />
       <h3 class="listado">
@@ -54,10 +57,10 @@ export default {
     </div>
     <br />
     <div v-if="this.opcionInicial">
-     <!-- //Componente1 -->
+      <ListadoServiciosInterpretacion />
     </div>
     <div v-else>
-        <!-- //Componente2 -->
+      <!-- //Componente2 -->
     </div>
   </div>
 </template>
