@@ -1,12 +1,12 @@
 <script>
-import InterfazInicio from './Interfaces/InterfazInicio.vue';
+// import InterfazInicio from './Interfaces/InterfazInicio.vue';
+import InterfazServicios from './Interfaces/InterfazServicios.vue';
 export default {
-  components: { InterfazInicio },
-};
+  components: { InterfazServicios } }
 </script>
 
 <template>
-  <InterfazInicio />
+  <InterfazServicios />
 </template>
 
 <style scoped>
