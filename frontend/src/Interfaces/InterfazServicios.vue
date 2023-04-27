@@ -1,5 +1,11 @@
 <script>
-export default {
+import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
+import ListadoServiciosTraduccion from "../components/ListadoServiciosTraduccion.vue";
+export default{
+  components: {
+    ListadoServiciosInterpretacion,
+    ListadoServiciosTraduccion,
+  },
   data() {
     return {
       opcionInicial: true,
@@ -15,7 +21,6 @@ export default {
 
 <template>
   <div class="d-block fixed-top">
-    <BarraNavegacion />
     <div class="container align-items-start">
       <br />
       <h3 class="listado">
@@ -54,10 +59,10 @@ export default {
     </div>
     <br />
     <div v-if="this.opcionInicial">
-     <!-- //Componente1 -->
+      <ListadoServiciosInterpretacion />
     </div>
     <div v-else>
-        <!-- //Componente2 -->
+      <ListadoServiciosTraduccion />
     </div>
   </div>
 </template>
