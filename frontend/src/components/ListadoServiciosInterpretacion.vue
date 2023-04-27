@@ -1,5 +1,4 @@
-<script>
-</script>
+<script></script>
 <template>
   <div class="container-fluid mt-4">
     <h3>SERVICIOS DE INTERPRETACIÓN.</h3>
@@ -19,43 +18,51 @@
       <span class="col-2 bg-ligth border border-dark"> nombreEmpresa </span>
       <span class="col-2 bg-ligth border border-dark"> Idioma </span>
       <span class="col-1 bg-ligth border border-dark"> horarioInicio </span>
-      <span class="col-1 bg-ligth border border-dark">
-        horarioFin
-      </span>
-      <span class="col-3 bg-ligth border border-dark">
-        provincia
-      </span>
+      <span class="col-1 bg-ligth border border-dark"> horarioFin </span>
+      <span class="col-3 bg-ligth border border-dark"> provincia </span>
       <span class="col-2 bg-ligth border border-dark">servicioOnline</span>
-      <span class="col-1 mt-2">
-        <fa class="lapiz" icon="fa-solid fa-pencil" size="2xl" />
-        <fa
-          class="bin"
-          icon="fa-solid fa-trash-arrow-up"
-          size="2xl"
-          style="color: #c01c28"
-        />
-      </span>
+   
     </div>
   </div>
 </template>
-
 <style scoped>
 .container-fluid {
   width: 100%;
-  margin-left: 2em;
+  margin-left: 2%;
+  
 }
-
-.lapiz {
-  color: rgb(110, 60, 60);
-  padding-right: 0.5em;
-}
-
 span {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+}
+
+.col-2 {
+  width: 17%;
+}
+
+.col-1 {
+  width: 10%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.lapiz {
+  color: rgb(110, 60, 60);
+  padding-right: 0.5%;
 }
 .bin {
-  margin-right: 1em;
+  margin-right: 1%;
+}
+@media (max-width: 768px) {
+  .container-fluid {
+    width: 100%;
+    margin-left: 2%;
+    font-size: 0.7rem;
+   
+  }
 }
 </style>

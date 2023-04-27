@@ -69,10 +69,17 @@ export default{
 
 <style scoped>
 .container {
-  margin-bottom: 1em;
-  margin-left: 4em;
+  margin-bottom: 1vw;
+  margin-left: 4vw;
 }
 .form-check-label {
   justify-content: start;
+}
+@media (max-width: 768px) {
+  .container {
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  
 }
 </style>
