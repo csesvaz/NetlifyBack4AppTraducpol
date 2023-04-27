@@ -1,8 +1,10 @@
 <script>
 import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
-export default {
+import ListadoServiciosTraduccion from "../components/ListadoServiciosTraduccion.vue";
+export default{
   components: {
     ListadoServiciosInterpretacion,
+    ListadoServiciosTraduccion,
   },
   data() {
     return {
@@ -60,7 +62,7 @@ export default {
       <ListadoServiciosInterpretacion />
     </div>
     <div v-else>
-      <!-- //Componente2 -->
+      <ListadoServiciosTraduccion />
     </div>
   </div>
 </template>
