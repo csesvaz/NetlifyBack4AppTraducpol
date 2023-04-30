@@ -1,0 +1,203 @@
+{
+  "_embedded": {
+    "empresa": [
+      {
+        "id": 1,
+        "nombre": "Alfresco",
+        "direccion": "C/ Valcarnero 17, Madrid",
+        "telefono": "+34 666333555",
+        "email": "alfresco@gmail.com",
+        "servicios": [
+          {
+            "id": 1,
+            "tipo": "interpretacion",
+            "idioma": "Inglés",
+            "horarioInicio": "10:00",
+            "horarioFin": "23:00",
+            "provincia": "Zaragoza",
+            "servicioOnline": true
+          },
+          {
+            "id": 1,
+            "tipo": "traduccion",
+            "idioma": "Inglés",
+            "tipoDocumento": "Carta",
+            "tiempoEntrega": "1 mes",
+            "traduccionJurada": true
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Interlingua",
+        "direccion": "C/ Las fuentes s/n, Benicarló",
+        "telefono": "+34 654231311",
+        "email": "interlingua@gmail.com",
+        "servicios": [
+          {
+            "id": 3,
+            "tipo": "interpretacion",
+            "idioma": "Francés",
+            "horarioInicio": "09:00",
+            "horarioFin": "24:00",
+            "provincia": "Teruel",
+            "servicioOnline": false
+          },
+
+          {
+            "id": 2,
+            "tipo": "traduccion",
+            "idioma": "Francés",
+            "tipoDocumento": "Documento Oficial",
+            "tiempoEntrega": "2 semanas",
+            "traduccionJurada": true
+          },
+          {
+            "id": 3,
+            "tipo": "traduccion",
+            "idioma": "Francés",
+            "tipoDocumento": "Documento Oficial",
+            "tiempoEntrega": "2 semanas",
+            "traduccionJurada": false
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "nombre": "Traductin",
+        "direccion": "Av Valencia 45, Zaragoza",
+        "telefono": "+34 689002345",
+        "email": "traductin@gmail.com",
+        "servicios": [
+          {
+            "id": 2,
+            "tipo": "interpretacion",
+            "idioma": "Inglés",
+            "horarioInicio": "11:00",
+            "horarioFin": "22:00",
+            "provincia": "Leon",
+            "servicioOnline": false
+          },
+          {
+            "id": 4,
+            "tipo": "interpretacion",
+            "idioma": "Polaco",
+            "horarioInicio": "09:00",
+            "horarioFin": "22:00",
+            "provincia": "Vitoria",
+            "servicioOnline": false
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "nombre": "Parlez-Vous",
+        "direccion": "Rue de la Paix, Paris",
+        "telefono": "+33 611223344",
+        "email": "parlezvous@gmail.com",
+        "servicios": [
+          {
+            "id": 5,
+            "tipo": "interpretacion",
+            "idioma": "Francés",
+            "horarioInicio": "08:00",
+            "horarioFin": "21:00",
+            "provincia": "Paris",
+            "servicioOnline": true
+          },
+          {
+            "id": 6,
+            "tipo": "interpretacion",
+            "idioma": "espanol",
+            "horarioInicio": "09:00",
+            "horarioFin": "20:00",
+            "provincia": "Madrid",
+            "servicioOnline": false
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "nombre": "Deutschland Translations",
+        "direccion": "C/ Fanjul 12, Madrid",
+        "telefono": "+434 677455388",
+        "email": "deutschlandtranslations@gmail.com",
+        "servicios": [
+          {
+            "id": 4,
+            "tipo": "traduccion",
+            "idioma": "Alemán",
+            "tipoDocumento": "Contrato",
+            "tiempoEntrega": "1 semana",
+            "traduccionJurada": true
+          },
+          {
+            "id": 5,
+            "tipo": "traduccion",
+            "idioma": "Alemán",
+            "tipoDocumento": "Certificado",
+            "tiempoEntrega": "3 dias",
+            "traduccionJurada": false
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "nombre": "Parliamo",
+        "direccion": "C/ cardenal cisneros 21 5ºA, Barcelona",
+        "telefono": "+39 333777999",
+        "email": "parliamo@gmail.com",
+        "servicios": [
+          {
+            "id": 7,
+            "tipo": "interpretacion",
+            "idioma": "italiano",
+            "horarioInicio": "10:00",
+            "horarioFin": "23:00",
+            "provincia": "Sevilla",
+            "servicioOnline": true
+          },
+          {
+            "id": 8,
+            "tipo": "interpretacion",
+            "idioma": "hindi",
+            "horarioInicio": "08:00",
+            "horarioFin": "21:00",
+            "provincia": "Barcelona",
+            "servicioOnline": false
+          }
+        ]
+      },
+      
+      {
+        "id": 7,
+        "nombre": "Chinese Translations",
+  "direccion": "Av/ Constitución, Madrid",
+  "telefono": "+86 10 12345678",
+  "email": "chinesetranslations@gmail.com",
+  "servicios": [
+    {
+      "id": 6,
+      "tipo": "traduccion",
+      "idioma": "Chino mandarín",
+      "tipoDocumento": "Contrato",
+      "tiempoEntrega": "1 semana",
+      "traduccionJurada": true
+    },
+    {
+      "id": 9,
+      "tipo": "interpretacion",
+      "idioma": "Chino mandarín",
+      "horarioInicio": "08:00",
+      "horarioFin": "20:00",
+      "provincia": "Madrid",
+      "servicioOnline": false
+    }
+  ]
+}
+      
+      
+      
+    ]
+  }
+}

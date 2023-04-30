@@ -5,6 +5,11 @@ import './scss/styles.scss'
 import * as bootstrap from 'bootstrap'
 
 
+// Importar Pinia
+import { createPinia } from 'pinia'
+const pinia = createPinia()
+
+
 // Importar fontawesome
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
