@@ -33,4 +33,4 @@ Inicio Estructura del InterfazListados-https://git.institutomilitar.com/Cpsgar/t
 
 Inicio Creación Componentes del Interfaz Listado (con los servicios de interpretación y traducción)- https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/14  >Finalizado
 
-Inicio Configuración de pinia y almacenamiento de un objeto empresa - https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/15
+Inicio Configuración de pinia y almacenamiento de un objeto empresa - https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/15 >finalizado
