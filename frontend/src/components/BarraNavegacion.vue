@@ -30,10 +30,16 @@
 
 <style scoped>
 .navbar-brand:hover {
-  color: white;
+  color: rgb(201, 243, 14);
+}
+.navbar-brand{
+  color: blue;
 }
 
 .nav-link:hover {
-  color: white;
+  color: rgb(201, 243, 14);
+}
+.nav-link{
+  color: blue;
 }
 </style>
