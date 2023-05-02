@@ -1,9 +1,9 @@
 <script>
-// import InterfazInicio from './Interfaces/InterfazInicio.vue';
-import InterfazServicios from './Interfaces/InterfazServicios.vue';
+import InterfazInicio from './Interfaces/InterfazInicio.vue';
+// import InterfazServicios from './Interfaces/InterfazServicios.vue';
 import {useEmpresaStore} from './stores/EmpresaStore.js';
 export default {
-  components: { InterfazServicios }, 
+  components: { InterfazInicio }, 
  
   beforeMount(){  
    useEmpresaStore().fetchEmpresas() ;
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <InterfazServicios />
+  <InterfazInicio />
 </template>
 
 <style scoped>

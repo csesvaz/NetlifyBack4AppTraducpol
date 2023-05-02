@@ -1,10 +1,12 @@
 <script>
 import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
 import ListadoServiciosTraduccion from "../components/ListadoServiciosTraduccion.vue";
+import BarraNavegacion from "../components/BarraNavegacion.vue";
+
 export default{
   components: {
     ListadoServiciosInterpretacion,
-    ListadoServiciosTraduccion,
+    ListadoServiciosTraduccion, BarraNavegacion
   },
   data() {
     return {
@@ -20,7 +22,8 @@ export default{
 </script>
 
 <template>
-  <div class="d-block fixed-top">
+ <div class="d-block fixed-top w-100">
+    <BarraNavegacion />
     <div class="container align-items-start">
       <br />
       <h3 class="listado">
