@@ -3,7 +3,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
     <div class="container-fluid">
-      <div class="navbar-brand">Inicio</div>
+      <router-link class="navbar-brand" to="/">Inicio</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,9 +18,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <div class="nav-link" aria-current="page">
-              Servicios Disponibles
-            </div>
+            <router-link class="nav-link" aria-current="page" to="servicio"
+              >Servicios Disponibles</router-link
+            >
           </li>
         </ul>
       </div>
@@ -32,14 +32,14 @@
 .navbar-brand:hover {
   color: rgb(201, 243, 14);
 }
-.navbar-brand{
+.navbar-brand {
   color: blue;
 }
 
 .nav-link:hover {
   color: rgb(201, 243, 14);
 }
-.nav-link{
+.nav-link {
   color: blue;
 }
 </style>

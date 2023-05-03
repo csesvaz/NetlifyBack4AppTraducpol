@@ -1,16 +1,19 @@
 <script>
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
 export default {
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
+  },
+   methods: {
+    ...mapActions(useEmpresaStore, ["convertirBooleano"]),
   },
 };
 
 </script>
 <template>
   <div class="container-fluid mt-4">
-    <h3>SERVICIOS DE TRADUCCIÓN</h3>
+    <h3>SERVICIOS DE TRADUCCIÓN.</h3>
     <div class="row mb-12">
       <span class="col-2 pt-3 pb-3 bg-primary border border-dark">Empresa</span>
       <span class="col-2 bg-primary border border-dark">Idioma</span>
@@ -35,7 +38,7 @@ export default {
           servicio.tiempoEntrega
         }}</span>
         <span class="col-2 bg-ligth border border-dark">{{
-          servicio.traduccionJurada
+          convertirBooleano(servicio.traduccionJurada)
         }}</span>
       </div>
     </div>

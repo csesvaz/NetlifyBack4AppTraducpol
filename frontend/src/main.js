@@ -3,7 +3,7 @@ import './style.css'
 import App from './App.vue'
 import './scss/styles.scss'
 import * as bootstrap from 'bootstrap'
-
+import router from './router/router.js'
 
 // Importar Pinia
 import { createPinia } from 'pinia'
@@ -23,4 +23,5 @@ library.add(fab);
 createApp(App)
 .component("fa", FontAwesomeIcon)
 .use(pinia)
+.use(router)
 .mount('#app')

@@ -27,7 +27,7 @@ export default {
                 <h5 class="card-title">Consulta Servicios</h5>
                 <p class="card-text">Consulta todos nuestros servicios.</p>
                 <div class="boton">
-                    <div class="btn btn-primary" to="/servicio">Servicios Disponibles</div>
+                    <router-link class="btn btn-primary" to="/servicio">Servicios Disponibles</router-link>
                 </div>
             </div>
         </div>

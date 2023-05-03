@@ -1,10 +1,15 @@
 <script>
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
-export default{
+export default {
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
-  },}
+  },
+
+  methods: {
+    ...mapActions(useEmpresaStore, ["convertirBooleano"]),
+  },
+};
 </script>
 <template>
   <div class="container-fluid mt-4">
@@ -40,8 +45,8 @@ export default{
             servicio.provincia
           }}</span>
           <span class="col-2 bg-ligth border border-dark">{{
-            servicio.servicioOnline
-          }}</span>          
+            convertirBooleano(servicio.servicioOnline)
+          }}</span>
         </div>
       </div>
     </div>

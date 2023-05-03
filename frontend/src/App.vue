@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <InterfazInicio />
+   <router-view></router-view>
 </template>
 
 <style scoped>
