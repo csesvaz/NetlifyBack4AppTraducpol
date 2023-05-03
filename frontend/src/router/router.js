@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 //Importar componentes y sus rutas
 import Inicio from "@/Interfaces/InterfazInicio.vue";
 import Servicios from "@/Interfaces/InterfazServicios.vue";
-
+import Alta from "@/Interfaces/InterfazAlta.vue";
 const routes = [
   {
     path: "/",
@@ -14,6 +14,10 @@ const routes = [
     path: "/servicio",
     component: Servicios,
   },
+  {
+    path: "/alta",
+    component: Alta,
+  },,
 ];
 const router = createRouter({
   history: createWebHashHistory(),
