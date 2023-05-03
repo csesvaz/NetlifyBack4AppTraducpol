@@ -35,4 +35,6 @@ Inicio Creación Componentes del Interfaz Listado (con los servicios de interpre
 
 Inicio Configuración de pinia y almacenamiento de un objeto empresa - https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/15 >finalizado
 
-Inicio Creacio Barra de Navegación-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/13
+Inicio Creacion Barra de Navegación-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/13>finalizado  
+Interfaz de gestión (Empresa y Servicio)-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/17
+
