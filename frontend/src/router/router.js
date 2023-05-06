@@ -5,6 +5,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Inicio from "@/Interfaces/InterfazInicio.vue";
 import Servicios from "@/Interfaces/InterfazServicios.vue";
 import Alta from "@/Interfaces/InterfazAlta.vue";
+import Ayuda from "@/Interfaces/InterfazAyuda.vue";
 const routes = [
   {
     path: "/",
@@ -17,7 +18,11 @@ const routes = [
   {
     path: "/alta",
     component: Alta,
-  },,
+  },
+  {
+    path: "/ayuda",
+    component: Ayuda,
+  }
 ];
 const router = createRouter({
   history: createWebHashHistory(),

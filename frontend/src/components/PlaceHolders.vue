@@ -48,9 +48,9 @@ export default {
 
             <div class="card-body" title="Ayuda">
                 <h5 class="card-title">Ayuda</h5>
-                <p class="card-text">Preguntas y respuestas más frencuentes.</p>
+                <p class="card-text">Listado de todas las empresas y preguntas y respuestas más frencuentes.</p>
                 <div class="boton">
-                    <div class="btn btn-primary" >Ayuda</div>
+                    <router-link class="btn btn-primary" to="/ayuda">Ayuda</router-link>
                 </div>
             </div>
         </div>

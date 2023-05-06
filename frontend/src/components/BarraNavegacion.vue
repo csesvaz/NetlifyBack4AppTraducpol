@@ -26,6 +26,9 @@
           <li class="nav-item">
           <router-link class="nav-link" to="/alta">Gestión</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/ayuda">Ayuda</router-link>
+        </li>
         </ul>
       </div>
     </div>

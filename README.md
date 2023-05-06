@@ -26,15 +26,4 @@ Por ello, la página debe permitir dar de alta las empresas contratadas con sus 
    1. API: 
    2. Web: 
 
-     
-Inicio de Trabajos creación de Rama InterfazInicio-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/10 >Finalizado InterfazInicio  
-
-Inicio Estructura del InterfazListados-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/11 >Finalizado   
-
-Inicio Creación Componentes del Interfaz Listado (con los servicios de interpretación y traducción)- https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/14  >Finalizado
-
-Inicio Configuración de pinia y almacenamiento de un objeto empresa - https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/15 >finalizado
-
-Inicio Creacion Barra de Navegación-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/13>finalizado  
-Interfaz de gestión (Empresa y Servicio)-https://git.institutomilitar.com/Cpsgar/traducpol/-/issues/17
 
