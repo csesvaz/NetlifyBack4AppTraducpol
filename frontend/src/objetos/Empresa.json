@@ -151,7 +151,7 @@
           {
             "id": 7,
             "tipo": "interpretacion",
-            "idioma": "italiano",
+            "idioma": "Italiano",
             "horarioInicio": "10:00",
             "horarioFin": "23:00",
             "provincia": "Sevilla",
@@ -160,7 +160,7 @@
           {
             "id": 8,
             "tipo": "interpretacion",
-            "idioma": "hindi",
+            "idioma": "Hindi",
             "horarioInicio": "08:00",
             "horarioFin": "21:00",
             "provincia": "Barcelona",
