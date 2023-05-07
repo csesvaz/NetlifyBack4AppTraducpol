@@ -6,6 +6,8 @@ import Inicio from "@/Interfaces/InterfazInicio.vue";
 import Servicios from "@/Interfaces/InterfazServicios.vue";
 import Alta from "@/Interfaces/InterfazAlta.vue";
 import Ayuda from "@/Interfaces/InterfazAyuda.vue";
+import AltaEmpresa from "@/FormulariosAlta/AltaEmpresa.vue";
+import InterfazGestionEmpresa from "@/Interfaces/InterfazGestionEmpresa.vue";
 const routes = [
   {
     path: "/",
@@ -22,7 +24,16 @@ const routes = [
   {
     path: "/ayuda",
     component: Ayuda,
-  }
+  },
+  {
+    path: "/altaEmpresa",
+    component: AltaEmpresa,
+    name: "altaEmpresa",
+  },
+  {
+    path: "/interfazGestionEmpresa",
+    component: InterfazGestionEmpresa,
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
