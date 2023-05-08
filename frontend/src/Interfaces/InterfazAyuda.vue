@@ -1,53 +1,33 @@
 <script>
 import BarraNavegacion from "../components/BarraNavegacion.vue";
 import ComponenteEmpresa from "../components/ComponenteEmpresa.vue";
+import ComponenteEmpresas from "../components/ComponenteEmpresas.vue";
 import { mapState } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
 
 export default {
-  components: { BarraNavegacion, ComponenteEmpresa },
+  components: { BarraNavegacion, ComponenteEmpresas },
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
-  },
-  data() {
-    return {
-      empresaSelect: "Seleccione una empresa",
-    };
-  },
   }
+}
 </script>
 
 <template>
   <div class="d-block fixed-top">
     <BarraNavegacion />
+  </div>
     <div class="contenedor">
       <br />
-      <div class="row">
+      <div class="row mt-3">
         <h3 class="IntroduccionAyuda">
-          Consulta de datos de Empresa de Servicios Lingüísticos
+          Consulta de datos de Empresas de Servicios Lingüísticos.
         </h3>
       </div>
-      <div class="row">
-        <div class="col-8">
-          <select
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm example"
-            v-model="empresaSelect"
-          >
-            <option disable selected="">Seleccione una empresa</option>
-            <option
-              v-for="empresa in empresas"
-              :key="empresa.id"
-              :value="empresa"
-            >
-              {{ empresa.nombre }}
-            </option>
-          </select>
-        </div>
-      </div>
     </div>
-    <ComponenteEmpresa :empresa="empresaSelect" />
-  </div>
+      <ComponenteEmpresas/>
+
+  
 </template>
 <style scoped>
 .contenedor {

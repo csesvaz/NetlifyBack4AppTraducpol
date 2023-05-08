@@ -1,14 +1,27 @@
 <script>
-import { mapState, mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
+import ComponenteEmpresa from "./ComponenteEmpresa.vue";
+import Button from "primevue/button";
+import Dialog from "primevue/dialog";
 export default {
   computed: {
-    ...mapState(useEmpresaStore, ["empresas"]),
+    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
   },
-
+  props: ["filtrarServicio"],
   methods: {
-    ...mapActions(useEmpresaStore, ["convertirBooleano"]),
+    ...mapActions(useEmpresaStore, ["convertirBooleano", "deleteServicio"]),
+    empresaSeleccionada(empresa) {
+      this.empresaSeleccion = empresa;
+    },
   },
+  data() {
+    return {
+      visible: false,
+      empresaSeleccion: null,
+    };
+  },
+  components: { Button, Dialog, ComponenteEmpresa },
 };
 </script>
 <template>
@@ -21,8 +34,11 @@ export default {
       <span class="col-2 bg-primary border border-dark">Idioma </span>
       <span class="col-1 bg-primary border border-dark">Hora Inicio </span>
       <span class="col-1 bg-primary border border-dark">Hora Fin </span>
-      <span class="col-3 bg-primary border border-dark">Provincia </span>
-      <span class="col-2 bg-primary border border-dark">Servicio ONLINE </span>
+      <span class="col-2 bg-primary border border-dark">Provincia </span>
+      <span class="col-1 bg-primary border border-dark">Servicio ONLINE </span>
+      <span v-if="$route.path === '/alta'" class="col-1 mt-3 lapiz h5"
+        >Editar</span
+      >
     </div>
     <!-- Aqui va un v-for de los servicios de Interpretacion-->
 
@@ -41,21 +57,40 @@ export default {
           <span class="col-1 bg-ligth border border-dark">{{
             servicio.horarioFin
           }}</span>
-          <span class="col-3 bg-ligth border border-dark">{{
+          <span class="col-2 bg-ligth border border-dark">{{
             servicio.provincia
           }}</span>
-          <span class="col-2 bg-ligth border border-dark">{{
+          <span class="col-1 bg-ligth border border-dark">{{
             convertirBooleano(servicio.servicioOnline)
           }}</span>
+          <span v-if="$route.path === '/servicio'" class="col-2 mt-2">
+            <Button
+              label="Ver"
+              icon="pi pi-eye"
+              @click="(visible = true), empresaSeleccionada(empresa)"
+            />
+
+            <Dialog
+              v-model:visible="visible"
+              modal
+              header="Dartos de la empresa"
+              :style="{ width: '50vw' }"
+              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+            >
+              <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
+            </Dialog>
+          </span>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <style scoped>
 .container-fluid {
   width: 100%;
   margin-left: 2%;
+  overflow: hidden;
 }
 span {
   display: flex;
@@ -63,7 +98,10 @@ span {
   align-items: center;
   overflow: hidden;
 }
-
+.bin {
+  margin-left: 1vw;
+  cursor: pointer;
+}
 .col-2 {
   width: 17%;
 }
@@ -72,8 +110,8 @@ span {
   width: 10%;
 }
 
-.col-3 {
-  width: 25%;
+.lapiz {
+  color: rgb(110, 60, 60);
 }
 @media (max-width: 768px) {
   .container-fluid {
