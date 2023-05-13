@@ -100,7 +100,7 @@ export default {
             }}</span>
             <span class="col col-md-1"></span>
             <span class="col col-md-2 bg-border border-dark">{{
-              convertirBooleano(traductor.servicioOnline)
+              convertirBooleano(traductor.traduccionJurada)
             }}</span>
           </div>
         </div>

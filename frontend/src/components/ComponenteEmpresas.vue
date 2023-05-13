@@ -11,7 +11,6 @@ export default {
   },
   data() {
     return {
-      customers: null,
       filters: {
         nombre: { value: null, matchMode: FilterMatchMode.CONTAINS },
         direccion: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -104,6 +103,7 @@ export default {
             placeholder="Búsqueda por nombre"
           /> </template
       ></Column>
+      <template #footer> Hay un total de {{ empresas ? empresas.length : 0 }} empresas. </template>
     </DataTable>
   </div>
 </template>

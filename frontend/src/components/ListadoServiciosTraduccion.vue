@@ -1,123 +1,163 @@
 <script>
-import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
-import ComponenteEmpresa from "./ComponenteEmpresa.vue";
+import { mapActions, mapState } from "pinia";
+import Column from "primevue/column";
+import DataTable from "primevue/datatable";
+import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
+import { FilterMatchMode } from "primevue/api";
+import ComponenteEmpresa from "./ComponenteEmpresa.vue";
+
 export default {
-  computed: {
-    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
-  },
-  props: ["filtrarServicio"],
-  methods: {
-    ...mapActions(useEmpresaStore, ["convertirBooleano"]),
-    empresaSeleccionada(empresa) {
-      this.empresaSeleccion = empresa;
-    },
+    computed: {
+    ...mapState(useEmpresaStore, ["empresas"]),
   },
   data() {
     return {
       visible: false,
+      servicios: [],
       empresaSeleccion: null,
+      empresaNombre: null,
+      customers: null,
+      filters: {
+        idioma: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        tipoDocumento: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        tiempoEntrega: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        traduccionJurada: { value: null, matchMode: FilterMatchMode.CONTAINS },
+      },
     };
   },
-  components: { Button, Dialog, ComponenteEmpresa },
+  components: { Column, DataTable, InputText, Button, Dialog, ComponenteEmpresa },
+  methods: {
+    ...mapActions(useEmpresaStore, ["convertirBooleano"]),
+    serviciosTraduccion() {
+      let serviciosTraduccion = [];
+      for (let i = 0; i < this.servicios.length; i++) {
+        if (this.servicios[i].tipo == "traduccion") {
+          serviciosTraduccion.push(this.servicios[i]);
+        }
+      }
+      return serviciosTraduccion;
+    },
+    filtrarEmpresa(nombreEmpresa) {
+      this.empresaSeleccion = this.empresas.find(
+        (empresa) => empresa.nombre === nombreEmpresa
+      );
+    },
+  },
+  created() {
+    const empresaStore = useEmpresaStore();
+    this.servicios = empresaStore.fetchServicios();
+    this.servicios = this.serviciosTraduccion();
+  },
 };
 </script>
+
 <template>
-  <div class="container-fluid mt-4">
-    <h3>SERVICIOS DE TRADUCCIÓN</h3>
-    <div class="row mb-12">
-      <span class="col-2 pt-3 pb-3 bg-primary border border-dark">Empresa</span>
-      <span class="col-2 bg-primary border border-dark">Idioma</span>
-      <span class="col-2 bg-primary border border-dark">Tipo de Documento</span>
-      <span class="col-2 bg-primary border border-dark">Plazo de Entrega</span>
-      <span class="col-2 bg-primary border border-dark">Traducción Jurada</span>
-      <span v-if="$route.path === '/alta'" class="col-1 mt-2 lapiz h5"
-        >Editar</span
-      >
-    </div>
-    <!-- v-for de los servicios de Traducción-->
-    <div v-for="empresa in empresas" :key="empresa.id">
-      <div v-for="servicio in empresa.servicios" :key="servicio.id">
-        <div v-if="servicio.tipo == 'traduccion'" class="row mb-12">
-          <span class="col-2 bg-ligth border border-dark">{{
-            empresa.nombre
-          }}</span>
-          <span class="col-2 bg-ligth border border-dark">{{
-            servicio.idioma
-          }}</span>
-          <span class="col-2 bg-ligth border border-dark">{{
-            servicio.tipoDocumento
-          }}</span>
-          <span class="col-2 bg-ligth border border-dark">{{
-            servicio.tiempoEntrega
-          }}</span>
-          <span class="col-2 bg-ligth border border-dark">{{
-            convertirBooleano(servicio.traduccionJurada)
-          }}</span>
-          <span v-if="$route.path === '/servicio'" class="col-1 mt-2">
-            <Button
-              label="Ver"
-              icon="pi pi-eye"
-              @click="(visible = true), empresaSeleccionada(empresa)"
-            />
-            <Dialog
-              v-model:visible="visible"
-              modal
-              header="Dartos de la empresa"
-              :style="{ width: '50vw' }"
-              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-            >
-              <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
-            </Dialog>
-          </span>
+  <div class="card">
+    <DataTable
+      v-model:filters="filters"
+      :value="servicios"
+      paginator
+      :rows="10"
+      filterDisplay="row"
+      :rowsPerPageOptions="[5, 10, 20, 50]"
+      showGridlines
+      removableSort
+      tableStyle="min-width: 50rem"
+      Fields="[
+        'idioma',
+        'tipoDocumento',
+        'tiempoEntrega',
+        'traduccionJurada',
+      ]"
+    >
+      <template #header>
+        <div
+          class="flex flex-wrap align-items-center justify-content-between gap-2"
+        >
+          <span class="text-xl text-900 font-bold"
+            >Servicios de Traducción.</span
+          >
         </div>
-      </div>
-    </div>
+      </template>
+      <Column bodyClass="text-center" 
+      field="idioma" header="Idioma" sortable style="width: 15%">
+        <template #body="{ data }" >
+          {{ data.idioma }}
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <InputText
+            v-model="filterModel.value"
+            type="text"
+            @input="filterCallback()"
+            class="p-column-filter"
+            placeholder="Búsqueda por idioma"
+            :title="'Introduce el idioma a buscar.'"
+          /> </template
+      ></Column>
+      <Column
+        bodyClass="text-center" 
+        field="tipoDocumento"
+        header="Tipo de Documento"
+        sortable
+        style="width: 20%"
+      >
+        <template #body="{ data }">
+          {{ data.tipoDocumento }}
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <InputText
+            v-model="filterModel.value"
+            type="text"
+            @input="filterCallback()"
+            class="p-column-filter"
+            placeholder="Búsqueda por tipo de Documento"
+            :title="'Introduce el tipo de documento a buscar.'"
+          /> </template
+      ></Column>
+      <Column bodyClass="text-center" 
+      field="tiempoEntrega" header="Tiempo de entrega" sortable style="width: 15%"
+        ><template #body="{ data }">
+          {{ data.tiempoEntrega }}
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <InputText
+            v-model="filterModel.value"
+            type="text"
+            @input="filterCallback()"
+            class="p-column-filter"
+            placeholder="Búsqueda por tiempo de entrega"
+            :title="'Introduce el tiempo de entrega a buscar.'"
+          /> </template
+      ></Column>
+  
+      <Column   field="traduccionJurada" header="Traducción Jurada" dataType="boolean" bodyClass="text-center"  style="width: 15%">
+                <template #body="{ data }">
+                    <i class="pi" :class="{ 'pi-check-circle text-green-500 ': data.traduccionJurada, 'pi-times-circle text-red-500': !data.traduccionJurada }"></i>
+                </template>
+               
+      </Column>
+      <Column bodyClass="text-center" 
+      field="eye" header="Visualizar Empresa" style="width: 15%">
+        <template  #body="{ data }" v-if="$route.path === '/servicio'">
+          <Button type="button" icon="pi pi-eye" @click="visible = true, filtrarEmpresa(data.empresa)"  :title="'Visualizar datos de contacto de la empresa.'" />
+          <Dialog
+            v-model:visible="visible"
+            modal
+            header="Datos de la empresa"
+            :style="{ width: '50vw' }"
+            :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+          >
+            <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
+          </Dialog>
+        </template>
+      </Column>
+      <template #footer>
+        Hay un total de {{ servicios ? servicios.length : 0 }} servicios de
+        traducción.
+      </template>
+    </DataTable>
   </div>
 </template>
-
-<style scoped>
-.container-fluid {
-  width: 100%;
-  margin-left: 2%;
-}
-span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.col-2 {
-  width: 17%;
-  text-align: center;
-}
-
-.col-1 {
-  width: 10%;
-  text-align: center;
-}
-
-.col-3 {
-  width: 25%;
-  text-align: center;
-}
-
-.lapiz {
-  color: rgb(110, 60, 60);
-}
-.bin {
-  margin-left: 1vw;
-  cursor: pointer;
-  margin-right: 1%;
-}
-@media (max-width: 768px) {
-  .container-fluid {
-    width: 100%;
-    margin-left: 2%;
-    font-size: 0.7rem;
-  }
-}
-</style>

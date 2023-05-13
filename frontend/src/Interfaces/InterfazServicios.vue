@@ -1,30 +1,31 @@
 <script>
+import BarraNavegacion from "../components/BarraNavegacion.vue";
 import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
 import ListadoServiciosTraduccion from "../components/ListadoServiciosTraduccion.vue";
-import BarraNavegacion from "../components/BarraNavegacion.vue";
-
-export default{
+import { mapState, mapActions } from "pinia";
+import { useEmpresaStore } from "../stores/EmpresaStore";
+export default {
   components: {
+    BarraNavegacion,
     ListadoServiciosInterpretacion,
-    ListadoServiciosTraduccion, BarraNavegacion
+    ListadoServiciosTraduccion,
   },
-  data() {
-    return {
-      opcionInicial: true,
-    };
+  computed: {
+    ...mapState(useEmpresaStore, ["opcionInicial"]),
   },
   methods: {
-    cambioOpcion() {
-      this.opcionInicial = !this.opcionInicial;
-    },
+    ...mapActions(useEmpresaStore, ["cambioOpcion"]),
+
+
   },
 };
 </script>
 
 <template>
- <div class="d-block fixed-top w-100">
+  <div class="d-block fixed-top">
     <BarraNavegacion />
-    <div class="container align-items-start">
+  </div>
+    <div class="container mt-3 align-items-start">
       <br />
       <h3 class="listado">
         Listado de todos los servicios lingüisticos disponibles:
@@ -61,13 +62,14 @@ export default{
       </div>
     </div>
     <br />
+   
     <div v-if="this.opcionInicial">
-      <ListadoServiciosInterpretacion />
+      <ListadoServiciosInterpretacion/>
     </div>
     <div v-else>
-      <ListadoServiciosTraduccion />
+      <ListadoServiciosTraduccion/>
     </div>
-  </div>
+ 
 </template>
 
 <style scoped>
@@ -78,11 +80,23 @@ export default{
 .form-check-label {
   justify-content: start;
 }
+:disabled{
+ background-color: blue;
+}
+:disabled+label {
+color: blue;
+}
 @media (max-width: 768px) {
   .container {
     margin-left: 1vw;
     margin-right: 1vw;
   }
-  
+  .busqueda {
+    margin-left: 2vw;
+  }
+
+  span.col-4 {
+    width: 80%;
+  }
 }
 </style>
