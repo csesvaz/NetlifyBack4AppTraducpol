@@ -222,7 +222,7 @@
             "empresa": "LinguaMax",
             "tipo": "interpretacion",
             "idioma": "Español",
-            "horarioInicio": "9:00",
+            "horarioInicio": "09:00",
             "horarioFin": "19:00",
             "provincia": "Valencia",
             "servicioOnline": true
@@ -232,7 +232,7 @@
             "empresa": "LinguaMax",
             "tipo": "interpretacion",
             "idioma": "Inglés",
-            "horarioInicio": "8:00",
+            "horarioInicio": "08:00",
             "horarioFin": "22:00",
             "provincia": "Madrid",
             "servicioOnline": false
@@ -279,7 +279,7 @@
             "empresa": "Global Language Solutions",
             "tipo": "interpretacion",
             "idioma": "Griego",
-            "horarioInicio": "9:00",
+            "horarioInicio": "09:00",
             "horarioFin": "17:00",
             "provincia": "Valencia",
             "servicioOnline": true
@@ -288,7 +288,7 @@
             "id": 22,
             "empresa": "Global Language Solutions",
             "tipo": "traduccion",
-            "tipoDocumento": "Documento Oficila",
+            "tipoDocumento": "Documento Oficial",
             "idioma": "Francés",
             "tiempoEntrega": "2 semanas",
             "traduccionJurada": true
@@ -334,7 +334,7 @@
             "empresa": "LoTraduzco",
             "tipo": "interpretacion",
             "idioma": "Español",
-            "horarioInicio": "9:00",
+            "horarioInicio": "09:00",
             "horarioFin": "18:00",
             "provincia": "Madrid",
             "servicioOnline": true

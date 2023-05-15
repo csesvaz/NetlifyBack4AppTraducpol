@@ -49,5 +49,13 @@ export const useEmpresaStore = defineStore("empresas", {
         return "No";
       }
     },
+    convertirHora(fecha) {
+      ;
+      const hora = fecha.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      return hora;
+    },
   },
 });
