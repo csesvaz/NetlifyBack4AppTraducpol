@@ -1,9 +1,14 @@
 <script>
 import BarraNavegacion from "../components/BarraNavegacion.vue";
-import ComponentePregunta from "../components/ComponentePregunta.vue";
+import ComponenteEmpresas from "../components/ComponenteEmpresas.vue";
+import { mapState } from "pinia";
+import { useEmpresaStore } from "../stores/EmpresaStore";
 
 export default {
-  components: { BarraNavegacion, ComponentePregunta },
+  components: { BarraNavegacion, ComponenteEmpresas },
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas"]),
+  }
 }
 </script>
 
@@ -19,7 +24,7 @@ export default {
         </h3>
       </div>
     </div>
-    <ComponentePregunta/>
+      <ComponenteEmpresas/>
 
   
 </template>

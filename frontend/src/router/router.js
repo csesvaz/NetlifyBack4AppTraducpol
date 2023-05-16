@@ -9,6 +9,7 @@ import Busqueda from "@/Interfaces/InterfazBusqueda.vue";
 import Ayuda from "@/Interfaces/InterfazAyuda.vue";
 import AltaEmpresa from "@/FormulariosAlta/AltaEmpresa.vue";
 import InterfazGestionEmpresa from "@/Interfaces/InterfazGestionEmpresa.vue";
+import InterfazEmpresas from "@/Interfaces/InterfazEmpresas.vue";
 const routes = [
   {
     path: "/",
@@ -25,6 +26,10 @@ const routes = [
   {
     path: "/busqueda",
     component: Busqueda,
+  },
+  {
+  path: "/empresas",
+    component: InterfazEmpresas,
   },
   {
     path: "/ayuda",
