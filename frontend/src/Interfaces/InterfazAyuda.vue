@@ -15,7 +15,7 @@ export default {
       <br />
       <div class="row mt-3">
         <h3 class="IntroduccionAyuda">
-          Consulta de datos de Empresas de Servicios Lingüísticos.
+         Preguntas más frecuentes acerca de la aplicación.
         </h3>
       </div>
     </div>
