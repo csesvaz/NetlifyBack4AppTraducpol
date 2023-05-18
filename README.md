@@ -24,6 +24,6 @@ Por ello, la página debe permitir dar de alta las empresas contratadas con sus 
    2. Librería: 
 7. **Despliegue** en Internet:
    1. API: 
-   2. Web: 
+   2. Web: [https://traducpolsprint1.netlify.app](https://traducpolsprint1.netlify.app/#/)
 
 
