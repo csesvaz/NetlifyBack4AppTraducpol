@@ -7,6 +7,7 @@
         "direccion": "C/ Valcarnero 17, Madrid",
         "telefono": "+34 666333555",
         "email": "alfresco@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 1,
@@ -35,6 +36,7 @@
         "direccion": "C/ Las fuentes s/n, Benicarló",
         "telefono": "+34 654231311",
         "email": "interlingua@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 3,
@@ -73,6 +75,7 @@
         "direccion": "Av Valencia 45, Zaragoza",
         "telefono": "+34 689002345",
         "email": "traductin@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 6,
@@ -102,6 +105,7 @@
         "direccion": "Rue de la Paix, Paris",
         "telefono": "+33 611223344",
         "email": "parlezvous@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 8,
@@ -131,6 +135,7 @@
         "direccion": "C/ Fanjul 12, Madrid",
         "telefono": "+434 677455388",
         "email": "deutschlandtranslations@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 10,
@@ -158,6 +163,7 @@
         "direccion": "C/ cardenal cisneros 21 5ºA, Barcelona",
         "telefono": "+39 333777999",
         "email": "parliamo@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 12,
@@ -188,6 +194,7 @@
         "direccion": "Av/ Constitución, Madrid",
         "telefono": "+86 10 12345678",
         "email": "chinesetranslations@gmail.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 14,
@@ -216,13 +223,14 @@
         "direccion": "C/ Mayor 10, Barcelona",
         "telefono": "+34 666555888",
         "email": "info@linguamax.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 16,
             "empresa": "LinguaMax",
             "tipo": "interpretacion",
             "idioma": "Español",
-            "horarioInicio": "09:00",
+            "horarioInicio": "9:00",
             "horarioFin": "19:00",
             "provincia": "Valencia",
             "servicioOnline": true
@@ -232,7 +240,7 @@
             "empresa": "LinguaMax",
             "tipo": "interpretacion",
             "idioma": "Inglés",
-            "horarioInicio": "08:00",
+            "horarioInicio": "8:00",
             "horarioFin": "22:00",
             "provincia": "Madrid",
             "servicioOnline": false
@@ -258,11 +266,12 @@
         ]
       },
       {
-        "id": 10,
+        "id": 9,
         "nombre": "Global Language Solutions",
         "direccion": "C/ Gran Via 25, Madrid",
         "telefono": "+34 666777888",
         "email": "info@globallanguagesolutions.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 20,
@@ -279,7 +288,7 @@
             "empresa": "Global Language Solutions",
             "tipo": "interpretacion",
             "idioma": "Griego",
-            "horarioInicio": "09:00",
+            "horarioInicio": "9:00",
             "horarioFin": "17:00",
             "provincia": "Valencia",
             "servicioOnline": true
@@ -288,7 +297,7 @@
             "id": 22,
             "empresa": "Global Language Solutions",
             "tipo": "traduccion",
-            "tipoDocumento": "Documento Oficial",
+            "tipoDocumento": "Documento Oficila",
             "idioma": "Francés",
             "tiempoEntrega": "2 semanas",
             "traduccionJurada": true
@@ -305,11 +314,12 @@
         ]
       },
       {
-        "id": 11,
+        "id": 10,
         "nombre": "LoTraduzco",
         "direccion": "C/ Calle de la Traducción 1, Sevilla",
         "telefono": "+34 910111213",
         "email": "info@nuevaempresadetraduccion.com",
+        "cif": "12345678A",
         "servicios": [
           {
             "id": 24,
@@ -334,7 +344,7 @@
             "empresa": "LoTraduzco",
             "tipo": "interpretacion",
             "idioma": "Español",
-            "horarioInicio": "09:00",
+            "horarioInicio": "9:00",
             "horarioFin": "18:00",
             "provincia": "Madrid",
             "servicioOnline": true

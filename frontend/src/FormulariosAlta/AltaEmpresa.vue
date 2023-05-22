@@ -69,6 +69,24 @@ export default {
             />
           </div>
         </div>
+          <div class="row inicial">
+          <div class="col-md-3">
+            <label for="cif" class="form-label">Cif de la empresa.</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="cif"
+              placeholder="Cif"
+              required
+              v-model="empresa.cif"
+            />
+          </div>
+        </div>
+
         <div class="row inicial">
           <div class="col-md-4">
             <label for="telefono" class="form-label"
@@ -135,22 +153,21 @@ export default {
   margin-top: 3vw;
 }
 @media (max-width: 576px) {
-  .inicial{
+  .inicial {
     margin-top: 6vw;
   }
   .btn {
     margin-bottom: 5vw;
   }
-  
+
   /* Agregar espacio entre los campos de entrada */
   input[type="text"] {
     margin-top: 3vw;
   }
-  
+
   /* Aumentar el espacio entre los campos "nombre" y "dirección" */
   #nombre {
     margin-bottom: 3vw;
   }
-  
 }
 </style>
