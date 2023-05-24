@@ -21,7 +21,7 @@ Por ello, la página debe permitir dar de alta las empresas contratadas con sus 
 5. **CRUD**: Se realizará sobre los servicios.
 6. **URLs** del proyecto:
    1. Repositorio proyecto: https://git.institutomilitar.com/Cpsgar/traducpol 
-   2. Librería: 
+   2. Librería: https://github.com/csesvaz/libreriaTRADUCPOL
 7. **Despliegue** en Internet:
    1. API: 
    2. Web: [https://traducpol.netlify.app](https://traducpol.netlify.app/#/)
