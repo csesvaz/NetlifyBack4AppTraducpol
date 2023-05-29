@@ -1,8 +1,4 @@
 
-<script>
-
-</script>
-
 <template>
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
   <div class="container-fluid">
