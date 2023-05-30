@@ -25,6 +25,21 @@ export default {
           <td class="text-center">{{ empresa.direccion }}</td>
           <td class="text-center">{{ empresa.telefono }}</td>
           <td class="text-center">{{ empresa.email }}</td>
+          <td class="text-center">
+            <router-link
+              :to="{ name: 'modificacionEmpresa', params: { id: empresa.id } }"
+            >
+              <fa class="lapiz" icon="fa-solid fa-pencil-alt" size="lg" />
+            </router-link>
+          </td>
+          <td class="text-center">
+            <fa
+              class="bin"
+              icon="fa-solid fa-trash-alt"
+              size="lg"
+              style="color: #c01c28"
+            />
+          </td>
         </tr>
       </tbody>
     </table>

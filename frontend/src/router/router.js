@@ -9,6 +9,7 @@ import Busqueda from "@/Interfaces/InterfazBusqueda.vue";
 import Ayuda from "@/Interfaces/InterfazAyuda.vue";
 import AltaEmpresa from "@/FormulariosAlta/AltaEmpresa.vue";
 import InterfazGestionEmpresa from "@/Interfaces/InterfazGestionEmpresa.vue";
+import ModificacionEmpresa from "@/FormulariosAlta/ModificacionEmpresa.vue";
 import InterfazEmpresas from "@/Interfaces/InterfazEmpresas.vue";
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: "/interfazGestionEmpresa",
     component: InterfazGestionEmpresa,
   },
+  {
+    path: "/modificacionEmpresa/:id",
+    component: ModificacionEmpresa,
+    name: "modificacionEmpresa",
+  }
 ];
 const router = createRouter({
   history: createWebHashHistory(),

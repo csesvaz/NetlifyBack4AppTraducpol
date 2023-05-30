@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class TraducpolApplication {
 	public static final Logger log = LoggerFactory.getLogger(TraducpolApplication.class);
 	public static void main(String[] args) {
-		SpringApplication.run(TraducpolApplication.class, args);
+	SpringApplication.run(TraducpolApplication.class, args);
 	}
 
 }
