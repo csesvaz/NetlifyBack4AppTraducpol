@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	version="1.0">
+	<mapped-superclass class="traducpolPruebaLibreria.Servicio" access="FIELD">
+		<attributes>
+			<basic name="idioma" />
+			<many-to-one name="empresa" target-entity="es.mdef.traducpol.entidades.EmpresaConId" fetch="LAZY">
+				<join-column name="EmpresaId" referenced-column-name="id" />
+			</many-to-one>
+		</attributes>
+	</mapped-superclass>
+	
+</entity-mappings>

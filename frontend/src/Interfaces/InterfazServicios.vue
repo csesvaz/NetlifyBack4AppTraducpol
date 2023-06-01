@@ -1,14 +1,14 @@
 <script>
 import BarraNavegacion from "../components/BarraNavegacion.vue";
-import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
-import ListadoServiciosTraduccion from "../components/ListadoServiciosTraduccion.vue";
+import ListadoServiciosInterpretacion2 from "../components/ListadoServiciosInterpretacion2.vue";
+import ListadoServiciosTraduccion2 from "../components/ListadoServiciosTraduccion2.vue";
 import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
 export default {
   components: {
     BarraNavegacion,
-    ListadoServiciosInterpretacion,
-    ListadoServiciosTraduccion,
+    ListadoServiciosInterpretacion2,
+    ListadoServiciosTraduccion2,
   },
   computed: {
     ...mapState(useEmpresaStore, ["opcionInicial"]),
@@ -64,10 +64,10 @@ export default {
     <br />
    
     <div v-if="this.opcionInicial">
-      <ListadoServiciosInterpretacion/>
+      <ListadoServiciosInterpretacion2/>
     </div>
     <div v-else>
-      <ListadoServiciosTraduccion/>
+      <ListadoServiciosTraduccion2/>
     </div>
  
 </template>

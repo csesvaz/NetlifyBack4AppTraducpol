@@ -5,18 +5,27 @@ export default {
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
   },
+  methods: {
+    ...mapActions(useEmpresaStore, ["deleteEmpresa"]),
+
+    eliminarEmpresa(id) {
+      this.deleteEmpresa(id);
+    },
+  },
 };
-</script><template>
+</script>
+<template>
   <h3>Listado de todas las empresas disponibles</h3>
-  <div class="table-responsive ">
-    <table class="table table-bordered table-hover border border-dark ">
-      <thead class="thead-dark bg-primary ">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover border border-dark">
+      <thead class="thead-dark bg-primary">
         <tr>
           <th class="text-center">Nombre de la Empresa</th>
           <th class="text-center">Dirección</th>
           <th class="text-center">Teléfono</th>
           <th class="text-center">Email</th>
-        
+          <th class="text-center">Editar</th>
+          <th class="text-center">Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +47,7 @@ export default {
               icon="fa-solid fa-trash-alt"
               size="lg"
               style="color: #c01c28"
+              @click="eliminarEmpresa(empresa.id)"
             />
           </td>
         </tr>
@@ -47,6 +57,17 @@ export default {
 </template>
 
 <style scoped>
+.lapiz {
+  color: rgb(110, 60, 60);
+  padding-right: 1em;
+  margin-top: 1vh;
+}
+
+.bin {
+  margin-right: 1em;
+  margin-top: 1vh;
+  cursor: pointer;
+}
 @media (max-width: 768px) {
   .table-responsive {
 

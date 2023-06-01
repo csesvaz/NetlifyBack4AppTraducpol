@@ -11,6 +11,7 @@ export default {
   },
   data() {
     return {
+      customers: null,
       filters: {
         nombre: { value: null, matchMode: FilterMatchMode.CONTAINS },
         direccion: { value: null, matchMode: FilterMatchMode.CONTAINS },

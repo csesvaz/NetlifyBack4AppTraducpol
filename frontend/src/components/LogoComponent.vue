@@ -1,5 +1,4 @@
-<script>
-</script>
+<script setup></script>
 <template>
     <div class="logo-container">
         <figure class="figure">

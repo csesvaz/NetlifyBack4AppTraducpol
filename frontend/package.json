@@ -15,6 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@popperjs/core": "^2.11.7",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "pinia": "^2.0.35",
     "primeicons": "^6.0.1",

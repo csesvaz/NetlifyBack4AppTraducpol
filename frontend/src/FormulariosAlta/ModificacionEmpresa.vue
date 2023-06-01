@@ -1,23 +1,26 @@
 <script>
 
 import BarraNavegacion from "../components/BarraNavegacion.vue";
+import { mapActions } from "pinia";
+import { useEmpresaStore } from "../stores/EmpresaStore.js";
 
 export default {
   components: { BarraNavegacion },
   data() {
     return { id: 0, empresa: null };
   },
-  beforeMount() {
+  async beforeMount() {
     this.id = this.$route.params.id;
-    this.empresa = {nombre:"",direccion:"",telefono:"",email:""};
+    this.empresa = await this.getEmpresa(this.id);
   },
   methods: {
-
+    ...mapActions(useEmpresaStore, ["updateEmpresa","getEmpresa"]),
     borrarDatos() { 
       this.empresa = {nombre:"",direccion:"",telefono:"",email:""};
      
     },
     modificarEmpresa() {
+      this.updateEmpresa(this.empresa);
       this.$router.push('/interfazGestionEmpresa');
 
   },}
@@ -33,7 +36,7 @@ export default {
       <h3 class="formulario inicial">
         Formulario de Modificación de empresa.
       </h3>
-      <form>
+      <form @submit.prevent="modificarEmpresa">
         <div class="row inicial">
           <div class="col-md-4">
             <label for="nombre" class="form-label">Nombre</label>
@@ -49,7 +52,7 @@ export default {
               type="text"
               class="form-control"
               id="nombre"
-            
+              v-model="empresa.nombre"
             />
           </div>
           <div class="col-md-1"></div>
@@ -59,7 +62,7 @@ export default {
               type="text"
               class="form-control"
               id="direccion"
-      
+              v-model="empresa.direccion"
             />
           </div>
         </div>
@@ -81,7 +84,7 @@ export default {
                 type="telephone"
                 class="form-control"
                 id="telefono"
-              
+                v-model="empresa.telefono"
               />
             </div>
           </div>
@@ -92,7 +95,7 @@ export default {
                 type="email"
                 class="form-control"
                 id="email"
-               
+                v-model="empresa.email"
               />
             </div>
           </div>
@@ -109,7 +112,7 @@ export default {
           </div>
 
           <div class="col-md-2">
-            <button type="button" class="btn btn-warning">Borrar Datos</button>
+            <button type="button" class="btn btn-warning" @click="borrarDatos">Borrar Datos</button>
           </div>
 
           <div class="col-md-6"></div>

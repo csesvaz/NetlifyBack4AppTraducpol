@@ -2,7 +2,6 @@
 import LogoComponent from "../components/LogoComponent.vue";
 import PlaceHolders from "../components/PlaceHolders.vue";
 import BarraNavegacion from "../components/BarraNavegacion.vue";
-
 import FooterInicio from "../components/FooterInicio.vue";
 export default {
   components: { LogoComponent, PlaceHolders, BarraNavegacion, FooterInicio },
@@ -26,8 +25,8 @@ export default {
 <style scoped>
 .logo-container {
   margin-bottom: 1em;
-  
 }
+
 .fixed-top {
   position: fixed;
   top: 0;
@@ -36,10 +35,10 @@ export default {
 }
 
 main {
-  margin-top: 4vh;
+  margin-top: 2em;
 }
 
 footer {
-  margin-top: 4vh;
+  margin-top: 2em;
 }
 </style>
