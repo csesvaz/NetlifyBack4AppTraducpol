@@ -3,6 +3,7 @@ package es.mdef.traducpol.rest;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+
 import org.slf4j.Logger;
 
 import org.springframework.stereotype.Component;
@@ -12,16 +13,13 @@ import es.mdef.traducpol.entidades.EmpresaConId;
 import es.mdef.traducpol.entidades.ServicioConId;
 import es.mdef.traducpol.entidades.ServicioInterpretacionImpl;
 import es.mdef.traducpol.entidades.ServicioTraduccionImpl;
-
 import traducpolPruebaLibreria.Servicio.Tipo;
-
-
 
 @Component
 public class ServicioAssembler {
 
-	private final Logger log=TraducpolApplication.log;
-	
+	private final Logger log = TraducpolApplication.log;
+
 
 	public ServicioConId toEntity(ServicioModel model) {
 		ServicioConId servicio;
@@ -49,6 +47,7 @@ public class ServicioAssembler {
 		servicio.setEmpresa(model.getEmpresa());
 		return servicio;
 	}
+
 	public ServicioConId toEntity(ServicioPostModel model) {
 		ServicioConId servicio;
 
@@ -80,7 +79,7 @@ public class ServicioAssembler {
 		ServicioModel model = new ServicioModel();
 		model.setIdioma(entity.getIdioma());
 		model.setEmpresa((EmpresaConId) entity.getEmpresa());
-		
+
 		switch (entity.getTipo()) {
 		case TRADUCCION: {
 			ServicioTraduccionImpl traductor = (ServicioTraduccionImpl) entity;
@@ -97,18 +96,20 @@ public class ServicioAssembler {
 			model.setHorarioFinServicio(interprete.getHorarioFinServicio());
 			model.setServicioOnline(interprete.isServicioOnline());
 			model.setTipo(Tipo.INTERPRETACION);
-	
+
 			break;
 		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + entity.getTipo());
 		}
 
-		model.add(
-				linkTo(methodOn(ServicioController.class).one(entity.getId())).withSelfRel(),
-				linkTo(methodOn(EmpresaController.class).one(((EmpresaConId) entity.getEmpresa()).getId())).withRel("empresa"));
+		model.add(linkTo(methodOn(ServicioController.class).one(entity.getId())).withSelfRel(),
+				linkTo(methodOn(EmpresaController.class).one(((EmpresaConId) entity.getEmpresa()).getId()))
+						.withRel("empresa"));
 		log.info(model.toString());
 		return model;
 	}
+
+
 
 }

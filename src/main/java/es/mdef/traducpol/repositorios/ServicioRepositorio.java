@@ -16,5 +16,7 @@ public interface ServicioRepositorio extends JpaRepository<ServicioConId, Long> 
 	List<ServicioConId> findByServicioId(Long id);
 
 	List<ServicioConId> findByEmpresa(EmpresaConId empresa);
+	
+	
 
 }

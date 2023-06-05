@@ -26,3 +26,4 @@ README.mdcd f
 *.sw?
 *.svg
 .env.*
+/.gradle/
