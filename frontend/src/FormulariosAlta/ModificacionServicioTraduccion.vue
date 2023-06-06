@@ -29,7 +29,6 @@ export default {
       empresa: { nombre: "" },
     };
   },
-
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
@@ -47,7 +46,6 @@ export default {
       "getServicio",
       "getEmpresaDeServicio",
     ]),
-
     borrarDatos() {
       this.servicio = {
         traductorJurado: null,
@@ -56,7 +54,6 @@ export default {
       this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = "";
       this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = "";
     },
-
     async modificarServicio() {
       this.servicio.tipo = "TRADUCCION";
       await this.updateServicio(this.servicio);
@@ -70,7 +67,6 @@ export default {
     <div class="d-flex flex-column">
       <BarraNavegacion class="fixed-top" />
     </div>
-
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
         Formulario de Modificación de un Servicio de Traducción
@@ -104,7 +100,6 @@ export default {
             />
           </div>
           <div class="col-md-1"></div>
-
           <ComponenteIdiomas
             ref="componenteIdiomas"
             :idiomaSeleccionado="servicio.idioma"
@@ -131,7 +126,6 @@ export default {
             :tipoDocumentoSeleccionado="servicio.tipoDocumento"
             @tipoDocumentoSeleccionado="servicio.tipoDocumento = $event"
           />
-
           <div class="col-md-1"></div>
           <ComponentePlazoEntrega
             ref="componentePlazoEntrega"
@@ -154,14 +148,12 @@ export default {
               </label>
             </div>
           </div>
-
           <div class="row justify-content-center final">
             <div class="col-md-2">
               <button type="submit" class="btn btn-primary">
                 Guardar Cambios
               </button>
             </div>
-
             <div class="col-md-2">
               <button
                 type="button"
@@ -171,7 +163,6 @@ export default {
                 Borrar Datos
               </button>
             </div>
-
             <div class="col-md-2"></div>
             <div class="col-md-6"></div>
           </div>

@@ -85,7 +85,6 @@ export default {
     <div class="d-flex flex-column">
       <BarraNavegacion class="fixed-top" />
     </div>
-
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
         Formulario de Modificación de un Servicio de Interpretación
@@ -119,7 +118,6 @@ export default {
             />
           </div>
           <div class="col-md-1"></div>
-
           <ComponenteIdiomas
             ref="componenteIdiomas"
             :idiomaSeleccionado="servicio.idioma"
@@ -152,7 +150,6 @@ export default {
               />
             </div>
           </div>
-
           <div class="col-md-2">
             <div class="mb-3">
               <Calendar
@@ -184,7 +181,6 @@ export default {
             </div>
           </div>
           <br />
-
           <div class="row justify-content-center final">
             <div class="col-md-2">
               <button type="submit" class="btn btn-primary">
@@ -200,7 +196,6 @@ export default {
                 Borrar Datos
               </button>
             </div>
-
             <div class="col-md-2"></div>
             <div class="col-md-6"></div>
           </div>
