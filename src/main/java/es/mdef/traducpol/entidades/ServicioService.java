@@ -4,8 +4,6 @@ import es.mdef.traducpol.repositorios.ServicioRepositorio;
 
 import org.springframework.stereotype.Service;
 
-
-
 import java.time.LocalTime;
 
 import java.util.List;
@@ -26,7 +24,8 @@ public class ServicioService {
 
 	    // Filtrar los servicios en base a los criterios
 	    return servicios.stream()
-	            .filter(serv -> serv.getIdioma().equals(idioma)
+	            .filter(serv -> serv instanceof ServicioInterpretacionImpl
+	            &&serv.getIdioma().equals(idioma)
 	                    && ((ServicioInterpretacionImpl) serv).getProvincia().equals(provincia)
 	                    && horaEsEntreHoras(((ServicioInterpretacionImpl) serv).getHorarioInicioServicio(), ((ServicioInterpretacionImpl) serv).getHorarioFinServicio(), hora)
 	            && (online ? ((ServicioInterpretacionImpl) serv).isServicioOnline() : true))
@@ -34,10 +33,10 @@ public class ServicioService {
 	}
 
 	private static boolean horaEsEntreHoras(String horaInicio, String horaFin, String hora) {
-	    LocalTime inicio = LocalTime.parse(horaInicio);
-	    LocalTime fin = LocalTime.parse(horaFin);
-	    LocalTime seleccionada = LocalTime.parse(hora);
+		LocalTime inicio = LocalTime.parse(horaInicio);
+		LocalTime fin = LocalTime.parse(horaFin);
+		LocalTime seleccionada = LocalTime.parse(hora);
 
-	    return seleccionada.isAfter(inicio) && seleccionada.isBefore(fin);
+		return seleccionada.isAfter(inicio) && seleccionada.isBefore(fin);
 	}
 }

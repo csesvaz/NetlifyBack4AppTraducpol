@@ -68,7 +68,14 @@ export const useEmpresaStore = defineStore("empresas", {
     async deleteEmpresa(id) {
       // Eliminar servicios relacionados
       const empresa = this.empresas.find((emp) => emp.id === id);
-    
+      if (empresa.servicios.length>0)
+      {for (const serv of empresa.servicios) {
+        await axios.delete(
+          import.meta.env.VITE_APP_API + "servicios/" + serv.id
+        );
+        const servIndex = this.servicios.findIndex((s) => s.id === serv.id);
+        this.servicios.splice(servIndex, 1);
+      }}
 
       // Eliminar empresa
       await axios.delete(import.meta.env.VITE_APP_API + "empresas/" + id);
@@ -101,12 +108,83 @@ export const useEmpresaStore = defineStore("empresas", {
       }
       return this.servicios;
     },
+    async addServicio(servicio) {
+      servicio.empresa =
+        import.meta.env.VITE_APP_API + "empresas/" + servicio.empresa.id;
+      const servicioData = await axios.post(
+        import.meta.env.VITE_APP_API + "servicios",
+        servicio
+      );
+      servicio.id = getIdURL(servicioData.data._links.self.href);
+      this.servicios.push(servicio);
+      await this.fetchEmpresas();
+    },
+    async getServicio(id) {
+      const servicioData = await axios.get(
+        import.meta.env.VITE_APP_API + "servicios/" + id
+      );
+      servicioData.data.id = getIdURL(servicioData.data._links.self.href);
+      return servicioData.data;
+      },
+    async getServiciosDeEmpresa(id) {
+      const empresaData = await axios.get(
+        import.meta.env.VITE_APP_API + "empresas/" + id + "/servicios"
+      );
+      if (this.empresas.length === 0) {
+        await this.fetchEmpresas();
+      }
+      if (this.servicios.length === 0) {
+        this.fetchServicios();
+      }
+      const serviciosData = empresaData.data._embedded.servicios;
+      return serviciosData;
+    },
+    async getEmpresaDeServicio(id) {
+      const empresaData = await axios.get(
+        import.meta.env.VITE_APP_API + "servicios/" + id + "/empresa"
+      );
+      if (this.empresas.length === 0) {
+        await this.fetchEmpresas();
+      }
+      if (this.servicios.length === 0) {
+        this.fetchServicios();
+      }
+      return empresaData.data;
+    },
 
+    async deleteServicio(id) {
+      await axios.delete(import.meta.env.VITE_APP_API + "servicios/" + id);
 
+      const index = this.servicios.findIndex((serv) => serv.id === id);
+      this.servicios.splice(index, 1);
 
+      const empresaConServicio = this.empresas.find((emp) =>
+        emp.servicios.some((ser) => ser.id === id)
+      );
+      for (const empresa of this.empresas) {
+        const index = empresa.servicios.findIndex((serv) => serv.id === id);
+        if (index !== -1) {
+          empresa.servicios.splice(index, 1);
+          break; // Salir del bucle si se encuentra la empresa con el servicio
+        }
+      }
+    },
+    async updateServicio(servicio) {
+      await axios.put(
+        import.meta.env.VITE_APP_API + "servicios/" + servicio.id,
+        servicio
+      );
+      const empresaConServicio = this.empresas.find((emp) =>
+        emp.servicios.some((ser) => ser.id == servicio.id)
+      );
+      const index = this.servicios.findIndex((serv) => serv.id == servicio.id);
+      empresaConServicio.servicios[index] = servicio;
+      await this.fetchEmpresas();
+      await this.fetchServicios();
+      return this.servicios;
+    
 
-
-
+    },
 
     convertirBooleano(a) {
       if (a == true) {
@@ -117,16 +195,6 @@ export const useEmpresaStore = defineStore("empresas", {
     },
     cambioOpcion() {
       this.opcionInicial = !this.opcionInicial;
-    },
-    generarIDUnico() {
-      // Utilizar una función de generación de números aleatorios
-      // en conjunto con la fecha actual para generar un ID único
-      const randomNum = Math.floor(Math.random() * 1000000);
-      const date = new Date();
-      const timestamp = date.getTime();
-      const id = `${randomNum}-${timestamp}`;
-
-      return id;
     },
     convertirHora(fecha) {
       const hora = fecha.toLocaleTimeString([], {

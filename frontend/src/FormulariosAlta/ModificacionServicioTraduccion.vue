@@ -92,7 +92,7 @@ export default {
         <div class="row">
           <div class="col-md-3">
             <input
-              desactivated
+            disabled
               type="text"
               class="form-control"
               id="nombre1"

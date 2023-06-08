@@ -56,7 +56,7 @@ export default {
   },
     formatearHora(hora) {
       if (typeof hora === "string") {
-        return hora; // Return the input as is if it's a string
+        return hora; 
       }
 
       const hora1 = hora.getHours();
@@ -110,7 +110,7 @@ export default {
         <div class="row">
           <div class="col-md-3">
             <input
-              desactivated
+             disabled
               type="text"
               class="form-control"
               id="nombre"

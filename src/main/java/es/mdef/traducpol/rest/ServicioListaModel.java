@@ -3,6 +3,7 @@ package es.mdef.traducpol.rest;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
+import es.mdef.traducpol.entidades.EmpresaConId;
 import traducpolPruebaLibreria.Servicio.Tipo;
 
 
@@ -17,6 +18,7 @@ public class ServicioListaModel extends RepresentationModel<ServicioListaModel> 
 	private String horarioFinServicio;
 	private String provincia;
 	private boolean servicioOnline;
+	private EmpresaConId empresa;
 	
 	public String getIdioma() {
 		return idioma;
@@ -71,6 +73,12 @@ public class ServicioListaModel extends RepresentationModel<ServicioListaModel> 
 	}
 	public void setServicioOnline(boolean servicioOnline) {
 		this.servicioOnline = servicioOnline;
+	}
+	public EmpresaConId getEmpresa() {
+		return empresa;
+	}
+	public void setEmpresa(EmpresaConId empresa) {
+		this.empresa = empresa;
 	}
 	
 	

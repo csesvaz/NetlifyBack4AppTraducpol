@@ -46,7 +46,7 @@ public class ServicioListaAssembler implements RepresentationModelAssembler<Serv
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + entity.getTipo());
 		}
-
+		model.setEmpresa((EmpresaConId) entity.getEmpresa());
 		model.add(linkTo(methodOn(ServicioController.class).one(entity.getId())).withSelfRel());
 		return model;
 
