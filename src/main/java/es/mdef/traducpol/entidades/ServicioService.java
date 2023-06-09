@@ -36,7 +36,10 @@ public class ServicioService {
 		LocalTime inicio = LocalTime.parse(horaInicio);
 		LocalTime fin = LocalTime.parse(horaFin);
 		LocalTime seleccionada = LocalTime.parse(hora);
-
-		return seleccionada.isAfter(inicio) && seleccionada.isBefore(fin);
+		if (fin.isAfter(inicio)) {
+			return seleccionada.isAfter(inicio) && seleccionada.isBefore(fin);
+		}
+		return seleccionada.isAfter(fin) || seleccionada.isBefore(inicio);
+		
 	}
 }
