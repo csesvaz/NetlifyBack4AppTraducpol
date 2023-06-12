@@ -142,7 +142,7 @@ export default {
   margin-top: 2vh;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .col-6 {
     width: 100%;
     margin-top: 2vh;
