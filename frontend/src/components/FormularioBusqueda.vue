@@ -16,6 +16,7 @@ export default {
     Button,
     Dialog,
   },
+
   data() {
     return {
       servicio: {
@@ -51,40 +52,6 @@ export default {
     idioma(idiomaSeleccionado) {
       this.servicio.idioma = idiomaSeleccionado;
     },
-<<<<<<< HEAD
-    //Compara si C está entre A y B
-    compararHoras(horaA, horaB, horaC) {
-      const fechaA = new Date(`1970-01-01T${horaA}:00`);
-      const fechaB = new Date(`1970-01-01T${horaB}:00`);
-      const fechaC = new Date(`1970-01-01T${horaC}:00`);
-      return fechaA <= fechaC && fechaC <= fechaB;
-    },
-    filtrarEmpresa(empresa) {
-      this.empresaSeleccionada = empresa;
-    },
-    buscarEmpresas(servicio) {
-      this.empresasConServicio = [];
-      servicio = this.servicio;
-      this.visible = true;
-      this.empresas.forEach((empresa) => {
-        empresa.servicios.forEach((serv) => {
-          if (
-            serv.tipo == "interpretacion" &&
-            this.compararHoras(
-              serv.horarioInicio,
-              serv.horarioFin,
-              this.convertirHora(servicio.horaSeleccionada)
-            ) &&
-            serv.provincia == servicio.provincia &&
-            serv.idioma == servicio.idioma &&
-            ((servicio.servicioOnline == true && serv.servicioOnline == true) ||
-              servicio.servicioOnline == false)
-          ) {
-            this.empresasConServicio.push(empresa);
-          }
-        });
-      });
-=======
 
     async filtrarEmpresa(servicio) {
       this.empresaSeleccionada = await this.getEmpresaDeServicio(servicio.id);
@@ -101,7 +68,6 @@ export default {
       console.log(serviciosDeBusqueda.length);
       this.empresasConServicio = serviciosDeBusqueda;
       this.visible = true;
->>>>>>> 953b399 (Método)
       return this.empresasConServicio;
     },
   },
@@ -219,14 +185,6 @@ export default {
         }})
       </p>
       <p>Las empresas que cumplen sus requisitos son</p>
-<<<<<<< HEAD
-      <p v-for="empresa in empresasConServicio">
-        - {{ empresa.nombre }} con telefono {{ empresa.telefono }}, con
-        dirección {{ empresa.direccion }}&nbsp;&nbsp;&nbsp;&nbsp;<Button
-          type="button"
-          icon="pi pi-eye"
-          @click="(visibleSegundoModal = true), filtrarEmpresa(empresa)"
-=======
       <p v-for="servicio in empresasConServicio">
         - {{ servicio.empresa.nombre }} con telefono
         {{ servicio.empresa.telefono }}, con dirección
@@ -234,7 +192,6 @@ export default {
           type="button"
           icon="pi pi-eye"
           @click="(visibleSegundoModal = true), filtrarEmpresa(servicio)"
->>>>>>> 953b399 (Método)
           :title="'Visualizar datos de contacto de la empresa.'"
         />
         <Dialog
