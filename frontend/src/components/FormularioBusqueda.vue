@@ -23,7 +23,10 @@ export default {
         idioma: "",
         provincia: "",
         servicioOnline: false,
+        id: "",
+        empresa: [],
       },
+      idiomaSeleccionado: null,
       empresasConServicio: [],
       mostrarModal: false,
       visible: false,
@@ -35,13 +38,20 @@ export default {
     ...mapState(useEmpresaStore, ["empresas"]),
   },
   methods: {
-    ...mapActions(useEmpresaStore, ["convertirHora", "convertirBooleano"]),
+    ...mapActions(useEmpresaStore, [
+      "convertirHora",
+      "convertirBooleano",
+      "busquedaAvanzada",
+      "convertirHora",
+      "getEmpresaDeServicio",
+    ]),
     provincia(provinciaSeleccionada) {
       this.servicio.provincia = provinciaSeleccionada;
     },
     idioma(idiomaSeleccionado) {
       this.servicio.idioma = idiomaSeleccionado;
     },
+<<<<<<< HEAD
     //Compara si C está entre A y B
     compararHoras(horaA, horaB, horaC) {
       const fechaA = new Date(`1970-01-01T${horaA}:00`);
@@ -74,6 +84,24 @@ export default {
           }
         });
       });
+=======
+
+    async filtrarEmpresa(servicio) {
+      this.empresaSeleccionada = await this.getEmpresaDeServicio(servicio.id);
+    },
+    async buscarEmpresas() {
+      let serviciosDeBusqueda = [];
+      
+      serviciosDeBusqueda = await this.busquedaAvanzada(
+        this.convertirHora(this.servicio.horaSeleccionada),
+        this.servicio.idioma,
+        this.servicio.provincia,
+        this.servicio.servicioOnline
+      );
+      console.log(serviciosDeBusqueda.length);
+      this.empresasConServicio = serviciosDeBusqueda;
+      this.visible = true;
+>>>>>>> 953b399 (Método)
       return this.empresasConServicio;
     },
   },
@@ -122,6 +150,7 @@ export default {
     <p>3. Seleccione el idioma y el tipo de servicio que necesita.</p>
     <div class="row">
       <div class="col-md-1"></div>
+      <div class="col-2">Idioma*</div>
       <ComponenteIdiomas @idiomaSeleccionado="idioma" required />
     </div>
     <div class="row">
@@ -190,12 +219,22 @@ export default {
         }})
       </p>
       <p>Las empresas que cumplen sus requisitos son</p>
+<<<<<<< HEAD
       <p v-for="empresa in empresasConServicio">
         - {{ empresa.nombre }} con telefono {{ empresa.telefono }}, con
         dirección {{ empresa.direccion }}&nbsp;&nbsp;&nbsp;&nbsp;<Button
           type="button"
           icon="pi pi-eye"
           @click="(visibleSegundoModal = true), filtrarEmpresa(empresa)"
+=======
+      <p v-for="servicio in empresasConServicio">
+        - {{ servicio.empresa.nombre }} con telefono
+        {{ servicio.empresa.telefono }}, con dirección
+        {{ servicio.empresa.direccion }}&nbsp;&nbsp;&nbsp;&nbsp;<Button
+          type="button"
+          icon="pi pi-eye"
+          @click="(visibleSegundoModal = true), filtrarEmpresa(servicio)"
+>>>>>>> 953b399 (Método)
           :title="'Visualizar datos de contacto de la empresa.'"
         />
         <Dialog

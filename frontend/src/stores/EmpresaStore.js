@@ -66,7 +66,6 @@ export const useEmpresaStore = defineStore("empresas", {
       return this.empresas;
     },
     async deleteEmpresa(id) {
-      // Eliminar servicios relacionados
       const empresa = this.empresas.find((emp) => emp.id === id);
       if (empresa.servicios.length > 0) {
         for (const serv of empresa.servicios) {
@@ -78,10 +77,8 @@ export const useEmpresaStore = defineStore("empresas", {
         }
       }
 
-      // Eliminar empresa
       await axios.delete(import.meta.env.VITE_APP_API + "empresas/" + id);
 
-      // Actualizar la lista de empresas
       const index = this.empresas.findIndex((emp) => emp.id === id);
       this.empresas.splice(index, 1);
 
@@ -180,7 +177,28 @@ export const useEmpresaStore = defineStore("empresas", {
       await this.fetchServicios();
       return this.servicios;
     },
-
+    async busquedaAvanzada(hora, idioma, provincia, online) {
+      let serviciosBusqueda = await axios.get(
+        import.meta.env.VITE_APP_API +
+          "servicios/busqueda?idioma=" +
+          idioma +
+          "&provincia=" +
+          provincia +
+          "&online=" +
+          online +
+          "&hora=" +
+          hora
+      );
+      if (serviciosBusqueda.data._embedded) {
+        serviciosBusqueda = serviciosBusqueda.data._embedded.servicios;
+        serviciosBusqueda.map((servicio) => {
+          servicio.id = getIdURL(servicio._links.self.href);
+        });
+      } else {
+        serviciosBusqueda = [];
+      }
+      return serviciosBusqueda;
+    },
     convertirBooleano(a) {
       if (a == true) {
         return "Si";
