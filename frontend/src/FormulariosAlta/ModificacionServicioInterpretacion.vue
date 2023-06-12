@@ -4,11 +4,9 @@ import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
 import ComponenteIdiomas from "../components/ComponenteIdiomas.vue";
 import ComponenteProvincias from "../components/ComponenteProvincias.vue";
-import BarraNavegacion from "../components/BarraNavegacion.vue";
 
 export default {
   components: {
-    BarraNavegacion,
     Calendar,
     ComponenteProvincias,
     ComponenteIdiomas,
@@ -35,7 +33,8 @@ export default {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
     this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-    this.$refs.componenteProvincias.provinciaSeleccionada = this.servicio.provincia;
+    this.$refs.componenteProvincias.provinciaSeleccionada =
+      this.servicio.provincia;
     this.empresa = await this.getEmpresaDeServicio(this.id);
   },
   methods: {
@@ -46,17 +45,17 @@ export default {
       "getEmpresaDeServicio",
     ]),
     borrarDatos() {
-    this.servicio = {
-      horarioInicioServicio: new Date(),
-      horarioFinServicio: new Date(),
-      servicioOnline: false,
-    };
-    this.$refs.componenteIdiomas.idiomaSeleccionado = "";
-    this.$refs.componenteProvincias.provinciaSeleccionada = "";
-  },
+      this.servicio = {
+        horarioInicioServicio: new Date(),
+        horarioFinServicio: new Date(),
+        servicioOnline: false,
+      };
+      this.$refs.componenteIdiomas.idiomaSeleccionado = "";
+      this.$refs.componenteProvincias.provinciaSeleccionada = "";
+    },
     formatearHora(hora) {
       if (typeof hora === "string") {
-        return hora; 
+        return hora;
       }
 
       const hora1 = hora.getHours();
@@ -77,14 +76,10 @@ export default {
       this.$router.push("/interfazGestionServicios");
     },
   },
- 
 };
 </script>
 <template>
   <div class="container-fluid">
-    <div class="d-flex flex-column">
-      <BarraNavegacion class="fixed-top" />
-    </div>
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
         Formulario de Modificación de un Servicio de Interpretación
@@ -110,7 +105,7 @@ export default {
         <div class="row">
           <div class="col-md-3">
             <input
-             disabled
+              disabled
               type="text"
               class="form-control"
               id="nombre"
@@ -213,6 +208,6 @@ export default {
   margin-top: 3vh;
 }
 .final {
-  margin-top:4vh;
+  margin-top: 4vh;
 }
 </style>

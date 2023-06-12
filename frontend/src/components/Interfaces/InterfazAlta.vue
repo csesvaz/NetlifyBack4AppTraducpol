@@ -1,10 +1,10 @@
 <script>
-import AccesoAltas from "./AccesoAltas.vue";
-import { useAuthStore } from "../stores/AuthStore";
+
+import { useAuthStore } from "@/stores/AuthStore";
 import { mapActions, mapState } from "pinia";
 
 export default {
-  components: { AccesoAltas },
+  
   computed: {
     ...mapState(useAuthStore, { isAdmin: "isAdmin" }),
   },
@@ -28,13 +28,13 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="row mb-12">
     <div class="col-6">
       Para dar de alta o modificar una empresa o un servicio debe entrar en MODO
       ADMINISTRADOR
     </div>
-    <!-- Button trigger modal -->
     <div class="col-6">
       <button
         type="button"
@@ -102,7 +102,6 @@ export default {
               type="button"
               class="btn btn-primary"
               @click="validarPassword()"
-              
               :data-bs-dismiss="isAdmin ? 'modal' : null"
             >
               Aceptar
@@ -112,21 +111,41 @@ export default {
       </div>
     </div>
     <div v-if="isAdmin">
-      <AccesoAltas />
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 mb-4">
+            <h6>Seleccione gestión de Empresas</h6>
+            <router-link class="btn btn-primary" to="/interfazGestionEmpresa">
+              EMPRESA
+            </router-link>
+          </div>
+          <div class="col-12 col-md-6 mb-4">
+            <h6>Seleccione gestión de Servicios</h6>
+            <router-link class="btn btn-primary" to="/interfazGestionServicios">
+              Servicios
+            </router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <style scoped>
 .row {
-  margin-top: 2em;
+  margin-top: 5vh;
 }
 
 .text-align-center {
   text-align: center;
 }
+.col-6 {
+  margin-top: 2vh;
+}
+
 @media (max-width: 576px) {
   .col-6 {
     width: 100%;
+    margin-top: 2vh;
   }
 }
 </style>

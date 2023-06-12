@@ -2,7 +2,8 @@
 export default {
   data() {
     return {
-      idiomaSeleccionado: [],
+      idiomaSeleccionado: "",
+      idiomaSeleccionadoMultiple: [],
     };
   },
 };
@@ -10,12 +11,12 @@ export default {
 <template>
   <div class="col-8 col-md-4">
     <select v-if="$route.path === '/altaServicioInterpretacion'||$route.path === '/altaServicioTraduccion'"
-      v-model="idiomaSeleccionado"
+      v-model="idiomaSeleccionadoMultiple"
       class="form-select form-select-sm"
       aria-label=".form-select-sm example"
-      multiple="idiomaSeleccionado"
+      multiple="idiomaSeleccionadoMultiple"
       required
-      @change="$emit('idiomaSeleccionado', idiomaSeleccionado)"
+      @change="$emit('idiomaSeleccionado', idiomaSeleccionadoMultiple)"
     >
     <option value="" selected="">Elige Idioma</option>
       <option value="Alemán">Alemán</option>

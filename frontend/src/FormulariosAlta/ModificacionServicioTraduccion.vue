@@ -5,10 +5,8 @@ import ComponenteIdiomas from "../components/ComponenteIdiomas.vue";
 import ComponentePlazoEntrega from "../components/ComponentePlazoEntrega.vue";
 import ComponenteTipoDocumento from "../components/ComponenteTipoDocumento.vue";
 
-import BarraNavegacion from "../components/BarraNavegacion.vue";
 export default {
   components: {
-    BarraNavegacion,
     ComponenteIdiomas,
     ComponentePlazoEntrega,
     ComponenteTipoDocumento,
@@ -63,10 +61,7 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid">
-    <div class="d-flex flex-column">
-      <BarraNavegacion class="fixed-top" />
-    </div>
+  <div class="container-fluid">s
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
         Formulario de Modificación de un Servicio de Traducción
@@ -92,7 +87,7 @@ export default {
         <div class="row">
           <div class="col-md-3">
             <input
-            disabled
+              disabled
               type="text"
               class="form-control"
               id="nombre1"

@@ -76,7 +76,6 @@ export const useEmpresaStore = defineStore("empresas", {
           this.servicios.splice(servIndex, 1);
         }
       }
-
       await axios.delete(import.meta.env.VITE_APP_API + "empresas/" + id);
 
       const index = this.empresas.findIndex((emp) => emp.id === id);
@@ -155,6 +154,10 @@ export const useEmpresaStore = defineStore("empresas", {
 
       const index = this.servicios.findIndex((serv) => serv.id === id);
       this.servicios.splice(index, 1);
+
+      const empresaConServicio = this.empresas.find((emp) =>
+        emp.servicios.some((ser) => ser.id === id)
+      );
       for (const empresa of this.empresas) {
         const index = empresa.servicios.findIndex((serv) => serv.id === id);
         if (index !== -1) {
@@ -177,6 +180,7 @@ export const useEmpresaStore = defineStore("empresas", {
       await this.fetchServicios();
       return this.servicios;
     },
+
     async busquedaAvanzada(hora, idioma, provincia, online) {
       let serviciosBusqueda = await axios.get(
         import.meta.env.VITE_APP_API +
@@ -200,15 +204,21 @@ export const useEmpresaStore = defineStore("empresas", {
       return serviciosBusqueda;
     },
     convertirBooleano(a) {
+      let variable="Si"
       if (a == true) {
-        return "Si";
+        variable= "Si"
       } else {
-        return "No";
+        variable= "No"
       }
+      return variable
     },
     cambioOpcion() {
       this.opcionInicial = !this.opcionInicial;
     },
+    cambioOpcionFalse() {
+      this.opcionInicial = false;
+    },
+
     convertirHora(fecha) {
       const hora = fecha.toLocaleTimeString([], {
         hour: "2-digit",

@@ -1,11 +1,10 @@
 <script>
-import BarraNavegacion from "../components/BarraNavegacion.vue";
-import ComponenteEmpresas from "../components/ComponenteEmpresas.vue";
+import ComponenteEmpresas from "@/components/ComponenteEmpresas.vue";
 import { mapState } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
 
 export default {
-  components: { BarraNavegacion, ComponenteEmpresas },
+  components: { ComponenteEmpresas },
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
   }
@@ -13,9 +12,6 @@ export default {
 </script>
 
 <template>
-  <div class="d-block fixed-top">
-    <BarraNavegacion />
-  </div>
     <div class="contenedor">
       <br />
       <div class="row mt-3">

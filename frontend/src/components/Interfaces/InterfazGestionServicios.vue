@@ -1,13 +1,11 @@
 <script>
-import BarraNavegacion from "../components/BarraNavegacion.vue";
-import ListadoServiciosInterpretacion from "../components/ListadoServiciosInterpretacion.vue";
-import ListadoServiciosTraduccion from "../components/ListadoServiciosTraduccion.vue";
+import ListadoServiciosInterpretacion from "@/components/ListadoServiciosInterpretacion.vue";
+import ListadoServiciosTraduccion from "@/components/ListadoServiciosTraduccion.vue";
 import { mapState, mapActions } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
 
 export default {
   components: {
-    BarraNavegacion,
     ListadoServiciosInterpretacion,
     ListadoServiciosTraduccion,
   },
@@ -22,9 +20,6 @@ export default {
 </script>
 
 <template>
-  <div class="d-block fixed-top">
-    <BarraNavegacion />
-  </div>
   <br>
   <div class="row mb-12 mt-4 ms-3">
     <div class="col-2">

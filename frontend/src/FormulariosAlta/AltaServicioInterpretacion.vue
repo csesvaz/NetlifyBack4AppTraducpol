@@ -2,12 +2,10 @@
 import Calendar from "primevue/calendar";
 import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
-import BarraNavegacion from "../components/BarraNavegacion.vue";
 import ComponenteIdiomas from "../components/ComponenteIdiomas.vue";
 import ComponenteProvincias from "../components/ComponenteProvincias.vue";
 export default {
   components: {
-    BarraNavegacion,
     Calendar,
     ComponenteIdiomas,
     ComponenteProvincias,
@@ -18,8 +16,6 @@ export default {
   data() {
     return {
       empresas: [],
-      tiempoInicio: null,
-      tiempoFinal: null,
       servicio: {
         tipo: "INTERPRETACION",
         idioma: "",
@@ -30,6 +26,7 @@ export default {
         empresa: "",
       },
       idiomas: [],
+      provincias: [],
     };
   },
   async beforeMount() {
@@ -58,10 +55,12 @@ export default {
       );
 
       for (let i = 0; i < this.idiomas.length; i++) {
-        const nuevoServicio = { ...this.servicio }; 
+        for (let j = 0; j < this.provincias.length; j++) {
+        const nuevoServicio = { ...this.servicio };
+        nuevoServicio.provincia = this.provincias[j];
         nuevoServicio.idioma = this.idiomas[i];
         this.addServicio(nuevoServicio);
-      }
+      }}
 
       this.$router.push("/interfazGestionServicios");
     },
@@ -76,17 +75,13 @@ export default {
         empresa: "",
       };
       this.$refs.componenteIdiomas.idiomaSeleccionado = [];
-      this.$refs.componenteProvincias.provinciaSeleccionada = "";
+      this.$refs.componenteProvincias.provinciaSeleccionada = [];
     },
   },
 };
 </script>
 <template>
   <div class="container-fluid">
-    <div class="d-flex flex-column">
-      <BarraNavegacion class="fixed-top" />
-    </div>
-
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
         Formulario de Alta de un Servicio de Interpretación
@@ -112,6 +107,7 @@ export default {
         <div class="row">
           <div class="col-md-3">
             <select
+              required
               class="form-select form-select-sm"
               aria-label=".form-select-sm example"
               v-model="servicio.empresa"
@@ -174,8 +170,8 @@ export default {
           <div class="col-md-1"></div>
           <ComponenteProvincias
             ref="componenteProvincias"
-            :provinciaSeleccionada="servicio.provincia"
-            @provinciaSeleccionada="servicio.provincia = $event"
+            :provinciaSeleccionada="provincias"
+            @provinciaSeleccionada="provincias = $event"
           />
         </div>
         <div class="row inicial">
@@ -197,9 +193,8 @@ export default {
           <div class="row justify-content-center final">
             <div class="col-md-2">
               <button
-                type="button"
+                type="submit"
                 class="btn btn-primary"
-                @click="guardarServicio"
               >
                 Guardar Cambios
               </button>

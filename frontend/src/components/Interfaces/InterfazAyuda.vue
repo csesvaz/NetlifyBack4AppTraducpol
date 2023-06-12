@@ -2,16 +2,29 @@
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 export default {
-  components: {AccordionTab, Accordion },
+  components: { AccordionTab, Accordion },
 };
 </script>
 
 <template>
+  <div class="contenedor">
+    <br />
+    <div class="row mt-3">
+      <h3 class="IntroduccionAyuda">
+        Preguntas más frecuentes acerca de la aplicación.
+      </h3>
+    </div>
+  </div>
   <Accordion :multiple="true" :activeIndex="[0]">
-    <AccordionTab
-      header="¿Puedo solicitar un nuevo servicio que no esté incluido entre los
-      ofertados?"
-    >
+    <AccordionTab>
+      <template #header>
+        <i class="pi pi-search"></i>
+        <p>&nbsp;</p>
+        <span
+          >¿Puedo solicitar un nuevo servicio que no esté incluido entre los
+          ofertados?</span
+        >
+      </template>
       <p>
         Sí, puedes sugerir un nuevo servicio que no esté incluido entre los
         ofertados. Para hacerlo, envía un mensaje a la dirección
@@ -19,10 +32,15 @@ export default {
         con el servicio de intérpretes (Horario telefónico de 9:00 a 15:00).
       </p>
     </AccordionTab>
-    <AccordionTab
-      header="¿Que pasa si el servicio buscado no se encuentre dentro de los ofertados
-      por las empresas?"
-    >
+    <AccordionTab>
+      <template #header>
+        <i class="pi pi-search"></i>
+        <p>&nbsp;</p>
+        <span
+          >¿Que pasa si el servicio buscado no se encuentre dentro de los
+          ofertados por las empresas?</span
+        >
+      </template>
       <p>
         En caso de que el servicio busacado no se encuentre dentro de los
         ofertados por las empresas, puedes sugerir la introducción del servicio.
@@ -31,8 +49,15 @@ export default {
         intérpretes (Horario telefónico de 9:00 a 15:00).
       </p>
     </AccordionTab>
-    <AccordionTab header=" ¿Que ocurrre si necesito un servicio que se salga del horario fijado por
-      la empresa?">
+    <AccordionTab>
+      <template #header>
+        <i class="pi pi-search"></i>
+        <p>&nbsp;</p>
+        <span
+          >¿Que ocurrre si necesito un servicio que se salga del horario fijado
+          por la empresa?</span
+        >
+      </template>
       <p>
         En caso de que un servicio que se salga del horario fijado por la
         empresa, en este caso existen dos posibilidades: 1 si el servicio
@@ -46,8 +71,15 @@ export default {
         telefónico de 9:00 a 15:00)
       </p>
     </AccordionTab>
-    <AccordionTab header="¿Puedo solicitar un nuevo servicio de urgencia, con un tiempo menor a una
-      hora para su activación?">
+    <AccordionTab>
+      <template #header>
+        <i class="pi pi-search"></i>
+        <p>&nbsp;</p>
+        <span
+          >¿Puedo solicitar un nuevo servicio de urgencia, con un tiempo menor a
+          una hora para su activación?</span
+        >
+      </template>
       <p>
         Sí, no existen inconvenientes por parte de las empresas que dan apoyo a
         nuestras unidades policiales, siempre y cuando sea dentro del horario
@@ -55,8 +87,15 @@ export default {
         considerarán de urgencia.
       </p>
     </AccordionTab>
-    <AccordionTab header="¿Cómo puedo ver todos los servicios lingüísticos y las empresas
-      contratadas por el cuerpo policial?">
+    <AccordionTab>
+      <template #header>
+        <i class="pi pi-search"></i>
+        <p>&nbsp;</p>
+        <span
+          >¿Cómo puedo ver todos los servicios lingüísticos y las empresas
+          contratadas por el cuerpo policial?</span
+        >
+      </template>
       <p>
         Puedes visualizar los servicios en el Listado de Servicios en la pestaña
         Servicios Disponibles o puedes visualizar las empresas en la pestaña
@@ -67,8 +106,8 @@ export default {
 </template>
 
 <style scoped>
-.card {
-  background-color: #d4d0e0;
+.contenedor {
   margin-bottom: 2vh;
+  margin-left: 3vw;
 }
 </style>

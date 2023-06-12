@@ -1,11 +1,8 @@
 <script>
-import BarraNavegacion from "../components/BarraNavegacion.vue";
 import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
 
 export default {
-  components: { BarraNavegacion },
-
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
   },
@@ -29,10 +26,6 @@ export default {
 </script>
 <template>
   <div class="container-fluid">
-    <div class="d-flex flex-column">
-      <BarraNavegacion class="fixed-top" />
-    </div>
-
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">Formulario de Creación de empresa.</h3>
       <form @submit.prevent="guardarEmpresa">
@@ -69,7 +62,7 @@ export default {
             />
           </div>
         </div>
-          <div class="row inicial">
+        <div class="row inicial">
           <div class="col-md-3">
             <label for="cif" class="form-label">Cif de la empresa.</label>
           </div>

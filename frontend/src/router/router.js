@@ -1,21 +1,27 @@
-//Importar Router
 import { createRouter, createWebHashHistory } from "vue-router";
-
-//Importar componentes y sus rutas
-import Inicio from "@/Interfaces/InterfazInicio.vue";
-import Servicios from "@/Interfaces/InterfazServicios.vue";
-import Busqueda from "@/Interfaces/InterfazBusqueda.vue";
-import Alta from "@/Interfaces/InterfazAlta.vue";
-import Ayuda from "@/Interfaces/InterfazAyuda.vue";
-import AltaEmpresa from "@/FormulariosAlta/AltaEmpresa.vue";
-import ModificacionEmpresa from "@/FormulariosAlta/ModificacionEmpresa.vue";
-import AltaServicioInterpretacion from "@/FormulariosAlta/AltaServicioInterpretacion.vue";
-import AltaServicioTraduccion from "@/FormulariosAlta/AltaServicioTraduccion.vue";
-import InterfazGestionEmpresa from "@/Interfaces/InterfazGestionEmpresa.vue";
-import InterfazGestionServicios from "@/Interfaces/InterfazGestionServicios.vue";
-import ModificacionServicioInterpretacion from "@/FormulariosAlta/ModificacionServicioInterpretacion.vue";
-import ModificacionServicioTraduccion from "@/FormulariosAlta/ModificacionServicioTraduccion.vue";
-import InterfazEmpresas from "@/Interfaces/InterfazEmpresas.vue";
+import Inicio from "../components/Interfaces/InterfazInicio.vue";
+const Servicios = () =>
+  import("../components/Interfaces/InterfazServicios.vue");
+const Busqueda = () => import("../components/Interfaces/InterfazBusqueda.vue");
+const Alta = () => import("../components/Interfaces/InterfazAlta.vue");
+const AltaEmpresa = () => import("../FormulariosAlta/AltaEmpresa.vue");
+const Ayuda = () => import("../components/Interfaces/InterfazAyuda.vue");
+const ModificacionEmpresa = () =>
+  import("../FormulariosAlta/ModificacionEmpresa.vue");
+const AltaServicioInterpretacion = () =>
+  import("../FormulariosAlta/AltaServicioInterpretacion.vue");
+const AltaServicioTraduccion = () =>
+  import("../FormulariosAlta/AltaServicioTraduccion.vue");
+const InterfazGestionEmpresa = () =>
+  import("../components/Interfaces/InterfazGestionEmpresa.vue");
+const InterfazGestionServicios = () =>
+  import("../components/Interfaces/InterfazGestionServicios.vue");
+const ModificacionServicioInterpretacion = () =>
+  import("../FormulariosAlta/ModificacionServicioInterpretacion.vue");
+const ModificacionServicioTraduccion = () =>
+  import("../FormulariosAlta/ModificacionServicioTraduccion.vue");
+const InterfazEmpresas = () =>
+  import("../components/Interfaces/InterfazEmpresas.vue");
 const routes = [
   {
     path: "/",
@@ -61,10 +67,10 @@ const routes = [
     name: "modificacionServicioInterpretacion",
   },
   {
-  path: "/modificacionServicioTraduccion/:id",
-  component: ModificacionServicioTraduccion,
-  name: "modificacionServicioTraduccion",
-},
+    path: "/modificacionServicioTraduccion/:id",
+    component: ModificacionServicioTraduccion,
+    name: "modificacionServicioTraduccion",
+  },
   {
     path: "/altaServicioTraduccion",
     component: AltaServicioTraduccion,

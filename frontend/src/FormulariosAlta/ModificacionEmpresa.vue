@@ -1,11 +1,9 @@
 <script>
 
-import BarraNavegacion from "../components/BarraNavegacion.vue";
 import { mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore.js";
 
 export default {
-  components: { BarraNavegacion },
   data() {
     return { id: 0, empresa: null };
   },
@@ -28,10 +26,6 @@ export default {
 </script>
 <template>
   <div v-if="empresa" class="container-fluid">
-    <div class="d-flex flex-column">
-      <BarraNavegacion class="fixed-top" />
-    </div>
-
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
         Formulario de Modificación de empresa.

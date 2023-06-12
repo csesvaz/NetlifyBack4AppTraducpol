@@ -1,15 +1,11 @@
 <script>
-import BarraNavegacion from "../components/BarraNavegacion.vue";
-import ListadoEmpresas from "../components/ListadoEmpresas.vue";
+import ListadoEmpresas from "@/components/ListadoEmpresas.vue";
 export default {
-  components: { BarraNavegacion, ListadoEmpresas },
+  components: { ListadoEmpresas },
 };
 </script>
 
 <template>
-<div class="d-block fixed-top">
-  <BarraNavegacion />
-</div>
   <div class="row mb-12 mt-5 ms-3">
     <div class="col-sm-9 col-md-6">
       <h6 class="mb-0">Creación de nueva Empresa</h6>
