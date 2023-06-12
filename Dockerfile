@@ -12,4 +12,4 @@ RUN gradle --no-daemon bootJar
 FROM openjdk:17-alpine
 COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8085
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOI T ["java", "-jar", "app.jar"]

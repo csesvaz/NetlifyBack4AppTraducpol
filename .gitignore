@@ -27,3 +27,4 @@ README.mdcd f
 *.svg
 .env.*
 /.gradle/
+/build/
