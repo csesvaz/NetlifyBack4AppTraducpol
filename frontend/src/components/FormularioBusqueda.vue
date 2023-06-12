@@ -16,7 +16,6 @@ export default {
     Button,
     Dialog,
   },
-
   data() {
     return {
       servicio: {
@@ -45,15 +44,14 @@ export default {
     },
     //Compara si C está entre A y B
     compararHoras(horaA, horaB, horaC) {
-  const fechaA = new Date(`1970-01-01T${horaA}:00`);
-  const fechaB = new Date(`1970-01-01T${horaB}:00`);
-  const fechaC = new Date(`1970-01-01T${horaC}:00`);
-  return fechaA <= fechaC && fechaC <= fechaB;
-},
-filtrarEmpresa(empresa)
-{
-  this.empresaSeleccionada=empresa;
-},
+      const fechaA = new Date(`1970-01-01T${horaA}:00`);
+      const fechaB = new Date(`1970-01-01T${horaB}:00`);
+      const fechaC = new Date(`1970-01-01T${horaC}:00`);
+      return fechaA <= fechaC && fechaC <= fechaB;
+    },
+    filtrarEmpresa(empresa) {
+      this.empresaSeleccionada = empresa;
+    },
     buscarEmpresas(servicio) {
       this.empresasConServicio = [];
       servicio = this.servicio;
@@ -62,7 +60,11 @@ filtrarEmpresa(empresa)
         empresa.servicios.forEach((serv) => {
           if (
             serv.tipo == "interpretacion" &&
-            this.compararHoras(serv.horarioInicio, serv.horarioFin, this.convertirHora(servicio.horaSeleccionada)) &&
+            this.compararHoras(
+              serv.horarioInicio,
+              serv.horarioFin,
+              this.convertirHora(servicio.horaSeleccionada)
+            ) &&
             serv.provincia == servicio.provincia &&
             serv.idioma == servicio.idioma &&
             ((servicio.servicioOnline == true && serv.servicioOnline == true) ||
@@ -72,7 +74,6 @@ filtrarEmpresa(empresa)
           }
         });
       });
-      
       return this.empresasConServicio;
     },
   },
@@ -191,18 +192,22 @@ filtrarEmpresa(empresa)
       <p>Las empresas que cumplen sus requisitos son</p>
       <p v-for="empresa in empresasConServicio">
         - {{ empresa.nombre }} con telefono {{ empresa.telefono }}, con
-        dirección {{ empresa.direccion }}&nbsp;&nbsp;&nbsp;&nbsp;<Button type="button" icon="pi pi-eye" @click="visibleSegundoModal = true, filtrarEmpresa(empresa)" :title="'Visualizar datos de contacto de la empresa.'"/>
-          <Dialog
-            v-model:visible="visibleSegundoModal"
-            modal
-            header="Datos de la empresa"
-            :style="{ width: '50vw' }"
-            :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-          >
-            <ComponenteEmpresa :empresaEntrada="empresaSeleccionada" />
-          </Dialog>
+        dirección {{ empresa.direccion }}&nbsp;&nbsp;&nbsp;&nbsp;<Button
+          type="button"
+          icon="pi pi-eye"
+          @click="(visibleSegundoModal = true), filtrarEmpresa(empresa)"
+          :title="'Visualizar datos de contacto de la empresa.'"
+        />
+        <Dialog
+          v-model:visible="visibleSegundoModal"
+          modal
+          header="Datos de la empresa"
+          :style="{ width: '50vw' }"
+          :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+        >
+          <ComponenteEmpresa :empresaEntrada="empresaSeleccionada" />
+        </Dialog>
       </p>
-      
     </div>
   </Dialog>
 </template>

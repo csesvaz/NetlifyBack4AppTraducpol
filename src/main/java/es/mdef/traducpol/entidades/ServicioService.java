@@ -19,17 +19,14 @@ public class ServicioService {
 	}
 
 	public List<ServicioConId> buscarServicios(String idioma, String provincia, String hora, boolean online) {
-	    // Obtener todos los servicios del repositorio
-	    List<ServicioConId> servicios = this.servicioRepositorio.findAll();
-
-	    // Filtrar los servicios en base a los criterios
-	    return servicios.stream()
-	            .filter(serv -> serv instanceof ServicioInterpretacionImpl
-	            &&serv.getIdioma().equals(idioma)
-	                    && ((ServicioInterpretacionImpl) serv).getProvincia().equals(provincia)
-	                    && horaEsEntreHoras(((ServicioInterpretacionImpl) serv).getHorarioInicioServicio(), ((ServicioInterpretacionImpl) serv).getHorarioFinServicio(), hora)
-	            && (online ? ((ServicioInterpretacionImpl) serv).isServicioOnline() : true))
-	            .collect(Collectors.toList());
+		List<ServicioConId> servicios = this.servicioRepositorio.findAll();
+		return servicios.stream()
+				.filter(serv -> serv instanceof ServicioInterpretacionImpl && serv.getIdioma().equals(idioma)
+						&& ((ServicioInterpretacionImpl) serv).getProvincia().equals(provincia)
+						&& horaEsEntreHoras(((ServicioInterpretacionImpl) serv).getHorarioInicioServicio(),
+								((ServicioInterpretacionImpl) serv).getHorarioFinServicio(), hora)
+						&& (online ? ((ServicioInterpretacionImpl) serv).isServicioOnline() : true))
+				.collect(Collectors.toList());
 	}
 
 	private static boolean horaEsEntreHoras(String horaInicio, String horaFin, String hora) {
@@ -40,6 +37,6 @@ public class ServicioService {
 			return seleccionada.isAfter(inicio) && seleccionada.isBefore(fin);
 		}
 		return seleccionada.isAfter(fin) || seleccionada.isBefore(inicio);
-		
+
 	}
 }

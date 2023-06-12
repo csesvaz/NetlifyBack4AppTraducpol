@@ -4,7 +4,7 @@ import { useEmpresaStore } from "../stores/EmpresaStore";
 import Column from "primevue/column";
 import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
-import { FilterMatchMode } from 'primevue/api';
+import { FilterMatchMode } from "primevue/api";
 export default {
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
@@ -16,7 +16,7 @@ export default {
         nombre: { value: null, matchMode: FilterMatchMode.CONTAINS },
         direccion: { value: null, matchMode: FilterMatchMode.CONTAINS },
         telefono: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        email: { value: null, matchMode: FilterMatchMode.CONTAINS }
+        email: { value: null, matchMode: FilterMatchMode.CONTAINS },
       },
     };
   },
@@ -58,12 +58,8 @@ export default {
             placeholder="Búsqueda por nombre"
           /> </template
       ></Column>
-      <Column
-        field="direccion"
-        header="Dirección"
-        sortable
-        style="width: 25%"
-      >  <template #body="{ data }">
+      <Column field="direccion" header="Dirección" sortable style="width: 25%">
+        <template #body="{ data }">
           {{ data.direccion }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
@@ -75,12 +71,8 @@ export default {
             placeholder="Búsqueda por dirección"
           /> </template
       ></Column>
-      <Column
-        field="telefono"
-        header="Telefono"
-        sortable
-        style="width: 25%"
-      ><template #body="{ data }">
+      <Column field="telefono" header="Telefono" sortable style="width: 25%"
+        ><template #body="{ data }">
           {{ data.telefono }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
@@ -92,7 +84,8 @@ export default {
             placeholder="Búsqueda por dirección"
           /> </template
       ></Column>
-      <Column field="email" header="Email" sortable style="width: 25%"> <template #body="{ data }">
+      <Column field="email" header="Email" sortable style="width: 25%">
+        <template #body="{ data }">
           {{ data.email }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
@@ -104,7 +97,9 @@ export default {
             placeholder="Búsqueda por nombre"
           /> </template
       ></Column>
-      <template #footer> Hay un total de {{ empresas ? empresas.length : 0 }} empresas. </template>
+      <template #footer>
+        Hay un total de {{ empresas ? empresas.length : 0 }} empresas.
+      </template>
     </DataTable>
   </div>
 </template>

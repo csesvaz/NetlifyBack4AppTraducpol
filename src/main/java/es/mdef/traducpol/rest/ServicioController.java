@@ -60,7 +60,7 @@ public class ServicioController {
 	public CollectionModel<ServicioListaModel> busquedaAvanzada(@RequestParam String idioma,
 			@RequestParam String provincia, @RequestParam boolean online, @RequestParam String hora) {
 
-		List<ServicioConId> serviciosEncontrados = servicioService.buscarServicios(idioma, provincia,hora, online);
+		List<ServicioConId> serviciosEncontrados = servicioService.buscarServicios(idioma, provincia, hora, online);
 
 		CollectionModel<ServicioListaModel> servicioLista = listaAssembler.toCollection(serviciosEncontrados);
 

@@ -1,8 +1,8 @@
 package es.mdef.traducpol.rest;
+
 import org.slf4j.Logger;
 
 import java.util.List;
-
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,23 +24,22 @@ import es.mdef.traducpol.entidades.ServicioConId;
 import es.mdef.traducpol.repositorios.EmpresaRepositorio;
 import es.mdef.traducpol.repositorios.ServicioRepositorio;
 
-
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 @RequestMapping("/empresas")
 public class EmpresaController {
-	
+
 	private final EmpresaRepositorio repositorio;
 	private final ServicioRepositorio repositorioServicio;
 	private final EmpresaAssembler assembler;
 	private final EmpresaListaAssembler listaAssembler;
 	private final ServicioListaAssembler servicioListaAssembler;
 	private final Logger log;
-	
-	EmpresaController(EmpresaRepositorio repositorio, EmpresaAssembler assembler,
-			EmpresaListaAssembler listaAssembler, ServicioListaAssembler servicioListaAssembler,  ServicioRepositorio repositorioServicio) {
+
+	EmpresaController(EmpresaRepositorio repositorio, EmpresaAssembler assembler, EmpresaListaAssembler listaAssembler,
+			ServicioListaAssembler servicioListaAssembler, ServicioRepositorio repositorioServicio) {
 		this.repositorio = repositorio;
-		this.repositorioServicio=repositorioServicio;
+		this.repositorioServicio = repositorioServicio;
 		this.assembler = assembler;
 		this.listaAssembler = listaAssembler;
 		this.servicioListaAssembler = servicioListaAssembler;
@@ -61,12 +60,13 @@ public class EmpresaController {
 
 	@GetMapping("{id}/servicios")
 	public CollectionModel<ServicioListaModel> getServiciosEmpresa(@PathVariable Long id) {
-		EmpresaConId empresaConId= repositorio.findById(id).orElseThrow(()->new RegisterNotFoundException(id,"empresa"));
-		List<ServicioConId> lista=repositorioServicio.findByEmpresa(empresaConId);
-					
-	return servicioListaAssembler.toCollection(lista)
-			.add(linkTo(methodOn(EmpresaController.class).getServiciosEmpresa(id)).withSelfRel());
-			}
+		EmpresaConId empresaConId = repositorio.findById(id)
+				.orElseThrow(() -> new RegisterNotFoundException(id, "empresa"));
+		List<ServicioConId> lista = repositorioServicio.findByEmpresa(empresaConId);
+
+		return servicioListaAssembler.toCollection(lista)
+				.add(linkTo(methodOn(EmpresaController.class).getServiciosEmpresa(id)).withSelfRel());
+	}
 
 	@PostMapping
 	public EmpresaModel add(@RequestBody EmpresaPostModel model) {

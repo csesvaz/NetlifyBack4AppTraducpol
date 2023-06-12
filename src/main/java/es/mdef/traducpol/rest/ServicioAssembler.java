@@ -3,7 +3,6 @@ package es.mdef.traducpol.rest;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-
 import org.slf4j.Logger;
 
 import org.springframework.stereotype.Component;
@@ -19,7 +18,6 @@ import traducpolPruebaLibreria.Servicio.Tipo;
 public class ServicioAssembler {
 
 	private final Logger log = TraducpolApplication.log;
-
 
 	public ServicioConId toEntity(ServicioModel model) {
 		ServicioConId servicio;
@@ -109,7 +107,5 @@ public class ServicioAssembler {
 		log.info(model.toString());
 		return model;
 	}
-
-
 
 }

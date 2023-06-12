@@ -14,7 +14,7 @@
                 <cascade>
                     <cascade-all/>
                 </cascade>
-            </one-to-many>
+												</one-to-many>
         </attributes>
     </mapped-superclass>
 </entity-mappings>

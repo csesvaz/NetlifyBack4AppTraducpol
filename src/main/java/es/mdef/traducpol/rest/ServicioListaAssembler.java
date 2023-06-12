@@ -16,8 +16,6 @@ import es.mdef.traducpol.entidades.ServicioInterpretacionImpl;
 import es.mdef.traducpol.entidades.ServicioTraduccionImpl;
 import traducpolPruebaLibreria.Servicio.Tipo;
 
-
-
 @Component
 public class ServicioListaAssembler implements RepresentationModelAssembler<ServicioConId, ServicioListaModel> {
 
@@ -40,7 +38,7 @@ public class ServicioListaAssembler implements RepresentationModelAssembler<Serv
 			model.setHorarioFinServicio(interprete.getHorarioFinServicio());
 			model.setServicioOnline(interprete.isServicioOnline());
 			model.setTipo(Tipo.INTERPRETACION);
-	
+
 			break;
 		}
 		default:

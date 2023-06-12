@@ -11,5 +11,4 @@
 			</many-to-one>
 		</attributes>
 	</mapped-superclass>
-	
 </entity-mappings>

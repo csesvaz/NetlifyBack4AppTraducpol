@@ -68,14 +68,15 @@ export const useEmpresaStore = defineStore("empresas", {
     async deleteEmpresa(id) {
       // Eliminar servicios relacionados
       const empresa = this.empresas.find((emp) => emp.id === id);
-      if (empresa.servicios.length>0)
-      {for (const serv of empresa.servicios) {
-        await axios.delete(
-          import.meta.env.VITE_APP_API + "servicios/" + serv.id
-        );
-        const servIndex = this.servicios.findIndex((s) => s.id === serv.id);
-        this.servicios.splice(servIndex, 1);
-      }}
+      if (empresa.servicios.length > 0) {
+        for (const serv of empresa.servicios) {
+          await axios.delete(
+            import.meta.env.VITE_APP_API + "servicios/" + serv.id
+          );
+          const servIndex = this.servicios.findIndex((s) => s.id === serv.id);
+          this.servicios.splice(servIndex, 1);
+        }
+      }
 
       // Eliminar empresa
       await axios.delete(import.meta.env.VITE_APP_API + "empresas/" + id);
@@ -125,7 +126,7 @@ export const useEmpresaStore = defineStore("empresas", {
       );
       servicioData.data.id = getIdURL(servicioData.data._links.self.href);
       return servicioData.data;
-      },
+    },
     async getServiciosDeEmpresa(id) {
       const empresaData = await axios.get(
         import.meta.env.VITE_APP_API + "empresas/" + id + "/servicios"
@@ -157,10 +158,6 @@ export const useEmpresaStore = defineStore("empresas", {
 
       const index = this.servicios.findIndex((serv) => serv.id === id);
       this.servicios.splice(index, 1);
-
-      const empresaConServicio = this.empresas.find((emp) =>
-        emp.servicios.some((ser) => ser.id === id)
-      );
       for (const empresa of this.empresas) {
         const index = empresa.servicios.findIndex((serv) => serv.id === id);
         if (index !== -1) {
@@ -182,8 +179,6 @@ export const useEmpresaStore = defineStore("empresas", {
       await this.fetchEmpresas();
       await this.fetchServicios();
       return this.servicios;
-    
-
     },
 
     convertirBooleano(a) {

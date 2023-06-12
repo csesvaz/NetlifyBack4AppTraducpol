@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 import es.mdef.traducpol.entidades.EmpresaConId;
 
-
-
 @Component
 public class EmpresaListaAssembler implements RepresentationModelAssembler<EmpresaConId, EmpresaListaModel> {
 
