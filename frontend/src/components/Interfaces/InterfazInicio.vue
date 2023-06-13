@@ -149,12 +149,6 @@ figure + p {
   margin-left: 2vw;
   margin-top: 2vh;
 }
-.fixed-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
 main {
   margin-top: 4vh;
 }
@@ -179,5 +173,11 @@ footer {
 .socialMedia > * {
   margin-right: 1vw;
   margin-bottom: 1vh;
+}
+@media (max-width: 768px) {
+  .figure {
+   
+    margin-top: 4vh;
+  }
 }
 </style>

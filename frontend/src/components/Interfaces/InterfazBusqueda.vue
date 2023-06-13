@@ -7,7 +7,6 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
-
 export default {
   components: {
     Calendar,
@@ -17,7 +16,6 @@ export default {
     Button,
     Dialog,
   },
-
   data() {
     return {
       servicio: {
@@ -53,13 +51,11 @@ export default {
     idioma(idiomaSeleccionado) {
       this.servicio.idioma = idiomaSeleccionado;
     },
-
     async filtrarEmpresa(servicio) {
       this.empresaSeleccionada = await this.getEmpresaDeServicio(servicio.id);
     },
     async buscarEmpresas() {
       let serviciosDeBusqueda = [];
-
       serviciosDeBusqueda = await this.busquedaAvanzada(
         this.convertirHora(this.servicio.horaSeleccionada),
         this.servicio.idioma,
@@ -100,7 +96,6 @@ export default {
         </div>
         <div class="col-1 col-md-2"></div>
       </div>
-
       <br />
       <p>
         2. Seleccione la localización en la que necesita el apoyo de Servicio
@@ -138,7 +133,6 @@ export default {
           </div>
         </div>
       </div>
-
       <br />
       <p>
         4. Una vez comprobado que tiene todos los campos obligatorios (Marcados
@@ -211,29 +205,38 @@ export default {
     </Dialog>
   </div>
 </template>
+
 <style scoped>
 .container {
-  margin-left: 3em;
-  margin-top: 2em;
+  margin-left: 3vw;
+  margin-top: 2vh;
 }
 h3 {
   margin-top: 7vh;
   margin-bottom: 2vh;
 }
-@media (max-width: 576px) {
+.row {
+  font-size: x-large;
+}
+p {
+  font-size: x-large;
+}
+@media (max-width: 768px) {
+ 
   p {
     text-align: center;
     font-style: oblique;
+    font-size: medium;
   }
+  .row {
+  font-size: medium;
+}
   h3 {
     text-align: center;
     margin-top: 4vh;
   }
 }
-@media (max-width: 576px) {
-  .container {
-    margin-left: 2vw;
-    margin-top: 8vw;
-  }
+.container {
+  margin-top: 8vh;
 }
 </style>

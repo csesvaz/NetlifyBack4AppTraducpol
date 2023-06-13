@@ -2,17 +2,10 @@
 body {
  
   place-items: center;
-  min-height: 18em;
+  min-height: 18vh;
 }
 
 #app {
-  padding: 2rem;
+  padding: 2vw;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-}

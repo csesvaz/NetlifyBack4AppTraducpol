@@ -16,7 +16,6 @@ export default {
     Button,
     Dialog,
   },
-
   data() {
     return {
       servicio: {
@@ -58,7 +57,7 @@ export default {
     },
     async buscarEmpresas() {
       let serviciosDeBusqueda = [];
-      
+
       serviciosDeBusqueda = await this.busquedaAvanzada(
         this.convertirHora(this.servicio.horaSeleccionada),
         this.servicio.idioma,
@@ -97,8 +96,7 @@ export default {
       </div>
       <div class="col-1 col-md-2"></div>
     </div>
-
-    <br />
+    <br/>
     <p>
       2. Seleccione la localización en la que necesita el apoyo de Servicio
       Lingüítico.
@@ -107,16 +105,14 @@ export default {
       <div class="col-md-1"></div>
       <div class="col-2">Provincia*</div>
       <div class="col-1"></div>
-      <div class="col-9 col-md-8">
-        <ComponenteProvincias @provinciaSeleccionada="provincia" required />
-      </div>
+      <ComponenteProvincias @provinciaSeleccionada="provincia" required/>
     </div>
-
-    <br />
+    <br/>
     <p>3. Seleccione el idioma y el tipo de servicio que necesita.</p>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-2">Idioma*</div>
+      <div class="col-6">Idioma*</div>
+      <div class="col-1"></div>
       <ComponenteIdiomas @idiomaSeleccionado="idioma" required />
     </div>
     <div class="row">
@@ -135,8 +131,7 @@ export default {
         </div>
       </div>
     </div>
-
-    <br />
+    <br/>
     <p>
       4. Una vez comprobado que tiene todos los campos obligatorios (Marcados
       con *) rellenos seleccione el botón de Búsqueda.
@@ -213,7 +208,7 @@ h3 {
   margin-top: 7vh;
   margin-bottom: 2vh;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   p {
     text-align: center;
     font-style: oblique;

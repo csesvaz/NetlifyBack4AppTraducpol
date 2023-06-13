@@ -3,6 +3,24 @@ export default {
   data() {
     return {
         tipoDocumentoSeleccionado: [],
+        documentos: [
+        "Carta",
+        "Informe Policial",
+        "Informe Forense",
+        "Declaración de Testigo",
+        "Certificado de Antecedentes",
+        "Orden Judicial",
+        "Registro de Propiedad",
+        "Expediente Penal",
+        "Permiso de Residencia",
+        "Memorando Interno",
+        "Parte de Accidente",
+        "Autorización Expresa",
+        "Documento de Identidad",
+        "Carnet de Conducir",
+        "Pasaporte",
+        "Otros"
+      ]
     };
   },
 };
@@ -18,27 +36,9 @@ export default {
             required
             @change="$emit('tipoDocumentoSeleccionado', tipoDocumentoSeleccionado)"
     >
-            <option value="" disabled>Seleccione Tipo de Documento</option>
-            <option value="Carta">Carta</option>
-            <option value="Informe Policial">Informe Policial</option>
-            <option value="Informe Forense">Informe Forense</option>
-            <option value="Declaración de Testigo">Declaración de Testigo</option>
-            <option value="Certificado de Antecedentes">
-              Certificado de Antecedentes
-            </option>
-            <option value="Orden Judicial">Orden Judicial</option>
-            <option value="Registro de Propiedad">Registro de Propiedad</option>
-            <option value="Expediente Penal">Expediente Penal</option>
-            <option value="Permiso de Residencia">Permiso de Residencia</option>
-            <option value="Memorando Interno">Memorando Interno</option>
-            <option value="Parte de Accidente">Parte de Accidente</option>
-            <option value="Autorización Expresa">Autorización Expresa</option>
-            <option value="Documento de Identidad">Documento de Identidad</option>
-            <option value="Carnet de Conducir">Licencia o carnet de Conducir</option>
-            <option value="Pasaporte">Pasaporte</option>
-            
-            <option value="Otros">Otros</option>
-          </select> 
+    <option value="" disabled>Seleccione Tipo de Documento</option>
+      <option v-for="documento in documentos" :key="documento" :value="documento">{{ documento }}</option>
+    </select>
           <select v-else
           v-model="tipoDocumentoSeleccionado"
             class="form-select form-select-sm"
@@ -46,27 +46,9 @@ export default {
             required
             @change="$emit('tipoDocumentoSeleccionado', tipoDocumentoSeleccionado)"
     >
-            <option value="" disabled >Seleccione Tipo de Documento</option>
-            <option value="Carta">Carta</option>
-            <option value="Informe Policial">Informe Policial</option>
-            <option value="Informe Forense">Informe Forense</option>
-            <option value="Declaración de Testigo">Declaración de Testigo</option>
-            <option value="Certificado de Antecedentes">
-              Certificado de Antecedentes
-            </option>
-            <option value="Orden Judicial">Orden Judicial</option>
-            <option value="Registro de Propiedad">Registro de Propiedad</option>
-            <option value="Expediente Penal">Expediente Penal</option>
-            <option value="Permiso de Residencia">Permiso de Residencia</option>
-            <option value="Memorando Interno">Memorando Interno</option>
-            <option value="Parte de Accidente">Parte de Accidente</option>
-            <option value="Autorización Expresa">Autorización Expresa</option>
-            <option value="Documento de Identidad">Documento de Identidad</option>
-            <option value="Carnet de Conducir">Licencia o carnet de Conducir</option>
-            <option value="Pasaporte">Pasaporte</option>
-            
-            <option value="Otros">Otros</option>
-          </select> 
+    <option value="" disabled>Seleccione Tipo de Documento</option>
+      <option v-for="documento in documentos" :key="documento" :value="documento">{{ documento }}</option>
+    </select>
         </div>
 
 </template>

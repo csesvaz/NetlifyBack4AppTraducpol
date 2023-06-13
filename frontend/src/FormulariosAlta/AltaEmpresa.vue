@@ -145,7 +145,7 @@ export default {
 .inicial {
   margin-top: 3vw;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .inicial {
     margin-top: 6vw;
   }

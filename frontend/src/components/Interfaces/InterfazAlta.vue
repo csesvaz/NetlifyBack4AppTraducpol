@@ -1,10 +1,16 @@
 <script>
-
 import { useAuthStore } from "@/stores/AuthStore";
 import { mapActions, mapState } from "pinia";
-
 export default {
-  
+  computed: {
+    ...mapState(useAuthStore, { isAdmin: "isAdmin" }),
+  },
+  data() {
+    return {
+      password: "",
+      error: null,
+    };
+  },
   computed: {
     ...mapState(useAuthStore, { isAdmin: "isAdmin" }),
   },
@@ -19,12 +25,6 @@ export default {
         this.cambiarAdmin(false);
       }
     },
-  },
-  data() {
-    return {
-      password: "",
-      error: null,
-    };
   },
 };
 </script>

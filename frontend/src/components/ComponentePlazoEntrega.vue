@@ -2,14 +2,15 @@
 export default {
   data() {
     return {
-        plazoEntregaSeleccionado: "",
+      plazoEntregaSeleccionado: "",
     };
   },
 };
 </script>
 <template>
   <div class="col-md-4">
-    <select v-model="plazoEntregaSeleccionado"
+    <select
+      v-model="plazoEntregaSeleccionado"
       class="form-select form-select-sm"
       aria-label=".form-select-sm example"
       required

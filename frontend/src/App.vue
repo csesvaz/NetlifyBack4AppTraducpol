@@ -1,5 +1,4 @@
 <script>
-
 import {useEmpresaStore} from './stores/EmpresaStore.js';
 import BarraNavegacion from './components/BarraNavegacion.vue';
 export default {
@@ -19,5 +18,4 @@ export default {
 </template>
 
 <style scoped>
-
 </style>
