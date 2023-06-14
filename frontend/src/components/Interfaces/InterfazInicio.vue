@@ -37,7 +37,7 @@
       </div>
       <div class="card bg-info col-12 col-md-4">
         <img
-          src=".@/images/La-Busqueda-de-Informacion.png"
+          src="@/images/La-Busqueda-de-Informacion.png"
           class="card-img-top"
           alt="Lista servicios"
         />
