@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     ...mapActions(useEmpresaStore, [
-      "getEmpresaDeServicio",
+      "getEmpresaDeServicio","getServicios"
     ]),
     serviciosTraduccion() {
       let serviciosTraduccion = [];
@@ -59,8 +59,7 @@ export default {
     },
   },
   async created() {
-    const empresaStore = useEmpresaStore();
-    this.servicios = await empresaStore.getServicios();
+    this.servicios = await getServicios();
     this.servicios = this.serviciosTraduccion();
   },
 };

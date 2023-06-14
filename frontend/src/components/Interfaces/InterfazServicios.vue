@@ -2,6 +2,7 @@
 import ListadoServiciosInterpretacion2 from "../Listados/ListadoServiciosInterpretacion2.vue";
 import ListadoServiciosTraduccion2 from "../Listados/ListadoServiciosTraduccion2.vue";
 import ComponenteServicioInterpretacionMovil from "../ComponenteServicioInterpretacionMovil.vue";
+import ComponenteServicioTraduccionMovil from "../ComponenteServicioTraduccionMovil.vue";
 import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 export default {
@@ -9,6 +10,7 @@ export default {
     ListadoServiciosInterpretacion2,
     ListadoServiciosTraduccion2,
     ComponenteServicioInterpretacionMovil,
+    ComponenteServicioTraduccionMovil
   },
   data() {
     return {
@@ -75,7 +77,7 @@ export default {
       <ComponenteServicioInterpretacionMovil />
     </div>
     <div v-else>
-      <h2>en produccion traduccion</h2>
+      <ComponenteServicioTraduccionMovil />
     </div>
   </div>
   <div v-else>

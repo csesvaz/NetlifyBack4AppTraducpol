@@ -5,14 +5,21 @@ import ComponenteIdiomas from "./ComponenteIdiomas.vue";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import Card from "primevue/card";
-import ComponenteProvincias from "./ComponenteProvincias.vue";
+import ComponenteTipoDocumento from "./ComponenteTipoDocumento.vue";
 import ComponenteEmpresa from "./ComponenteEmpresa.vue";
 export default {
-  components: { Button, Card,ComponenteEmpresa, ComponenteIdiomas, ComponenteProvincias, Dialog },
+  components: {
+    Button,
+    Card,
+    ComponenteEmpresa,
+    ComponenteIdiomas,
+    ComponenteTipoDocumento,
+    Dialog
+  },
   data() {
     return {
       idiomaSeleccionado: "",
-      provinciaSeleccionada: "",
+      tipoDocumentoSeleccionado: "",
       serviciosFiltrados: [],
       visible: false,
       empresaSeleccion: {
@@ -28,8 +35,10 @@ export default {
     ...mapState(useEmpresaStore, ["servicios"]),
   },
   methods: {
-    ...mapActions(useEmpresaStore, ["convertirBooleano",
-      "getEmpresaDeServicio"]),
+    ...mapActions(useEmpresaStore, [
+      "convertirBooleano",
+      "getEmpresaDeServicio",
+    ]),
     actualizarServiciosFiltradosPorIdioma(idioma) {
       if (idioma) {
         this.serviciosFiltrados = this.servicios.filter(
@@ -39,21 +48,23 @@ export default {
         this.serviciosFiltrados = [...this.servicios];
       }
     },
-     async filtrarEmpresa(servicio) {
-      this.empresaSeleccion = await this.getEmpresaDeServicio(servicio.id);
-    },
-    actualizarServiciosFiltradosPorProvincia(provincia) {
-      if (provincia) {
+    actualizarServiciosFiltradosPorTipoDocumento(tipoDocumento) {
+      if (tipoDocumento) {
         this.serviciosFiltrados = this.servicios.filter(
-          (servicio) => servicio.provincia === provincia
+          (servicio) => servicio.tipoDocumento === tipoDocumento
         );
       } else {
         this.serviciosFiltrados = [...this.servicios];
       }
     },
+    async filtrarEmpresa(servicio) {
+      this.empresaSeleccion = await this.getEmpresaDeServicio(servicio.id);
+    },
   },
+
   beforeMount() {
     this.actualizarServiciosFiltradosPorIdioma();
+    this.actualizarServiciosFiltradosPorTipoDocumento();
   },
 };
 </script>
@@ -62,8 +73,8 @@ export default {
   <div class="row">
     <p>
       &nbspBuscador por idioma
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      Buscador por provincia
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Buscador
+      por Tipo de Documento
     </p>
   </div>
   <div class="row">
@@ -71,13 +82,16 @@ export default {
       :idiomaSeleccionado="idiomaSeleccionado"
       @idiomaSeleccionado="actualizarServiciosFiltradosPorIdioma($event)"
     />
-    <ComponenteProvincias
-      :provinciaSeleccionada="provinciaSeleccionada"
-      @provinciaSeleccionada="actualizarServiciosFiltradosPorProvincia($event)"
+    <ComponenteTipoDocumento
+      ref="componenteTipoDocumento"
+      :tipoDocumentoSeleccionado="tipoDocumentoSeleccionado"
+      @tipoDocumentoSeleccionado="
+        actualizarServiciosFiltradosPorTipoDocumento($event)
+      "
     />
   </div>
   <div v-for="servicio in serviciosFiltrados">
-    <div v-if="servicio.tipo == 'INTERPRETACION'" class="row mb-12">
+    <div v-if="servicio.tipo == 'TRADUCCION'" class="row mb-12">
       <div class="card">
         <Card style="background-color: #e4e4d5">
           <template #content>
@@ -85,15 +99,13 @@ export default {
               Idioma: <strong>{{ servicio.idioma }}</strong>
             </p>
             <p>
-              Hora de Inicio:
-              <strong>{{ servicio.horarioInicioServicio }}</strong>
-              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Hora de Fin:
-              <strong>{{ servicio.horarioFinServicio }}</strong>
+              Tipo de Documento
+              <strong>{{ servicio.tipoDocumento }}</strong>
             </p>
             <p>
-              Provincia: <strong>{{ servicio.provincia }}</strong
-              >&nbsp&nbsp&nbsp servicioOnline:
-              <strong>{{ convertirBooleano(servicio.servicioOnline) }}</strong>
+              Plazo de Entrega: <strong>{{ servicio.plazoEntrega }}</strong
+              >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Traducción Jurada:
+              <strong>{{ convertirBooleano(servicio.traductorJurado) }}</strong>
             </p>
             <div class="card flex justify-content-center">
               <Button

@@ -2,7 +2,8 @@
 export default {
   data() {
     return {
-        tipoDocumentoSeleccionado: [],
+        tipoDocumentoSeleccionadoMultiple: [],
+        tipoDocumentoSeleccionado: "",
         documentos: [
         "Carta",
         "Informe Policial",
@@ -26,10 +27,10 @@ export default {
 };
 </script>
 <template>
- <div class="col-md-4">
+ <div class="col-6 col-md-4">
   
           <select v-if="$route.path === '/altaServicioTraduccion'" 
-          v-model="tipoDocumentoSeleccionado"
+          v-model="tipoDocumentoSeleccionadoMultiple"
             class="form-select form-select-sm"
             aria-label=".form-select-sm example"
             multiple
