@@ -59,25 +59,31 @@ export default {
 <style scoped>
 .lapiz {
   color: rgb(110, 60, 60);
-  padding-right: 1em;
+  padding-right: 1vw;
   margin-top: 1vh;
+  cursor: pointer;
 }
 
 .bin {
-  margin-right: 1em;
+  margin-right: 1vw;
   margin-top: 1vh;
   cursor: pointer;
 }
 @media (max-width: 768px) {
   .table-responsive {
+    margin-left: -10vw;
 
-    margin-left: -5vw;
-  
-    font-size: 2vw;
   }
-  h3{
-    margin-left: -5vw;
-  }
-  
+  .lapiz {
+  color: rgb(110, 60, 60);
+  padding-right: 0vw;
+  margin-top: 0vh;
+}
+
+.bin {
+  margin-right: 0vw;
+  margin-top: 0vh;
+  cursor: pointer;
+}
 }
 </style>

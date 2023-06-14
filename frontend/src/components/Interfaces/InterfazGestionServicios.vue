@@ -20,7 +20,6 @@ export default {
 </script>
 
 <template>
-  <br>
   <div class="row mb-12 mt-4 ms-3">
     <div class="col-2">
       <h6>Creación de nuevo Servicio de Interpetación</h6>
@@ -46,7 +45,7 @@ export default {
     <h3 class="listado">
       Listado de todos los servicios lingüisticos disponibles:
     </h3>
-    <br />
+  
 
     <div class="form-check ml-0">
       <input
@@ -87,11 +86,11 @@ export default {
 
 <style scoped>
 .container {
-  margin-bottom: 1em;
-  margin-left: 4em;
+  margin-bottom: 1vh;
+  margin-left: 4vw;
 }
 .row {
-  margin-top: 3em;
-  margin-left: 4em;
+  margin-top: 3vh;
+  margin-left: 4vw;
 }
 </style>

@@ -139,13 +139,13 @@ export default {
   text-align: center;
 }
 .col-6 {
-  margin-top: 2vh;
+  margin-top: 3vh;
 }
 
 @media (max-width: 768px) {
   .col-6 {
     width: 100%;
-    margin-top: 2vh;
+    margin-top: 6vh;
   }
 }
 </style>

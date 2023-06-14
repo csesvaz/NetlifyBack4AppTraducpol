@@ -17,7 +17,7 @@ export default {
   </div>
   <Accordion :multiple="true" :activeIndex="[0]">
     <AccordionTab>
-      <template #header>
+      <template #header class="preguntas">
         <i class="pi pi-search"></i>
         <p>&nbsp;</p>
         <span
@@ -106,14 +106,20 @@ export default {
 </template>
 
 <style scoped>
+
 .contenedor {
   margin-bottom: 2vh;
+  text-align: center;
   margin-left: 3vw;
   margin-right: 3vw;
+  margin-top: 2vh;
 }
 @media (max-width: 768px) {
+  * {
+    font-size: 1.5vh;
+  }
   .contenedor {
-    margin-top: 3vh;
+    margin-top: 6vh;
   }
 }
 </style>

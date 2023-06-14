@@ -160,28 +160,30 @@ export default {
       header="Datos de las empresas que tienen ese servicio"
       :style="{ width: '50vw' }"
       :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-      >
+    >
+      <p>
+        La hora seleccionada ha sido
+        <strong>{{ convertirHora(servicio.horaSeleccionada) }}</strong>.
+      </p>
+      <p>La provincia seleccionada ha sido <strong>{{ servicio.provincia }}</strong>.</p>
+      <p>El idioma seleccionado ha sido <strong>{{ servicio.idioma }}</strong>.</p>
+      <p>
+        Necesidad de Servicio online <strong>({{
+          convertirBooleano(servicio.servicioOnline)
+        }})</strong>.
+      </p>
+      <div v-if="empresasConServicio.length == 0" class="Not Found">
         <p>
-          La hora seleccionada ha sido
-          {{ convertirHora(servicio.horaSeleccionada) }}
-        </p>
-        <p>La provincia seleccionada ha sido {{ servicio.provincia }}</p>
-        <p>El idioma seleccionado ha sido {{ servicio.idioma }}</p>
-        <p>
-          Necesidad de Servicio online ({{
-            convertirBooleano(servicio.servicioOnline)
-          }})
-        </p>
-        <div v-if="empresasConServicio.length == 0" class="Not Found">
-        <p>
-          No se ha encontrado ninguna empresa que cumpla sus requisitos. Puede
+          <strong>No se ha encontrado ninguna empresa que cumpla sus requisitos.</strong>
+          <p>Puede
           contactar con el servicio central de interpretes enviando un mensaje a
           la dirección apoyoTraucpol@mmmm.com o llamando al teléfono +34
           655-566778 (Horario telefónico de 9:00 a 15:00)
+          </p> 
         </p>
       </div>
       <div v-else>
-        <p>Las empresas que cumplen sus requisitos son:</p>
+        <p><strong>Las empresas que cumplen sus requisitos son:</strong></p>
         <p v-for="servicio in empresasConServicio">
           - {{ servicio.empresa.nombre }} con telefono
           {{ servicio.empresa.telefono }}, con dirección
@@ -215,7 +217,7 @@ form {
   width: 90vw;
 }
 h3 {
-  margin-top: 7vh;
+  margin-top: 2vh;
   margin-bottom: 2vh;
 }
 .row {
@@ -225,21 +227,20 @@ p {
   font-size: x-large;
 }
 @media (max-width: 768px) {
- 
   p {
     text-align: center;
     font-style: oblique;
     font-size: medium;
   }
   .row {
-  font-size: medium;
-}
+    font-size: medium;
+  }
   h3 {
     text-align: center;
     margin-top: 4vh;
   }
 }
 .container {
-  margin-top: 8vh;
+  margin-top: 10vh;
 }
 </style>

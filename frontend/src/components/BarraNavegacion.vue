@@ -1,6 +1,60 @@
-<script></script>
+<script>
+import Menubar from "primevue/menubar";
+export default {
+  components: { Menubar },
+  data() {
+    return {
+      items: [
+        {
+          label: "Inicio",
+          icon: "pi pi-fw pi-home",
+          to: "/",
+        },
+        {
+          label: "Servicios Disponibles",
+          icon: "pi pi-fw pi-language",
+          to: "/servicio",
+        },
+        {
+          label: "Búsqueda",
+          icon: "pi pi-fw pi-search",
+          to: "/busqueda",
+        },
+        {
+          label: "Gestión",
+          icon: "pi pi-fw pi-pencil",
+          to: "/alta",
+        },
+        {
+          label: "Empresas",
+          icon: "pi pi-fw pi-users",
+          to: "/empresas",
+        },
+        {
+          label: "Ayuda",
+          icon: "pi pi-fw pi-exclamation-triangle",
+          to: "/ayuda",
+        },
+      ],
+    };
+  },
+};
+</script>
 
 <template>
+  <div class="card relative z-2">
+    <Menubar :model="items">
+      <template #start>
+        <img
+          alt="logo"
+          src="../images/LogoEmpresa.png"
+          height="60"
+          class="mr-2"
+        />
+      </template>
+    </Menubar>
+  </div>
+  <!-- 
   <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
     <div class="container-fluid">
       <router-link class="navbar-brand text-white" to="/">Inicio</router-link>
@@ -48,16 +102,12 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
 </template>
 
 <style scoped>
-.navbar-brand:hover {
-  background-color: rgb(9, 2, 105);
-}.nav-link:hover {
-  background-color: rgb(9, 2, 105);
-}
-li {
-  font-size: x-large;
+.card .p-menubar {
+  font-size: 2.1vh;
+  font-weight: bold;
 }
 </style>

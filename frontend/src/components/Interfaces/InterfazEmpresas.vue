@@ -37,11 +37,11 @@ export default {
       </h3>
     </div>
   </div>
-  <div v-if="!esMovil">
-    <ComponenteEmpresas />
-  </div>
-  <div v-else v-for="empresa in empresas" :key="empresa.id">
+  <div v-if="esMovil" v-for="empresa in empresas" :key="empresa.id">
     <ComponenteEmpresaMovil :empresa="empresa" />
+  </div>
+  <div v-else>
+    <ComponenteEmpresas />
   </div>
 </template>
 
@@ -49,6 +49,8 @@ export default {
 .contenedor {
   margin-bottom: 1vh;
   margin-left: 2vw;
+  margin-top: 2vh;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .contenedor {

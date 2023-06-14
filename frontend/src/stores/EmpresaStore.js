@@ -97,7 +97,13 @@ export const useEmpresaStore = defineStore("empresas", {
           servicio.id = getIdURL(servicio._links.self.href);
         });
       }
-      this.servicios.sort((a, b) => a.idioma.localeCompare(b.idioma));
+      this.servicios.sort((a, b) => {
+        return a.idioma.localeCompare(b.idioma) ||
+          ((a.tipo === "INTERPRETACION" && b.tipo === "INTERPRETACION") ?
+            a.provincia.localeCompare(b.provincia) :
+            ((a.tipo === "TRADUCCION" && b.tipo === "TRADUCCION") ?
+              a.tipoDocumento.localeCompare(b.tipoDocumento) : 0));
+      });
 
       return this.servicios;
     },

@@ -63,7 +63,7 @@ export default {
 };
 </script>
 <template>
-  <div class="col-8 col-md-4">
+  <div class="col-6 col-md-4">
     <select
       v-if="$route.path === '/altaServicioInterpretacion'"
       v-model="provinciaSeleccionadoMultiple"

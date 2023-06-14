@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template>
-  <div class="creacion row mb-12 mt-5 ms-3">
+  <div class="container row mb-12 mt-5 ms-3">
     <div class="col-sm-9 col-md-3">
       <h4>Creación de nueva Empresa</h4>
     </div>
@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 @media (max-width: 768px) {
-.creacion { 
-  margin-top: 7vh!important;
+.container { 
+  margin-top: 12vh!important;
 }}
 </style>

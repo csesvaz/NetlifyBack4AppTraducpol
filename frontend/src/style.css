@@ -8,4 +8,6 @@ body {
 #app {
   padding: 2vw;
 }
-
+* {
+  font-size: 2vh;
+}

@@ -1,7 +1,6 @@
 <script>
 
 </script>
-
 <template>
   <main>
     <div class="logo-container">
@@ -125,9 +124,10 @@
   display: flex;
   align-items: normal;
   justify-content: center;
+  margin-top: 6vh;
 }
 figure + p {
-  font-size: 6vw;
+  font-size: 4vw;
   color: blue;
   margin-left: 2vw;
   margin-top: 2vh;
@@ -158,9 +158,8 @@ footer {
   margin-bottom: 1vh;
 }
 @media (max-width: 768px) {
-  .figure {
-   
-    margin-top: 4vh;
+  .logo-container {
+    margin-top: 10vh;
   }
 }
 </style>
