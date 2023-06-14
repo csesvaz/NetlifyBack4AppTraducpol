@@ -1,8 +1,8 @@
 <script>
 import { mapActions, mapState } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
 
-import ComponenteEmpresa from "./ComponenteEmpresa.vue";
+import ComponenteEmpresa from "../ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 export default {

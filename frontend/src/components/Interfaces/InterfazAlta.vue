@@ -1,5 +1,5 @@
 <script>
-import { useAuthStore } from "@/stores/AuthStore";
+import { useAuthStore } from "../../stores/AuthStore";
 import { mapActions, mapState } from "pinia";
 export default {
   computed: {

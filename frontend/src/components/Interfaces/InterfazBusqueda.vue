@@ -1,12 +1,12 @@
 <script>
 import Calendar from "primevue/calendar";
-import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
-import ComponenteProvincias from "@/components/ComponenteProvincias.vue";
-import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
+import ComponenteIdiomas from "../ComponenteIdiomas.vue";
+import ComponenteProvincias from "../ComponenteProvincias.vue";
+import ComponenteEmpresa from "../ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import { mapState, mapActions } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
+import { useEmpresaStore } from "../../stores/EmpresaStore";
 export default {
   components: {
     Calendar,
@@ -62,7 +62,6 @@ export default {
         this.servicio.provincia,
         this.servicio.servicioOnline
       );
-      console.log(serviciosDeBusqueda.length);
       this.empresasConServicio = serviciosDeBusqueda;
       this.visible = true;
       return this.empresasConServicio;
@@ -105,7 +104,7 @@ export default {
         <div class="col-md-1"></div>
         <div class="col-2">Provincia*</div>
         <div class="col-1"></div>
-        <div class="col-9 col-md-8">
+        <div class="col-9 col-md-6">
           <ComponenteProvincias @provinciaSeleccionada="provincia" required />
         </div>
       </div>
@@ -114,7 +113,7 @@ export default {
       <p>3. Seleccione el idioma y el tipo de servicio que necesita.</p>
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-2">Idioma*</div>
+        <div class="col-3 col-md-2">Idioma*</div>
         <ComponenteIdiomas @idiomaSeleccionado="idioma" required />
       </div>
       <div class="row">
@@ -211,6 +210,9 @@ export default {
 .container {
   margin-left: 3vw;
   margin-top: 2vh;
+}
+form {
+  width: 90vw;
 }
 h3 {
   margin-top: 7vh;

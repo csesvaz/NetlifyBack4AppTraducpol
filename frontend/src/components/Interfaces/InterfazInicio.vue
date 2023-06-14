@@ -1,22 +1,5 @@
 <script>
-export default {
-  data() {
-    return {
-      isMobile: window.innerWidth < 576,
-    };
-  },
-  methods: {
-    calcularTamano() {
-      this.isMobile = window.innerWidth < 576;
-    },
-  },
-  mounted() {
-    window.addEventListener("dimensionar", this.calcularTamano);
-  },
-  beforeDestroy() {
-    window.removeEventListener("dimensionar", this.calcularTamano);
-  },
-};
+
 </script>
 
 <template>
@@ -24,7 +7,7 @@ export default {
     <div class="logo-container">
       <figure class="figure">
         <img
-          src="../images/logoTraducpol.png"
+          src="../../../logoTraducpol.png"
           class="figure-img img-fluid rounded"
           width="200"
           height="200"
@@ -35,9 +18,9 @@ export default {
     </div>
 
     <div class="card-container">
-      <div :class="['card', 'bg-warning', isMobile ? 'col-12' : 'col-md-4']">
+      <div class="card bg-warning col-12 col-md-4">
         <img
-          src="../images/ESM-scaled.jpg"
+          src="../../../ESM-scaled.jpg"
           class="card-img-top"
           alt="Lista servicios"
         />
@@ -52,9 +35,9 @@ export default {
           </div>
         </div>
       </div>
-      <div :class="['card', 'bg-info', isMobile ? 'col-12' : 'col-md-4']">
+      <div class="card bg-info col-12 col-md-4">
         <img
-          src="../images/La-Busqueda-de-Informacion.png"
+          src="../../../public/La-Busqueda-de-Informacion.png"
           class="card-img-top"
           alt="Lista servicios"
         />
@@ -72,9 +55,9 @@ export default {
           </div>
         </div>
       </div>
-      <div :class="['card', 'bg-danger', isMobile ? 'col-12' : 'col-md-4']">
+      <div class="card bg-danger col-12 col-md-4">
         <img
-          src="../images/ayuda.jpg"
+          src="../../../public/ayuda.jpg"
           class="card-img-top"
           alt="Lista servicios"
         />

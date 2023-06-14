@@ -1,8 +1,8 @@
 
 body {
- 
   place-items: center;
   min-height: 18vh;
+  max-width: 100vw;
 }
 
 #app {

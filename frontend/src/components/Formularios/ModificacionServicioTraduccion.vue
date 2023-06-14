@@ -1,15 +1,15 @@
 <script>
-import Calendar from "primevue/calendar";
 import { mapState, mapActions } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
-import ComponenteIdiomas from "../components/ComponenteIdiomas.vue";
-import ComponenteProvincias from "../components/ComponenteProvincias.vue";
+import { useEmpresaStore } from "../../stores/EmpresaStore";
+import ComponenteIdiomas from "../ComponenteIdiomas.vue";
+import ComponentePlazoEntrega from "../ComponentePlazoEntrega.vue";
+import ComponenteTipoDocumento from "../ComponenteTipoDocumento.vue";
 
 export default {
   components: {
-    Calendar,
-    ComponenteProvincias,
     ComponenteIdiomas,
+    ComponentePlazoEntrega,
+    ComponenteTipoDocumento,
   },
   computed: {
     ...mapState(useEmpresaStore, ["empresas", "servicios"]),
@@ -17,27 +17,27 @@ export default {
   data() {
     return {
       servicio: {
-        tipo: "INTERPRETACION",
+        tipo: "TRADUCCION",
         idioma: "",
-        horarioInicioServicio: new Date(),
-        horarioFinServicio: new Date(),
-        provincia: "",
-        servicioOnline: false,
+        tipoDocumento: "",
+        plazoEntrega: "",
+        traductorJurado: false,
         id: 0,
       },
-      empresa: { nombre: "" },
       servicioEntrada: null,
+      empresa: { nombre: "" },
     };
   },
-
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
-    this.servicioEntrada = { ...this.servicio };
-    this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-    this.$refs.componenteProvincias.provinciaSeleccionada =
-      this.servicio.provincia;
+    this.servicioEntrada ={...this.servicio};  
     this.empresa = await this.getEmpresaDeServicio(this.id);
+    this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
+    this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
+      this.servicio.tipoDocumento;
+    this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
+      this.servicio.plazoEntrega;
   },
   methods: {
     ...mapActions(useEmpresaStore, [
@@ -47,31 +47,15 @@ export default {
       "getEmpresaDeServicio",
     ]),
     borrarDatos() {
-       this.servicio = {
+      this.servicio = {
       ...this.servicioEntrada
       };
       this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-      this.$refs.componenteProvincias.provinciaSeleccionada = this.servicio.provincia;
-    },
-    formatearHora(hora) {
-      if (typeof hora === "string") {
-        return hora;
-      }
-
-      const hora1 = hora.getHours();
-      const minutos = hora.getMinutes();
-      return `${hora1.toString().padStart(2, "0")}:${minutos
-        .toString()
-        .padStart(2, "0")}`;
+      this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = this.servicio.tipoDocumento;
+      this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = this.servicio.plazoEntrega;
     },
     async modificarServicio() {
-      this.servicio.tipo = "INTERPRETACION";
-      this.servicio.horarioInicioServicio = this.formatearHora(
-        this.servicio.horarioInicioServicio
-      );
-      this.servicio.horarioFinServicio = this.formatearHora(
-        this.servicio.horarioFinServicio
-      );
+      this.servicio.tipo = "TRADUCCION";
       await this.updateServicio(this.servicio);
       this.$router.push("/interfazGestionServicios");
     },
@@ -79,17 +63,17 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid">s
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
-        Formulario de Modificación de un Servicio de Interpretación
+        Formulario de Modificación de un Servicio de Traducción
       </h3>
       <form @submit.prevent="modificarServicio">
         <div class="row inicial">
           <div class="col-md-11">
             <div class="text-left">
-              Introduzca los datos del servicio de interpretación que desea dar
-              de alta:
+              Introduzca los datos del servicio de traducción que desea
+              modificar:
             </div>
           </div>
         </div>
@@ -108,7 +92,7 @@ export default {
               disabled
               type="text"
               class="form-control"
-              id="nombre"
+              id="nombre1"
               v-model="empresa.nombre"
             />
           </div>
@@ -120,46 +104,32 @@ export default {
           />
         </div>
         <div class="row inicial">
-          <div class="col-md-2">
-            <label for="tiempoInicio" class="form-label"
-              >Horario de Inicio del Servicio</label
+          <div class="col-md-4">
+            <label for="tipoDocumento" class="form-label"
+              >Tipo de Documento</label
             >
           </div>
-          <div class="col-md-3">
-            <label for="tiempoFinal" class="form-label"
-              >Horario de Finalización del Servicio</label
+          <div class="col-md-1"></div>
+          <div class="col-md-4">
+            <label for="plazoEntrega" class="form-label"
+              >Plazo de Entrega</label
             >
-          </div>
-          <div class="col-md-3">
-            <label for="provincia" class="form-label">Provincia</label>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
-          <div class="col-md-2">
-            <div class="mb-3">
-              <Calendar
-                id="calendar-timeonly"
-                v-model="servicio.horarioInicioServicio"
-                timeOnly
-              />
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="mb-3">
-              <Calendar
-                id="calendar-timeonly"
-                v-model="servicio.horarioFinServicio"
-                timeOnly
-              />
-            </div>
-          </div>
-          <div class="col-md-1"></div>
-          <ComponenteProvincias
-            ref="componenteProvincias"
-            :provinciaSeleccionada="servicio.provincia"
-            @provinciaSeleccionada="servicio.provincia = $event"
+          <ComponenteTipoDocumento
+            ref="componenteTipoDocumento"
+            :tipoDocumentoSeleccionado="servicio.tipoDocumento"
+            @tipoDocumentoSeleccionado="servicio.tipoDocumento = $event"
           />
+          <div class="col-md-1"></div>
+          <ComponentePlazoEntrega
+            ref="componentePlazoEntrega"
+            :plazoEntregaSeleccionado="servicio.plazoEntrega"
+            @plazoEntregaSeleccionado="servicio.plazoEntrega = $event"
+          />
+          <div class="col-md-1"></div>
         </div>
         <div class="row inicial">
           <div class="col-7">
@@ -167,15 +137,14 @@ export default {
               <input
                 class="form-check-input"
                 type="checkbox"
-                v-model="servicio.servicioOnline"
+                v-model="servicio.traductorJurado"
                 id="flexCheckDefault"
               />
               <label class="form-check-label" for="flexCheckDefault">
-                Dispone de asistencia Online.
+                Dispone de Traducción Jurada.
               </label>
             </div>
           </div>
-          <br />
           <div class="row justify-content-center final">
             <div class="col-md-2">
               <button type="submit" class="btn btn-primary">

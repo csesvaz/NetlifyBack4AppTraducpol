@@ -109,5 +109,11 @@ export default {
 .contenedor {
   margin-bottom: 2vh;
   margin-left: 3vw;
+  margin-right: 3vw;
+}
+@media (max-width: 768px) {
+  .contenedor {
+    margin-top: 3vh;
+  }
 }
 </style>

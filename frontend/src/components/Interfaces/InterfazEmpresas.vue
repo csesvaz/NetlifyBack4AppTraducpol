@@ -8,7 +8,7 @@ export default {
   components: { ComponenteEmpresas, ComponenteEmpresaMovil },
   data() {
     return {
-      isMobile: window.innerWidth < 576,
+      esMovil: window.innerWidth < 576,
     };
   },
   computed: {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     calcularTamano() {
-      this.isMobile = window.innerWidth < 576;
+      this.esMovil = window.innerWidth < 576;
     },
   },
   mounted() {
@@ -37,7 +37,7 @@ export default {
       </h3>
     </div>
   </div>
-  <div v-if="!isMobile">
+  <div v-if="!esMovil">
     <ComponenteEmpresas />
   </div>
   <div v-else v-for="empresa in empresas" :key="empresa.id">

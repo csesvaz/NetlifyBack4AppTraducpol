@@ -1,6 +1,6 @@
 <script>
-import ListadoServiciosInterpretacion from "@/components/ListadoServiciosInterpretacion.vue";
-import ListadoServiciosTraduccion from "@/components/ListadoServiciosTraduccion.vue";
+import ListadoServiciosInterpretacion from "../Listados/ListadoServiciosInterpretacion.vue";
+import ListadoServiciosTraduccion from "../Listados/ListadoServiciosTraduccion.vue";
 import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 

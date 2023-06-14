@@ -1,15 +1,15 @@
 <script>
+import Calendar from "primevue/calendar";
 import { mapState, mapActions } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
-import ComponenteIdiomas from "../components/ComponenteIdiomas.vue";
-import ComponentePlazoEntrega from "../components/ComponentePlazoEntrega.vue";
-import ComponenteTipoDocumento from "../components/ComponenteTipoDocumento.vue";
+import { useEmpresaStore } from "../../stores/EmpresaStore";
+import ComponenteIdiomas from "../ComponenteIdiomas.vue";
+import ComponenteProvincias from "../ComponenteProvincias.vue";
 
 export default {
   components: {
+    Calendar,
+    ComponenteProvincias,
     ComponenteIdiomas,
-    ComponentePlazoEntrega,
-    ComponenteTipoDocumento,
   },
   computed: {
     ...mapState(useEmpresaStore, ["empresas", "servicios"]),
@@ -17,27 +17,27 @@ export default {
   data() {
     return {
       servicio: {
-        tipo: "TRADUCCION",
+        tipo: "INTERPRETACION",
         idioma: "",
-        tipoDocumento: "",
-        plazoEntrega: "",
-        traductorJurado: false,
+        horarioInicioServicio: new Date(),
+        horarioFinServicio: new Date(),
+        provincia: "",
+        servicioOnline: false,
         id: 0,
       },
-      servicioEntrada: null,
       empresa: { nombre: "" },
+      servicioEntrada: null,
     };
   },
+
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
-    this.servicioEntrada ={...this.servicio};  
-    this.empresa = await this.getEmpresaDeServicio(this.id);
+    this.servicioEntrada = { ...this.servicio };
     this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-    this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
-      this.servicio.tipoDocumento;
-    this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
-      this.servicio.plazoEntrega;
+    this.$refs.componenteProvincias.provinciaSeleccionada =
+      this.servicio.provincia;
+    this.empresa = await this.getEmpresaDeServicio(this.id);
   },
   methods: {
     ...mapActions(useEmpresaStore, [
@@ -47,15 +47,31 @@ export default {
       "getEmpresaDeServicio",
     ]),
     borrarDatos() {
-      this.servicio = {
+       this.servicio = {
       ...this.servicioEntrada
       };
       this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-      this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = this.servicio.tipoDocumento;
-      this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = this.servicio.plazoEntrega;
+      this.$refs.componenteProvincias.provinciaSeleccionada = this.servicio.provincia;
+    },
+    formatearHora(hora) {
+      if (typeof hora === "string") {
+        return hora;
+      }
+
+      const hora1 = hora.getHours();
+      const minutos = hora.getMinutes();
+      return `${hora1.toString().padStart(2, "0")}:${minutos
+        .toString()
+        .padStart(2, "0")}`;
     },
     async modificarServicio() {
-      this.servicio.tipo = "TRADUCCION";
+      this.servicio.tipo = "INTERPRETACION";
+      this.servicio.horarioInicioServicio = this.formatearHora(
+        this.servicio.horarioInicioServicio
+      );
+      this.servicio.horarioFinServicio = this.formatearHora(
+        this.servicio.horarioFinServicio
+      );
       await this.updateServicio(this.servicio);
       this.$router.push("/interfazGestionServicios");
     },
@@ -63,17 +79,17 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid">s
+  <div class="container-fluid">
     <div class="row justify-content inicial">
       <h3 class="formulario inicial">
-        Formulario de Modificación de un Servicio de Traducción
+        Formulario de Modificación de un Servicio de Interpretación
       </h3>
       <form @submit.prevent="modificarServicio">
         <div class="row inicial">
           <div class="col-md-11">
             <div class="text-left">
-              Introduzca los datos del servicio de traducción que desea
-              modificar:
+              Introduzca los datos del servicio de interpretación que desea dar
+              de alta:
             </div>
           </div>
         </div>
@@ -92,7 +108,7 @@ export default {
               disabled
               type="text"
               class="form-control"
-              id="nombre1"
+              id="nombre"
               v-model="empresa.nombre"
             />
           </div>
@@ -104,32 +120,46 @@ export default {
           />
         </div>
         <div class="row inicial">
-          <div class="col-md-4">
-            <label for="tipoDocumento" class="form-label"
-              >Tipo de Documento</label
+          <div class="col-md-2">
+            <label for="tiempoInicio" class="form-label"
+              >Horario de Inicio del Servicio</label
             >
           </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-4">
-            <label for="plazoEntrega" class="form-label"
-              >Plazo de Entrega</label
+          <div class="col-md-3">
+            <label for="tiempoFinal" class="form-label"
+              >Horario de Finalización del Servicio</label
             >
+          </div>
+          <div class="col-md-3">
+            <label for="provincia" class="form-label">Provincia</label>
           </div>
           <div class="col-md-4"></div>
         </div>
         <div class="row">
-          <ComponenteTipoDocumento
-            ref="componenteTipoDocumento"
-            :tipoDocumentoSeleccionado="servicio.tipoDocumento"
-            @tipoDocumentoSeleccionado="servicio.tipoDocumento = $event"
-          />
+          <div class="col-md-2">
+            <div class="mb-3">
+              <Calendar
+                id="calendar-timeonly"
+                v-model="servicio.horarioInicioServicio"
+                timeOnly
+              />
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="mb-3">
+              <Calendar
+                id="calendar-timeonly"
+                v-model="servicio.horarioFinServicio"
+                timeOnly
+              />
+            </div>
+          </div>
           <div class="col-md-1"></div>
-          <ComponentePlazoEntrega
-            ref="componentePlazoEntrega"
-            :plazoEntregaSeleccionado="servicio.plazoEntrega"
-            @plazoEntregaSeleccionado="servicio.plazoEntrega = $event"
+          <ComponenteProvincias
+            ref="componenteProvincias"
+            :provinciaSeleccionada="servicio.provincia"
+            @provinciaSeleccionada="servicio.provincia = $event"
           />
-          <div class="col-md-1"></div>
         </div>
         <div class="row inicial">
           <div class="col-7">
@@ -137,14 +167,15 @@ export default {
               <input
                 class="form-check-input"
                 type="checkbox"
-                v-model="servicio.traductorJurado"
+                v-model="servicio.servicioOnline"
                 id="flexCheckDefault"
               />
               <label class="form-check-label" for="flexCheckDefault">
-                Dispone de Traducción Jurada.
+                Dispone de asistencia Online.
               </label>
             </div>
           </div>
+          <br />
           <div class="row justify-content-center final">
             <div class="col-md-2">
               <button type="submit" class="btn btn-primary">

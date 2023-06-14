@@ -28,22 +28,22 @@ const Servicios = () =>
   import("./components/Interfaces/InterfazServicios.vue");
 const Busqueda = () => import("./components/Interfaces/InterfazBusqueda.vue");
 const Alta = () => import("./components/Interfaces/InterfazAlta.vue");
-const AltaEmpresa = () => import("./FormulariosAlta/AltaEmpresa.vue");
+const AltaEmpresa = () => import("./components/Formularios/AltaEmpresa.vue");
 const Ayuda = () => import("./components/Interfaces/InterfazAyuda.vue");
 const ModificacionEmpresa = () =>
-  import("./FormulariosAlta/ModificacionEmpresa.vue");
+  import("./components/Formularios/ModificacionEmpresa.vue");
 const AltaServicioInterpretacion = () =>
-  import("./FormulariosAlta/AltaServicioInterpretacion.vue");
+  import("./components/Formularios/AltaServicioInterpretacion.vue");
 const AltaServicioTraduccion = () =>
-  import("./FormulariosAlta/AltaServicioTraduccion.vue");
+  import("./components/Formularios/AltaServicioTraduccion.vue");
 const InterfazGestionEmpresa = () =>
   import("./components/Interfaces/InterfazGestionEmpresa.vue");
 const InterfazGestionServicios = () =>
   import("./components/Interfaces/InterfazGestionServicios.vue");
 const ModificacionServicioInterpretacion = () =>
-  import("./FormulariosAlta/ModificacionServicioInterpretacion.vue");
+  import("./components/Formularios/ModificacionServicioInterpretacion.vue");
 const ModificacionServicioTraduccion = () =>
-  import("./FormulariosAlta/ModificacionServicioTraduccion.vue");
+  import("./components/Formularios/ModificacionServicioTraduccion.vue");
 const InterfazEmpresas = () =>
   import("./components/Interfaces/InterfazEmpresas.vue");
 const routes = [

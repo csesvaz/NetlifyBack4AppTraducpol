@@ -53,8 +53,11 @@
 
 <style scoped>
 .navbar-brand:hover {
-  background-color: rgb(9, 2, 105) !important;
+  background-color: rgb(9, 2, 105);
 }.nav-link:hover {
-  background-color: rgb(9, 2, 105) !important;
+  background-color: rgb(9, 2, 105);
+}
+li {
+  font-size: x-large;
 }
 </style>
