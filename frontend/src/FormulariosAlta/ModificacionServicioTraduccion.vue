@@ -24,12 +24,14 @@ export default {
         traductorJurado: false,
         id: 0,
       },
+      servicioEntrada: null,
       empresa: { nombre: "" },
     };
   },
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
+    this.servicioEntrada ={...this.servicio};  
     this.empresa = await this.getEmpresaDeServicio(this.id);
     this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
     this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
@@ -46,11 +48,11 @@ export default {
     ]),
     borrarDatos() {
       this.servicio = {
-        traductorJurado: null,
+      ...this.servicioEntrada
       };
-      this.$refs.componenteIdiomas.idiomaSeleccionado = "";
-      this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = "";
-      this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = "";
+      this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
+      this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = this.servicio.tipoDocumento;
+      this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = this.servicio.plazoEntrega;
     },
     async modificarServicio() {
       this.servicio.tipo = "TRADUCCION";
@@ -155,7 +157,7 @@ export default {
                 class="btn btn-warning"
                 @click="borrarDatos"
               >
-                Borrar Datos
+                Valores Iniciales
               </button>
             </div>
             <div class="col-md-2"></div>

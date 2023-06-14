@@ -6,6 +6,13 @@ import ComponenteEmpresa from "./ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 export default {
+  components: { Button, Dialog, ComponenteEmpresa },
+  data() {
+    return {
+      visible: false,
+      empresaSeleccion: null,
+    };
+  },
   computed: {
     ...mapState(useEmpresaStore, ["empresas", "servicios"]),
   },
@@ -18,13 +25,6 @@ export default {
       this.empresaSeleccion = empresa;
     },
   },
-  data() {
-    return {
-      visible: false,
-      empresaSeleccion: null,
-    };
-  },
-  components: { Button, Dialog, ComponenteEmpresa },
 };
 </script>
 <template>
@@ -36,11 +36,7 @@ export default {
       <span class="col-2 bg-primary border border-dark">Tipo de Documento</span>
       <span class="col-2 bg-primary border border-dark">Plazo de Entrega</span>
       <span class="col-2 bg-primary border border-dark">Traducción Jurada</span>
-      <!-- <span v-if="$route.path === '/alta'" class="col-1 mt-2 lapiz h5"
-        >Editar</span
-      > -->
     </div>
-    <!-- v-for de los servicios de Traducción-->
     <div v-for="empresa in empresas" :key="empresa.id">
       <div v-for="servicio in empresa.servicios" :key="servicio.id">
         <div v-if="servicio.tipo == 'TRADUCCION'" class="row mb-12">

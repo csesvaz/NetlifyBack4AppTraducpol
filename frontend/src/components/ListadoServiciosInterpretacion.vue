@@ -5,9 +5,15 @@ import ComponenteEmpresa from "./ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 export default {
+  components: { Button, Dialog, ComponenteEmpresa },
+  data() {
+    return {
+      visible: false,
+      empresaSeleccion: null,
+    };
+  },
   computed: {
     ...mapState(useEmpresaStore, ["empresas","servicios"]),
-
   },
   methods: {
     ...mapActions(useEmpresaStore, ["convertirBooleano","getServicios","deleteServicio"]),
@@ -18,16 +24,9 @@ export default {
       this.empresaSeleccion = empresa;
     },
   },
-  data() {
-    return {
-      visible: false,
-      empresaSeleccion: null,
-    };
-  },
- 
-  components: { Button, Dialog, ComponenteEmpresa },
-};
+  };
 </script>
+
 <template>
   <div class="container-fluid mt-4">
     <h3>SERVICIOS DE INTERPRETACIÓN.</h3>
@@ -40,11 +39,7 @@ export default {
       <span class="col-1 bg-primary border border-dark">Hora Fin </span>
       <span class="col-2 bg-primary border border-dark">Provincia </span>
       <span class="col-1 bg-primary border border-dark">Servicio ONLINE </span>
-      <!-- <span v-if="$route.path === '/alta'" class="col-1 mt-3 lapiz h5"
-        >Editar</span
-      > -->
     </div>
-    <!-- Aqui va un v-for de los servicios de Interpretacion-->
     <div v-for="empresa in empresas" :key="empresa.id" >
       <div v-for="servicio in empresa.servicios" :key="servicio.id" >
       <div v-if="servicio.tipo == 'INTERPRETACION'" class="row mb-12">
@@ -72,7 +67,6 @@ export default {
             icon="pi pi-eye"
             @click="(visible = true), empresaSeleccionada(empresa)"
           />
-
           <Dialog
             v-model:visible="visible"
             modal
@@ -83,7 +77,6 @@ export default {
             <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
           </Dialog>
         </span>
-
         <span
           v-if="$route.path === '/interfazGestionServicios'"
           class="col-1 mt-2"

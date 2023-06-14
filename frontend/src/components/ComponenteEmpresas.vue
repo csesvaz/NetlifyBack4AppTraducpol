@@ -6,9 +6,7 @@ import DataTable from "primevue/datatable";
 import InputText from "primevue/inputtext";
 import { FilterMatchMode } from "primevue/api";
 export default {
-  computed: {
-    ...mapState(useEmpresaStore, ["empresas"]),
-  },
+  components: { Column, DataTable, InputText },
   data() {
     return {
       customers: null,
@@ -20,7 +18,9 @@ export default {
       },
     };
   },
-  components: { Column, DataTable, InputText },
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas"]),
+  },
 };
 </script>
 

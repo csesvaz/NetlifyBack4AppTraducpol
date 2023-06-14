@@ -10,8 +10,13 @@ import { FilterMatchMode } from "primevue/api";
 import ComponenteEmpresa from "./ComponenteEmpresa.vue";
 
 export default {
-  computed: {
-    ...mapState(useEmpresaStore, ["empresas"]),
+  components: {
+    Column,
+    DataTable,
+    InputText,
+    Button,
+    Dialog,
+    ComponenteEmpresa,
   },
   data() {
     return {
@@ -32,17 +37,11 @@ export default {
       },
     };
   },
-  components: {
-    Column,
-    DataTable,
-    InputText,
-    Button,
-    Dialog,
-    ComponenteEmpresa,
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas"]),
   },
   methods: {
     ...mapActions(useEmpresaStore, [
-      "convertirBooleano",
       "getEmpresaDeServicio",
     ]),
     serviciosInterpretacion() {
@@ -61,7 +60,6 @@ export default {
       
     },
   },
-
   async created() {
     const empresaStore = useEmpresaStore();
     this.servicios = await empresaStore.getServicios();

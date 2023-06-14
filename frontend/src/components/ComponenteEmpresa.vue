@@ -14,6 +14,8 @@ export default {
         telefono: null,
         email: null,
       },
+      hayServiciosInterpretacion: false,
+      hayServiciosTraduccion: false,
     };
   },
   methods: {
@@ -22,6 +24,7 @@ export default {
       "getIdURL",
       "getServiciosDeEmpresa",
     ]),
+  
   },
   async updated() {
     this.empresa = await this.empresaEntrada;
@@ -29,6 +32,12 @@ export default {
     this.serviciosFiltro = await this.getServiciosDeEmpresa(
       this.empresaEntrada.id
     );
+    this.hayServiciosInterpretacion = await this.serviciosFiltro.some((element) => {
+      return element.tipo === "INTERPRETACION";
+    });
+    this.hayServiciosTraduccion = await this.serviciosFiltro.some((element) => {
+      return element.tipo === "TRADUCCION";
+    });
   },
   async beforeUnmount() {
     this.serviciosFiltro = null;
@@ -66,80 +75,86 @@ export default {
     <div class="row mb-3">
       <div class="col-12 ms-2 mt-3">
         <h5>SERVICIOS</h5>
-        <div class="row mt-1">
-          <span class="col-1"></span>
-          <div class="col-12 col-md-6">
-            <h4>Interpretación</h4>
+        <div v-if="hayServiciosInterpretacion" class="interpretacion">
+          <div class="row mt-1">
+            <span class="col-1"></span>
+            <div class="col-12 col-md-6">
+              <h4>Interpretación</h4>
+            </div>
           </div>
-        </div>
-        <div class="row mb-1 mt-1">
-          <span class="col-0 col-md-1"></span>
-          <span class="col col-md-2 bg-border border-dark">Idioma</span>
-          <span class="col col-md-2 bg-border border-dark">Hora Inicio</span>
-          <span class="col col-md-2 bg-border border-dark">Hora Fin</span>
-          <span class="col col-md-1 bg-border border-dark">Provincia</span>
-          <span class="col col-md-1"></span>
-          <span class="col col-md-2 bg-border border-dark"
-            >Servicio ONLINE</span
-          >
-        </div>
-        <div v-for="(interprete, index) in serviciosFiltro" :key="index">
-          <div v-if="interprete.tipo == 'INTERPRETACION'">
-            <div class="row">
-              <span class="col-0 col-md-1"></span>
-              <span class="col col-md-2 bg-ligth">{{ interprete.idioma }}</span>
-              <span class="col col-md-2 bg-ligth">{{
-                interprete.horarioInicioServicio
-              }}</span>
-              <span class="col col-md-2 bg-ligth">{{
-                interprete.horarioFinServicio
-              }}</span>
-              <span class="col col-md-1 bg-ligth">{{
-                interprete.provincia
-              }}</span>
-              <span class="col col-md-1"></span>
-              <span class="col col-md-2 bg-ligth">{{
-                convertirBooleano(interprete.servicioOnline)
-              }}</span>
+          <div class="row mb-1 mt-1">
+            <span class="col-0 col-md-1"></span>
+            <span class="col col-md-2 bg-border border-dark">Idioma</span>
+            <span class="col col-md-2 bg-border border-dark">Hora Inicio</span>
+            <span class="col col-md-2 bg-border border-dark">Hora Fin</span>
+            <span class="col col-md-1 bg-border border-dark">Provincia</span>
+            <span class="col col-md-1"></span>
+            <span class="col col-md-2 bg-border border-dark"
+              >Servicio ONLINE</span
+            >
+          </div>
+          <div v-for="(interprete, index) in serviciosFiltro" :key="index">
+            <div v-if="interprete.tipo == 'INTERPRETACION'">
+              <div class="row">
+                <span class="col-0 col-md-1"></span>
+                <span class="col col-md-2 bg-ligth">{{
+                  interprete.idioma
+                }}</span>
+                <span class="col col-md-2 bg-ligth">{{
+                  interprete.horarioInicioServicio
+                }}</span>
+                <span class="col col-md-2 bg-ligth">{{
+                  interprete.horarioFinServicio
+                }}</span>
+                <span class="col col-md-1 bg-ligth">{{
+                  interprete.provincia
+                }}</span>
+                <span class="col col-md-1"></span>
+                <span class="col col-md-2 bg-ligth">{{
+                  convertirBooleano(interprete.servicioOnline)
+                }}</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="row mt-5">
-          <span class="col-1"></span>
-          <div class="col-md-6">
-            <h4>Traducción</h4>
+        <div v-if="hayServiciosTraduccion" class="traduccion">
+          <div class="row mt-3">
+            <span class="col-1"></span>
+            <div class="col-md-6">
+              <h4>Traducción</h4>
+            </div>
           </div>
-        </div>
-        <div class="row mb-1 mt-3">
-          <span class="col-0 col-md-1"></span>
-          <span class="col col-md-2 bg-border border-dark">Idioma</span>
-          <span class="col col-md-3 bg-border border-dark"
-            >Tipo de Documento</span
-          >
-          <span class="col col-md-2 bg-border border-dark"
-            >Plazo de Entrega</span
-          >
-          <span class="col col-md-1"></span>
-          <span class="col col-md-2 bg-border border-dark"
-            >Traducción Jurada</span
-          >
-        </div>
-        <div v-for="(traductor, index) in serviciosFiltro" :key="index">
-          <div class="row mb-12" v-if="traductor.tipo == 'TRADUCCION'">
+          <div class="row mb-1 mt-3">
             <span class="col-0 col-md-1"></span>
-            <span class="col col-md-2 bg-border border-dark">{{
-              traductor.idioma
-            }}</span>
-            <span class="col col-md-3 bg-border border-dark">{{
-              traductor.tipoDocumento
-            }}</span>
-            <span class="col col-md-2 bg-border border-dark">{{
-              traductor.plazoEntrega
-            }}</span>
+            <span class="col col-md-2 bg-border border-dark">Idioma</span>
+            <span class="col col-md-3 bg-border border-dark"
+              >Tipo de Documento</span
+            >
+            <span class="col col-md-2 bg-border border-dark"
+              >Plazo de Entrega</span
+            >
             <span class="col col-md-1"></span>
-            <span class="col col-md-2 bg-border border-dark">{{
-              convertirBooleano(traductor.traductorJurado)
-            }}</span>
+            <span class="col col-md-2 bg-border border-dark"
+              >Traducción Jurada</span
+            >
+          </div>
+          <div v-for="(traductor, index) in serviciosFiltro" :key="index">
+            <div class="row mb-12" v-if="traductor.tipo == 'TRADUCCION'">
+              <span class="col-0 col-md-1"></span>
+              <span class="col col-md-2 bg-border border-dark">{{
+                traductor.idioma
+              }}</span>
+              <span class="col col-md-3 bg-border border-dark">{{
+                traductor.tipoDocumento
+              }}</span>
+              <span class="col col-md-2 bg-border border-dark">{{
+                traductor.plazoEntrega
+              }}</span>
+              <span class="col col-md-1"></span>
+              <span class="col col-md-2 bg-border border-dark">{{
+                convertirBooleano(traductor.traductorJurado)
+              }}</span>
+            </div>
           </div>
         </div>
       </div>

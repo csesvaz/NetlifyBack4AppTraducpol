@@ -1,12 +1,17 @@
 <script>
-import {useEmpresaStore} from './stores/EmpresaStore.js';
-import BarraNavegacion from './components/BarraNavegacion.vue';
+import { useEmpresaStore } from "./stores/EmpresaStore.js";
+import { mapActions } from "pinia";
+import BarraNavegacion from "./components/BarraNavegacion.vue";
 export default {
   components: { BarraNavegacion },
-    beforeMount() {
-        useEmpresaStore().fetchEmpresas();
-        useEmpresaStore().fetchServicios();
-    },
+  methods: {
+    ...mapActions(useEmpresaStore, ["fetchEmpresas", "fetchServicios"]),
+  },
+  beforeMount() {
+    this.fetchEmpresas();
+    this.fetchServicios();
+  },
+ 
 };
 </script>
 
@@ -17,5 +22,4 @@ export default {
   <router-view></router-view>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

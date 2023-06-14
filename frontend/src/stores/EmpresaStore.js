@@ -30,6 +30,7 @@ export const useEmpresaStore = defineStore("empresas", {
               servicio.id = getIdURL(servicio._links.self.href);
             });
           }
+          this.empresas.sort((a, b) => a.nombre.localeCompare(b.nombre));
         });
       }
     },
@@ -37,6 +38,7 @@ export const useEmpresaStore = defineStore("empresas", {
       if (this.empresas.length === 0) {
         await this.fetchEmpresas();
       }
+
       return this.empresas;
     },
     async getEmpresa(id) {

@@ -24,7 +24,6 @@ export default {
       Listado de todos los servicios lingüisticos disponibles:
     </h3>
     <br />
-
     <div class="form-check ml-0">
       <input
         class="form-check-input"
@@ -71,6 +70,7 @@ export default {
 }
 .form-check-label {
   justify-content: start;
+  font-size:x-large
 }
 :disabled {
   background-color: blue;

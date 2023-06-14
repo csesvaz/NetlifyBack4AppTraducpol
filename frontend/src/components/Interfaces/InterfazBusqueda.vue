@@ -161,15 +161,7 @@ export default {
       header="Datos de las empresas que tienen ese servicio"
       :style="{ width: '50vw' }"
       :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-      ><div v-if="empresasConServicio.length == 0" class="Not Found">
-        <p>
-          No se ha encontrado ninguna empresa que cumpla sus requisitos. Puede
-          contactar con el servicio central de interpretes enviando un mensaje a
-          la dirección apoyoTraucpol@mmmm.com o llamando al teléfono +34
-          655-566778 (Horario telefónico de 9:00 a 15:00)
-        </p>
-      </div>
-      <div v-else>
+      >
         <p>
           La hora seleccionada ha sido
           {{ convertirHora(servicio.horaSeleccionada) }}
@@ -181,7 +173,16 @@ export default {
             convertirBooleano(servicio.servicioOnline)
           }})
         </p>
-        <p>Las empresas que cumplen sus requisitos son</p>
+        <div v-if="empresasConServicio.length == 0" class="Not Found">
+        <p>
+          No se ha encontrado ninguna empresa que cumpla sus requisitos. Puede
+          contactar con el servicio central de interpretes enviando un mensaje a
+          la dirección apoyoTraucpol@mmmm.com o llamando al teléfono +34
+          655-566778 (Horario telefónico de 9:00 a 15:00)
+        </p>
+      </div>
+      <div v-else>
+        <p>Las empresas que cumplen sus requisitos son:</p>
         <p v-for="servicio in empresasConServicio">
           - {{ servicio.empresa.nombre }} con telefono
           {{ servicio.empresa.telefono }}, con dirección

@@ -31,10 +31,10 @@ export default {
 
 <template>
   <div class="row mb-12">
-    <div class="col-6">
+    <h4 class="col-6">
       Para dar de alta o modificar una empresa o un servicio debe entrar en MODO
       ADMINISTRADOR
-    </div>
+  </h4>
     <div class="col-6">
       <button
         type="button"
@@ -114,13 +114,13 @@ export default {
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-6 mb-4">
-            <h6>Seleccione gestión de Empresas</h6>
+            <h4>Seleccione gestión de Empresas</h4>
             <router-link class="btn btn-primary" to="/interfazGestionEmpresa">
               EMPRESA
             </router-link>
           </div>
           <div class="col-12 col-md-6 mb-4">
-            <h6>Seleccione gestión de Servicios</h6>
+            <h4>Seleccione gestión de Servicios</h4>
             <router-link class="btn btn-primary" to="/interfazGestionServicios">
               Servicios
             </router-link>

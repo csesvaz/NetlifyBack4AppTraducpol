@@ -26,12 +26,14 @@ export default {
         id: 0,
       },
       empresa: { nombre: "" },
+      servicioEntrada: null,
     };
   },
 
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
+    this.servicioEntrada = { ...this.servicio };
     this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
     this.$refs.componenteProvincias.provinciaSeleccionada =
       this.servicio.provincia;
@@ -45,13 +47,11 @@ export default {
       "getEmpresaDeServicio",
     ]),
     borrarDatos() {
-      this.servicio = {
-        horarioInicioServicio: new Date(),
-        horarioFinServicio: new Date(),
-        servicioOnline: false,
+       this.servicio = {
+      ...this.servicioEntrada
       };
-      this.$refs.componenteIdiomas.idiomaSeleccionado = "";
-      this.$refs.componenteProvincias.provinciaSeleccionada = "";
+      this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
+      this.$refs.componenteProvincias.provinciaSeleccionada = this.servicio.provincia;
     },
     formatearHora(hora) {
       if (typeof hora === "string") {
@@ -188,7 +188,7 @@ export default {
                 class="btn btn-warning"
                 @click="borrarDatos"
               >
-                Borrar Datos
+                Valores Iniciales
               </button>
             </div>
             <div class="col-md-2"></div>

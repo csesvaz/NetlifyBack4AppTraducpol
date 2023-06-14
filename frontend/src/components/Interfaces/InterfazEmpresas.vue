@@ -1,10 +1,11 @@
 <script>
 import ComponenteEmpresas from "@/components/ComponenteEmpresas.vue";
+import ComponenteEmpresaMovil from "@/components/ComponenteEmpresaMovil.vue";
 import { mapState } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 
 export default {
-  components: { ComponenteEmpresas },
+  components: { ComponenteEmpresas, ComponenteEmpresaMovil },
   data() {
     return {
       isMobile: window.innerWidth < 576,
@@ -12,7 +13,7 @@ export default {
   },
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
-  }, 
+  },
   methods: {
     calcularTamano() {
       this.isMobile = window.innerWidth < 576;
@@ -37,10 +38,10 @@ export default {
     </div>
   </div>
   <div v-if="!isMobile">
-  <ComponenteEmpresas />
+    <ComponenteEmpresas />
   </div>
-  <div v-for="empresa in empresas" :key="empresa.id">
-    <h1>en construccion {{ empresa.nombre }}</h1>
+  <div v-else v-for="empresa in empresas" :key="empresa.id">
+    <ComponenteEmpresaMovil :empresa="empresa" />
   </div>
 </template>
 
@@ -49,9 +50,10 @@ export default {
   margin-bottom: 1vh;
   margin-left: 2vw;
 }
-@media (max-width: 768px) {.contenedor {
-  margin-top: 4vh;
-  margin-left: 2vw;
-}
+@media (max-width: 768px) {
+  .contenedor {
+    margin-top: 4vh;
+    margin-left: 2vw;
+  }
 }
 </style>
