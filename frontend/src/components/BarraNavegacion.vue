@@ -42,32 +42,42 @@ export default {
 </script>
 
 <template>
-  <div class="card relative z-2">
-    <Menubar :model="items">
-      <template #start>
-        <img
-          alt="logo"
-          src="../images/LogoEmpresa.png"
-          height="60"
-          class="mr-2"
-        />
-      </template>
-    </Menubar>
+  <div class="fixed-top">
+    <div class="card relative z-2">
+      <Menubar :model="items">
+        <template #start>
+          <img
+            alt="logo"
+            src="../images/LogoEmpresa.png"
+            height="60"
+            class="mr-2"
+          />
+        </template>
+      </Menubar>
+    </div>
   </div>
 </template>
 
 <style scoped>
+fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+}
 .card .p-menubar {
   font-size: 2.1vh;
   font-weight: bold;
 }
 :deep(.p-menubar) {
-    background-color: var(--primary-200);
-    border-color: var(--primary-200);
-    color: #000000;
+  background-color: var(--primary-200);
+  border-color: var(--primary-200);
+  color: #000000;
 }
 :deep(a:hover) {
-  background-color:var(--primary-400);
+  background-color: var(--primary-400);
   color: white;
 }
 </style>

@@ -28,7 +28,7 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid mt-4">
+  <div class="container mt-4">
     <h3>SERVICIOS DE TRADUCCIÓN</h3>
     <div class="row mb-12">
       <span class="col-2 pt-3 pb-3 bg-primary border border-dark">Empresa</span>
@@ -119,13 +119,9 @@ span {
   text-align: center;
 }
 
-.col-3 {
-  width: 25%;
-  text-align: center;
-}
-
 .lapiz {
   color: rgb(110, 60, 60);
+  cursor: pointer;
 }
 .bin {
   margin-left: 1vw;
@@ -133,10 +129,22 @@ span {
   margin-right: 1%;
 }
 @media (max-width: 768px) {
-  .container-fluid {
-    width: 100%;
-    margin-left: 2%;
-    font-size: 0.7rem;
+  h3{
+    font-size: 2vh;
   }
+  .col-2{
+font-size: 3vw;
+  }
+
+.col-1 {
+  font-size: 3vw;
+}
+
+.bin {
+  font-size: large;
+}
+.lapiz {
+  font-size: large;
+}
 }
 </style>

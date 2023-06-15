@@ -31,7 +31,7 @@ export default {
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
-    this.servicioEntrada ={...this.servicio};  
+    this.servicioEntrada = { ...this.servicio };
     this.empresa = await this.getEmpresaDeServicio(this.id);
     this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
     this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
@@ -48,11 +48,13 @@ export default {
     ]),
     borrarDatos() {
       this.servicio = {
-      ...this.servicioEntrada
+        ...this.servicioEntrada,
       };
       this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-      this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = this.servicio.tipoDocumento;
-      this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = this.servicio.plazoEntrega;
+      this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
+        this.servicio.tipoDocumento;
+      this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
+        this.servicio.plazoEntrega;
     },
     async modificarServicio() {
       this.servicio.tipo = "TRADUCCION";
@@ -63,31 +65,20 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid">s
+  <div class="container">
     <div class="row justify-content inicial">
-      <h3 class="formulario inicial">
-        Formulario de Modificación de un Servicio de Traducción
-      </h3>
+      <h3>Formulario de Modificación de un Servicio de Traducción</h3>
       <form @submit.prevent="modificarServicio">
-        <div class="row inicial">
-          <div class="col-md-11">
-            <div class="text-left">
-              Introduzca los datos del servicio de traducción que desea
-              modificar:
-            </div>
+        <div class="row formulario">
+          <div class="col-md-11 text-left">
+            Introduzca los datos del servicio de traducción que desea modificar:
           </div>
         </div>
-        <div class="row inicial">
+        <div class="row formulario">
           <div class="col-md-4">
             <label for="empresa1" class="form-label">Empresa</label>
           </div>
-          <div class="col-md-2">
-            <label for="idioma1" class="form-label">Idioma</label>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <input
               disabled
               type="text"
@@ -96,34 +87,35 @@ export default {
               v-model="empresa.nombre"
             />
           </div>
-          <div class="col-md-1"></div>
+        </div>
+        <div class="row formulario">
+          <div class="col-md-2">
+            <label for="idioma" class="form-label">Idioma</label>
+          </div>
           <ComponenteIdiomas
             ref="componenteIdiomas"
             :idiomaSeleccionado="servicio.idioma"
             @idiomaSeleccionado="servicio.idioma = $event"
           />
         </div>
-        <div class="row inicial">
-          <div class="col-md-4">
+        <div class="row formulario">
+          <div class="col-md-3">
             <label for="tipoDocumento" class="form-label"
               >Tipo de Documento</label
             >
           </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-4">
-            <label for="plazoEntrega" class="form-label"
-              >Plazo de Entrega</label
-            >
-          </div>
-          <div class="col-md-4"></div>
-        </div>
-        <div class="row">
           <ComponenteTipoDocumento
             ref="componenteTipoDocumento"
             :tipoDocumentoSeleccionado="servicio.tipoDocumento"
             @tipoDocumentoSeleccionado="servicio.tipoDocumento = $event"
           />
-          <div class="col-md-1"></div>
+        </div>
+        <div class="row formulario">
+          <div class="col-md-3">
+            <label for="plazoEntrega" class="form-label"
+              >Plazo de Entrega</label
+            >
+          </div>
           <ComponentePlazoEntrega
             ref="componentePlazoEntrega"
             :plazoEntregaSeleccionado="servicio.plazoEntrega"
@@ -131,7 +123,7 @@ export default {
           />
           <div class="col-md-1"></div>
         </div>
-        <div class="row inicial">
+        <div class="row formulario">
           <div class="col-7">
             <div class="form-check">
               <input
@@ -145,38 +137,43 @@ export default {
               </label>
             </div>
           </div>
-          <div class="row justify-content-center final">
+          <div class="row formulario">
             <div class="col-md-2">
               <button type="submit" class="btn btn-primary">
                 Guardar Cambios
               </button>
             </div>
+            <div class="col-md-1"></div>
             <div class="col-md-2">
               <button
                 type="button"
                 class="btn btn-warning"
                 @click="borrarDatos"
               >
-                Valores Iniciales
+                Restaurar Valores Iniciales
               </button>
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-6"></div>
           </div>
         </div>
       </form>
     </div>
   </div>
 </template>
-
 <style scoped>
+
 .row {
-  margin-left: 2vw;
+margin-left: 0.5vw;
 }
 .inicial {
-  margin-top: 3vh;
+margin-top: 8vh;
 }
-.final {
-  margin-top: 4vh;
+.formulario {
+margin-top: 3vh;
+}
+
+@media (max-width: 768px) {
+.inicial {
+  margin-top: 10vh;
+}
 }
 </style>

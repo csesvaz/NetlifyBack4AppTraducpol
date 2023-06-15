@@ -2,9 +2,9 @@
 export default {
   data() {
     return {
-        tipoDocumentoSeleccionadoMultiple: [],
-        tipoDocumentoSeleccionado: "",
-        documentos: [
+      tipoDocumentoSeleccionadoMultiple: [],
+      tipoDocumentoSeleccionado: "",
+      documentos: [
         "Carta",
         "Informe Policial",
         "Informe Forense",
@@ -20,36 +20,48 @@ export default {
         "Documento de Identidad",
         "Carnet de Conducir",
         "Pasaporte",
-        "Otros"
-      ]
+        "Otros",
+      ],
     };
   },
 };
 </script>
 <template>
- <div class="col-6 col-md-4">
-  
-          <select v-if="$route.path === '/altaServicioTraduccion'" 
-          v-model="tipoDocumentoSeleccionadoMultiple"
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm example"
-            multiple
-            required
-            @change="$emit('tipoDocumentoSeleccionado', tipoDocumentoSeleccionado)"
+  <div class="col-10 col-md-4">
+    <select
+      v-if="$route.path === '/altaServicioTraduccion'"
+      v-model="tipoDocumentoSeleccionadoMultiple"
+      class="form-select form-select-sm"
+      aria-label=".form-select-sm example"
+      multiple
+      required
+      @change="$emit('tipoDocumentoSeleccionado', tipoDocumentoSeleccionadoMultiple)"
     >
-    <option value="" disabled>Seleccione Tipo de Documento</option>
-      <option v-for="documento in documentos" :key="documento" :value="documento">{{ documento }}</option>
+      <option value="" disabled>Seleccione Tipo de Documento</option>
+      <option
+        v-for="documento in documentos"
+        :key="documento"
+        :value="documento"
+      >
+        {{ documento }}
+      </option>
     </select>
-          <select v-else
-          v-model="tipoDocumentoSeleccionado"
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm example"
-            required
-            @change="$emit('tipoDocumentoSeleccionado', tipoDocumentoSeleccionado)"
+    <select
+      v-else
+      v-model="tipoDocumentoSeleccionado"
+      class="form-select form-select-sm"
+      aria-label=".form-select-sm example"
+      required
+      @change="$emit('tipoDocumentoSeleccionado', tipoDocumentoSeleccionado)"
     >
-    <option value="" disabled>Seleccione Tipo de Documento</option>
-      <option v-for="documento in documentos" :key="documento" :value="documento">{{ documento }}</option>
+      <option value="" disabled>Seleccione Tipo de Documento</option>
+      <option
+        v-for="documento in documentos"
+        :key="documento"
+        :value="documento"
+      >
+        {{ documento }}
+      </option>
     </select>
-        </div>
-
+  </div>
 </template>

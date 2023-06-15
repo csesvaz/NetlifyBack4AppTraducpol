@@ -63,7 +63,6 @@ export default {
   margin-top: 1vh;
   cursor: pointer;
 }
-
 .bin {
   margin-right: 1vw;
   margin-top: 1vh;

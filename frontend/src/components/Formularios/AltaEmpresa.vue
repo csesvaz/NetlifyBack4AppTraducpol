@@ -90,13 +90,13 @@ export default {
           </div>
           <div class="col-md-4">
             <input
-                type="telephone"
-                class="form-control"
-                id="telefono"
-                placeholder="Teléfono"
-                required
-                v-model="empresa.telefono"
-              />
+              type="telephone"
+              class="form-control"
+              id="telefono"
+              placeholder="Teléfono"
+              required
+              v-model="empresa.telefono"
+            />
           </div>
         </div>
         <div class="row inicial">
@@ -123,7 +123,7 @@ export default {
               Guardar Cambios
             </button>
           </div>
-
+          <div class="col-md-1"></div>
           <div class="col-md-2">
             <button type="button" class="btn btn-warning" @click="borrarDatos">
               Borrar Datos

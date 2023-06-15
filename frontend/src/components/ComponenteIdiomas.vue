@@ -51,7 +51,7 @@ export default {
 };
 </script>
 <template>
-  <div class="col-md-2 col-5">
+  <div class="col-md-2 col-8">
     <select
       v-if="
         $route.path === '/altaServicioInterpretacion' ||
