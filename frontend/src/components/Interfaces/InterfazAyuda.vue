@@ -114,6 +114,12 @@ export default {
   margin-right: 3vw;
   margin-top: 2vh;
 }
+
+:deep(.p-accordion-content) {
+    background-color: var(--primary-200);
+    border-color: var(--primary-200);
+    color: #000000;
+}
 @media (max-width: 768px) {
   * {
     font-size: 1.5vh;

@@ -2,6 +2,7 @@
 import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 import ComponenteEmpresa from "../ComponenteEmpresa.vue";
+
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 export default {
@@ -28,6 +29,7 @@ export default {
 </script>
 
 <template>
+  
   <div class="container-fluid mt-4">
     <h3>SERVICIOS DE INTERPRETACIÓN.</h3>
     <div class="row mb-12">

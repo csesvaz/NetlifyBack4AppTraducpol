@@ -7,7 +7,15 @@ export default {
     ...mapState(useEmpresaStore, ["empresas"]),
   },
   data() {
-    return { empresa: { nombre: "", direccion: "", telefono: "", email: "" } };
+    return {
+      empresa: {
+        nombre: "",
+        direccion: "",
+        telefono: "",
+        email: "",
+        servicios: [],
+      },
+    };
   },
   methods: {
     ...mapActions(useEmpresaStore, ["addEmpresa"]),
@@ -30,16 +38,10 @@ export default {
       <h3 class="formulario inicial">Formulario de Creación de empresa.</h3>
       <form @submit.prevent="guardarEmpresa">
         <div class="row inicial">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <label for="nombre" class="form-label">Nombre</label>
           </div>
-          <div class="col-md-3">
-            <label for="direccion" class="form-label">Dirección</label>
-          </div>
-          <div class="col-md-"></div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-5">
             <input
               type="text"
               class="form-control"
@@ -49,9 +51,12 @@ export default {
               v-model="empresa.nombre"
             />
           </div>
-          <div class="col-md-1"></div>
-
-          <div class="col-md-4">
+        </div>
+        <div class="row inicial">
+          <div class="col-md-2">
+            <label for="direccion" class="form-label">Dirección</label>
+          </div>
+          <div class="col-md-6">
             <input
               type="text"
               class="form-control"
@@ -63,12 +68,10 @@ export default {
           </div>
         </div>
         <div class="row inicial">
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label for="cif" class="form-label">Cif de la empresa.</label>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <input
               type="text"
               class="form-control"
@@ -79,22 +82,14 @@ export default {
             />
           </div>
         </div>
-
         <div class="row inicial">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <label for="telefono" class="form-label"
               >Teléfono de contacto</label
             >
           </div>
-          <div class="col-md-3">
-            <label for="email" class="form-label">Dirección E-mail</label>
-          </div>
-          <div class="col-md-4"></div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="mb-3">
-              <input
+          <div class="col-md-4">
+            <input
                 type="telephone"
                 class="form-control"
                 id="telefono"
@@ -102,23 +97,25 @@ export default {
                 required
                 v-model="empresa.telefono"
               />
-            </div>
           </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-3">
-            <div class="mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                placeholder="Dirección E-mail"
-                required
-                v-model="empresa.email"
-              />
-            </div>
-          </div>
-          <div class="col-md-4"></div>
         </div>
+        <div class="row inicial">
+          <div class="col-md-2">
+            <label for="email" class="form-label">Dirección E-mail</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Dirección E-mail"
+              required
+              v-model="empresa.email"
+            />
+          </div>
+        </div>
+
+        <div class="col-md-4"></div>
 
         <div class="row inicial">
           <div class="col-md-2">
@@ -139,28 +136,15 @@ export default {
 </template>
 
 <style scoped>
-.row {
-  margin-left: 0.5vw;
-}
 .inicial {
   margin-top: 3vw;
 }
 @media (max-width: 768px) {
-  .inicial {
-    margin-top: 6vw;
+  .formulario {
+    margin-top: 20vw;
   }
-  .btn {
-    margin-bottom: 5vw;
-  }
-
-  /* Agregar espacio entre los campos de entrada */
-  input[type="text"] {
-    margin-top: 3vw;
-  }
-
-  /* Aumentar el espacio entre los campos "nombre" y "dirección" */
-  #nombre {
-    margin-bottom: 3vw;
+  button {
+    margin-top: 2vw;
   }
 }
 </style>

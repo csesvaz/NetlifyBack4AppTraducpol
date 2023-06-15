@@ -2,8 +2,10 @@
 import { mapActions } from "pinia";
 import { useEmpresaStore } from "../stores/EmpresaStore";
 import getIdURL from "../service/ApiService";
+import ComponenteCargando from "./ComponenteCargando.vue";
 export default {
   props: ["empresaEntrada"],
+  components: { ComponenteCargando },
   data() {
     return {
       serviciosFiltro: null,
@@ -16,6 +18,7 @@ export default {
       },
       hayServiciosInterpretacion: false,
       hayServiciosTraduccion: false,
+      cargadosDatos: false,
     };
   },
   methods: {
@@ -31,14 +34,24 @@ export default {
     this.serviciosFiltro = await this.getServiciosDeEmpresa(
       this.empresaEntrada.id
     );
-    this.hayServiciosInterpretacion = await this.serviciosFiltro.some(
-      (element) => {
-        return element.tipo === "INTERPRETACION";
-      }
-    );
-    this.hayServiciosTraduccion = await this.serviciosFiltro.some((element) => {
-      return element.tipo === "TRADUCCION";
-    });
+    if (
+      this.empresa.id !== null &&
+      this.empresa.nombre !== null &&
+      this.empresa.direccion !== null &&
+      this.empresa.telefono !== null &&
+      this.empresa.email !== null &&
+      this.serviciosFiltro !== null
+    ) {
+      this.hayServiciosInterpretacion = this.serviciosFiltro.some(
+        (element) => element.tipo === "INTERPRETACION"
+      );
+
+      this.hayServiciosTraduccion = this.serviciosFiltro.some(
+        (element) => element.tipo === "TRADUCCION"
+      );
+
+      this.cargadosDatos = true;
+    }
   },
   async beforeUnmount() {
     this.serviciosFiltro = null;
@@ -53,7 +66,7 @@ export default {
 };
 </script>
 <template>
-  <div class="fondo">
+  <div v-if="cargadosDatos" class="fondo">
     <div class="row ms-2 mt-2">
       <h4>Nombre de la empresa: {{ empresa.nombre }}</h4>
     </div>
@@ -66,7 +79,6 @@ export default {
     <div class="row ms-2">
       <h5>Email de contacto: {{ empresa.email }}</h5>
     </div>
-
     <div class="row mb-3">
       <div class="col-12 ms-2 mt-3">
         <h5>SERVICIOS</h5>
@@ -89,18 +101,14 @@ export default {
             <div v-if="interprete.tipo == 'INTERPRETACION'">
               <div class="row">
                 <span class="col-md-1"></span>
-                <span class="col-2 col-md-2">{{
-                  interprete.idioma
-                }}</span>
+                <span class="col-2 col-md-2">{{ interprete.idioma }}</span>
                 <span class="col-2 col-md-2">{{
                   interprete.horarioInicioServicio
                 }}</span>
                 <span class="col-2 col-md-2">{{
                   interprete.horarioFinServicio
                 }}</span>
-                <span class="col-3 col-md-2">{{
-                  interprete.provincia
-                }}</span>
+                <span class="col-3 col-md-2">{{ interprete.provincia }}</span>
                 <span class="col-2 col-md-3">{{
                   convertirBooleano(interprete.servicioOnline)
                 }}</span>
@@ -135,6 +143,9 @@ export default {
         </div>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <ComponenteCargando />
   </div>
 </template>
 
