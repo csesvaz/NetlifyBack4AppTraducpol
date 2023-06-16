@@ -36,12 +36,9 @@ export default {
   methods: {
     ...mapActions(useEmpresaStore, ["addServicio", "getEmpresas"]),
     guardarServicio() {
-      console.log(this.idiomas)
-      console.log(this.documentos)
       this.servicio.tipo = "TRADUCCION";
       for (let i = 0; i < this.idiomas.length; i++) {
         for (let j = 0; j < this.documentos.length; j++) {
-          console.log(this.documentos[j]);
           const nuevoServicio = { ...this.servicio };
           nuevoServicio.tipoDocumento = this.documentos[j];
           nuevoServicio.idioma = this.idiomas[i];
