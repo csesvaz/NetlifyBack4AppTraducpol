@@ -11,9 +11,6 @@ export default {
     ComponentePlazoEntrega,
     ComponenteTipoDocumento,
   },
-  computed: {
-    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
-  },
   data() {
     return {
       servicio: {
@@ -28,16 +25,8 @@ export default {
       empresa: { nombre: "" },
     };
   },
-  async beforeMount() {
-    this.id = this.$route.params.id;
-    this.servicio = await this.getServicio(this.id);
-    this.servicioEntrada = { ...this.servicio };
-    this.empresa = await this.getEmpresaDeServicio(this.id);
-    this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-    this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
-      this.servicio.tipoDocumento;
-    this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
-      this.servicio.plazoEntrega;
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
   },
   methods: {
     ...mapActions(useEmpresaStore, [
@@ -61,6 +50,17 @@ export default {
       await this.updateServicio(this.servicio);
       this.$router.push("/interfazGestionServicios");
     },
+  },
+  async beforeMount() {
+    this.id = this.$route.params.id;
+    this.servicio = await this.getServicio(this.id);
+    this.servicioEntrada = { ...this.servicio };
+    this.empresa = await this.getEmpresaDeServicio(this.id);
+    this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
+    this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
+      this.servicio.tipoDocumento;
+    this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
+      this.servicio.plazoEntrega;
   },
 };
 </script>

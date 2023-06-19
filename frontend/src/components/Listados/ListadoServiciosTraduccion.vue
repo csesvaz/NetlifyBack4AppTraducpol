@@ -1,7 +1,6 @@
 <script>
 import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
-
 import ComponenteEmpresa from "../ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
@@ -108,17 +107,14 @@ span {
   align-items: center;
   overflow: hidden;
 }
-
 .col-2 {
   width: 17%;
   text-align: center;
 }
-
 .col-1 {
   width: 10%;
   text-align: center;
 }
-
 .lapiz {
   color: rgb(110, 60, 60);
   cursor: pointer;
@@ -129,22 +125,20 @@ span {
   margin-right: 1%;
 }
 @media (max-width: 768px) {
-  h3{
+  h3 {
     font-size: 2vh;
   }
-  .col-2{
-font-size: 3vw;
+  .col-2 {
+    font-size: 3vw;
   }
-
-.col-1 {
-  font-size: 3vw;
-}
-
-.bin {
-  font-size: large;
-}
-.lapiz {
-  font-size: large;
-}
+  .col-1 {
+    font-size: 3vw;
+  }
+  .bin {
+    font-size: large;
+  }
+  .lapiz {
+    font-size: large;
+  }
 }
 </style>

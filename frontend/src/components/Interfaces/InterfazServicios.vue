@@ -1,8 +1,8 @@
 <script>
-import ListadoServiciosInterpretacion2 from "../Listados/ListadoServiciosInterpretacion2.vue";
-import ListadoServiciosTraduccion2 from "../Listados/ListadoServiciosTraduccion2.vue";
 import ComponenteServicioInterpretacionMovil from "../ComponenteServicioInterpretacionMovil.vue";
 import ComponenteServicioTraduccionMovil from "../ComponenteServicioTraduccionMovil.vue";
+import ListadoServiciosInterpretacion2 from "../Listados/ListadoServiciosInterpretacion2.vue";
+import ListadoServiciosTraduccion2 from "../Listados/ListadoServiciosTraduccion2.vue";
 import { mapState, mapActions } from "pinia";
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 export default {
@@ -113,7 +113,7 @@ export default {
     margin-bottom: -2vh;
   }
   h3 {
-    font-size: 1.5em;
+    font-size: 1.5vh;
   }
 }
 </style>

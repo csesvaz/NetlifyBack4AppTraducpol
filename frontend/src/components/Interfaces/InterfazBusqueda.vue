@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     ...mapActions(useEmpresaStore, [
-      "convertirHora",
       "convertirBooleano",
       "busquedaAvanzada",
       "convertirHora",

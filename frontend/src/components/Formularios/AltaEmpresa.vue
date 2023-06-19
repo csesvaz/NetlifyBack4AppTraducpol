@@ -3,9 +3,6 @@ import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../../stores/EmpresaStore";
 
 export default {
-  computed: {
-    ...mapState(useEmpresaStore, ["empresas"]),
-  },
   data() {
     return {
       empresa: {
@@ -14,9 +11,14 @@ export default {
         telefono: "",
         email: "",
         servicios: [],
+        cif: "",
       },
     };
   },
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas"]),
+  },
+
   methods: {
     ...mapActions(useEmpresaStore, ["addEmpresa"]),
     getEmpresa: function () {

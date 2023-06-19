@@ -2,26 +2,23 @@
 import { useAuthStore } from "../../stores/AuthStore";
 import { mapActions, mapState } from "pinia";
 export default {
-  computed: {
-    ...mapState(useAuthStore, { isAdmin: "isAdmin" }),
-  },
   data() {
     return {
       password: "",
-      error: null,
+      passwordIncorrecto: null,
     };
   },
   computed: {
-    ...mapState(useAuthStore, { isAdmin: "isAdmin" }),
+    ...mapState(useAuthStore, { esAdminintrador: "esAdminintrador" }),
   },
   methods: {
     ...mapActions(useAuthStore, { cambiarAdmin: "cambiarAdmin" }),
     validarPassword() {
       if (this.password === "1234") {
         this.cambiarAdmin(true);
-        this.error = false;
+        this.passwordIncorrecto = false;
       } else {
-        this.error = true;
+        this.passwordIncorrecto = true;
         this.cambiarAdmin(false);
       }
     },
@@ -79,11 +76,11 @@ export default {
             <div id="passwordHelpBlock" class="form-text">
               Introduzca su password de administrador y seleccione Aceptar
             </div>
-            <div v-if="error" class="text-danger">
+            <div v-if="passwordIncorrecto" class="text-danger">
               Código incorrecto. Por favor, inténtalo de nuevo.
             </div>
             <div
-              v-else-if="error != null"
+              v-else-if="passwordIncorrecto != null"
               class="text-success text-align-center"
             >
               Código Correcto. Ya puede seleccionar la empresa o servicio para
@@ -102,7 +99,7 @@ export default {
               type="button"
               class="btn btn-primary"
               @click="validarPassword()"
-              :data-bs-dismiss="isAdmin ? 'modal' : null"
+              :data-bs-dismiss="esAdminintrador ? 'modal' : null"
             >
               Aceptar
             </button>
@@ -110,7 +107,7 @@ export default {
         </div>
       </div>
     </div>
-    <div v-if="isAdmin">
+    <div v-if="esAdminintrador">
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-6 mb-4">

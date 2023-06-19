@@ -1,15 +1,15 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-import './scss/styles.scss'
-import * as bootstrap from 'bootstrap'
-import 'primevue/resources/themes/saga-blue/theme.css'
-import 'primevue/resources/primevue.min.css'
-import 'primeicons/primeicons.css'
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
+import "./scss/styles.scss";
+import * as bootstrap from "bootstrap";
+import "primevue/resources/themes/saga-blue/theme.css";
+import "primevue/resources/primevue.min.css";
+import "primeicons/primeicons.css";
 
 // Importar Pinia
-import { createPinia } from 'pinia'
-const pinia = createPinia()
+import { createPinia } from "pinia";
+const pinia = createPinia();
 
 // Importar fontawesome
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -24,8 +24,7 @@ library.add(fab);
 //Router
 import { createRouter, createWebHashHistory } from "vue-router";
 import Inicio from "./components/Interfaces/InterfazInicio.vue";
-const Servicios = () =>
-  import("./components/Interfaces/InterfazServicios.vue");
+const Servicios = () => import("./components/Interfaces/InterfazServicios.vue");
 const Busqueda = () => import("./components/Interfaces/InterfazBusqueda.vue");
 const Alta = () => import("./components/Interfaces/InterfazAlta.vue");
 const AltaEmpresa = () => import("./components/Formularios/AltaEmpresa.vue");
@@ -50,6 +49,7 @@ const routes = [
   {
     path: "/",
     component: Inicio,
+    name: "Inicio",
   },
   {
     path: "/servicio",
@@ -62,6 +62,7 @@ const routes = [
   {
     path: "/alta",
     component: Alta,
+    name: "Alta",
   },
   {
     path: "/empresas",
@@ -84,6 +85,7 @@ const routes = [
   {
     path: "/altaServicioInterpretacion",
     component: AltaServicioInterpretacion,
+    name: "altaServicioInterpretacion",
   },
   {
     path: "/modificacionServicioInterpretacion/:id",
@@ -98,14 +100,17 @@ const routes = [
   {
     path: "/altaServicioTraduccion",
     component: AltaServicioTraduccion,
+    name: "altaServicioTraduccion",
   },
   {
     path: "/interfazGestionEmpresa",
     component: InterfazGestionEmpresa,
+    name: "interfazGestionEmpresa",
   },
   {
     path: "/interfazGestionServicios",
     component: InterfazGestionServicios,
+    name: "interfazGestionServicios",
   },
 ];
 const router = createRouter({
@@ -113,12 +118,33 @@ const router = createRouter({
   routes,
 });
 
+import { useAuthStore } from "./stores/AuthStore";
+router.beforeEach(async (to, from) => {
+  const autorizado = useAuthStore().esAdminintrador;
+  if (
+    !autorizado &&
+    (to.name === "altaEmpresa" ||
+      to.name === "altaServicioInterpretacion" ||
+     to.name === "altaServicioTraduccion" ||
+      to.name === "interfazGestionServicios" ||
+      to.name === "interfazGestionEmpresa" ||
+      to.name === "modificacionServicioInterpretacion" ||
+      to.name === "modificacionServicioTraduccion" ||
+      to.name === "modificacionEmpresa"
+      
+      
+      )
+  ) {
+    return { name: "Inicio" };
+  }
+});
+
 // Importar PrimeVue
-import PrimeVue from 'primevue/config'
+import PrimeVue from "primevue/config";
 
 createApp(App)
-.component("fa", FontAwesomeIcon)
-.use(pinia)
-.use(PrimeVue)
-.use(router)
-.mount('#app')
+  .component("fa", FontAwesomeIcon)
+  .use(pinia)
+  .use(PrimeVue)
+  .use(router)
+  .mount("#app");

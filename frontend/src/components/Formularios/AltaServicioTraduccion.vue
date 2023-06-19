@@ -12,9 +12,6 @@ export default {
     ComponenteTipoDocumento,
     ComponenteIdiomas,
   },
-  computed: {
-    ...mapState(useEmpresaStore, ["servicios"]),
-  },
   data() {
     return {
       empresas: [],
@@ -30,8 +27,8 @@ export default {
       documentos: [],
     };
   },
-  async beforeMount() {
-    this.empresas = await this.getEmpresas();
+  computed: {
+    ...mapState(useEmpresaStore, ["servicios"]),
   },
   methods: {
     ...mapActions(useEmpresaStore, ["addServicio", "getEmpresas"]),
@@ -45,7 +42,7 @@ export default {
           this.addServicio(nuevoServicio);
         }
       }
-      
+
       this.$router.push("/interfazGestionServicios");
     },
     borrarDatos() {
@@ -61,6 +58,9 @@ export default {
       this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado = [];
       this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado = "";
     },
+  },
+  async beforeMount() {
+    this.empresas = await this.getEmpresas();
   },
 };
 </script>
@@ -108,7 +108,6 @@ export default {
           @idiomaSeleccionado="idiomas = $event"
         />
       </div>
-
 
       <div class="row formulario">
         <div class="col-md-3">

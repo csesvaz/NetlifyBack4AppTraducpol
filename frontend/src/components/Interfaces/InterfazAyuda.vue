@@ -106,7 +106,6 @@ export default {
 </template>
 
 <style scoped>
-
 .contenedor {
   margin-bottom: 2vh;
   text-align: center;
@@ -114,11 +113,10 @@ export default {
   margin-right: 3vw;
   margin-top: 2vh;
 }
-
 :deep(.p-accordion-content) {
-    background-color: var(--primary-200);
-    border-color: var(--primary-200);
-    color: #000000;
+  background-color: var(--primary-200);
+  border-color: var(--primary-200);
+  color: #000000;
 }
 @media (max-width: 768px) {
   * {

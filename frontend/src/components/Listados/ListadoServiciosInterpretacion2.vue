@@ -1,22 +1,21 @@
 <script>
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 import { mapActions, mapState } from "pinia";
-import Column from "primevue/column";
-import DataTable from "primevue/datatable";
-import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import Dialog from "primevue/dialog";
-import { FilterMatchMode } from "primevue/api";
+import Column from "primevue/column";
 import ComponenteEmpresa from "../ComponenteEmpresa.vue";
-
+import DataTable from "primevue/datatable";
+import Dialog from "primevue/dialog";
+import InputText from "primevue/inputtext";
+import { FilterMatchMode } from "primevue/api";
 export default {
   components: {
-    Column,
-    DataTable,
-    InputText,
     Button,
-    Dialog,
+    Column,
     ComponenteEmpresa,
+    DataTable,
+    Dialog,
+    InputText,
   },
   data() {
     return {
@@ -53,7 +52,6 @@ export default {
       }
       return serviciosInterpretacion;
     },
-
     async filtrarEmpresa(servicio) {
       
       this.empresaSeleccion = await this.getEmpresaDeServicio(servicio.id);
@@ -177,7 +175,7 @@ export default {
       >
         <template #body="{ data }" v-if="$route.path === '/servicio'">
           <Button
-            type="button"
+            type="Button"
             icon="pi pi-eye"
             @click="(visible = true), filtrarEmpresa(data)"
             :title="'Visualizar datos de contacto de la empresa.'"
@@ -200,3 +198,6 @@ export default {
     </DataTable>
   </div>
 </template>
+
+<style>
+</style>

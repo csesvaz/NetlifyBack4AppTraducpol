@@ -7,17 +7,15 @@ export default {
   },
   methods: {
     ...mapActions(useEmpresaStore, ["deleteEmpresa"]),
-
-    eliminarEmpresa(id) {
-      this.deleteEmpresa(id);
-    },
   },
 };
 </script>
+
 <template>
   <h3>Listado de todas las empresas disponibles</h3>
   <div class="table-responsive">
     <table class="table table-bordered table-hover border border-dark">
+      <caption>Lista de empresas registradas</caption>
       <thead class="thead-dark bg-primary">
         <tr>
           <th class="text-center">Nombre de la Empresa</th>
@@ -47,7 +45,7 @@ export default {
               icon="fa-solid fa-trash-alt"
               size="lg"
               style="color: #c01c28"
-              @click="eliminarEmpresa(empresa.id)"
+              @click="deleteEmpresa(empresa.id)"
             />
           </td>
         </tr>
@@ -78,7 +76,6 @@ export default {
   padding-right: 0vw;
   margin-top: 0vh;
 }
-
 .bin {
   margin-right: 0vw;
   margin-top: 0vh;

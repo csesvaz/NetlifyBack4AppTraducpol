@@ -7,6 +7,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <div class="card flex justify-content-center">
     <p>Cargando datos de la empresa.</p>
@@ -16,6 +17,7 @@ export default {
     <ProgressSpinner />
   </div>
 </template>
+
 <style scoped>
 p {
   text-align: center;

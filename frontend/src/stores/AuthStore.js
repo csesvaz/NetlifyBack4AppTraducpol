@@ -1,15 +1,15 @@
 import { defineStore } from 'pinia';
 
 export const useAuthStore = defineStore('authStore', {
-        state: () => ({ isAdmin: false }),
+        state: () => ({ esAdminintrador: false }),
         getters: {
             getIsAdmin() {
-                return this.isAdmin;
+                return this.esAdminintrador;
             }
         },
         actions: {
             cambiarAdmin(admin) {
-                this.isAdmin = admin;
+                this.esAdminintrador = admin;
             },
         },
     })

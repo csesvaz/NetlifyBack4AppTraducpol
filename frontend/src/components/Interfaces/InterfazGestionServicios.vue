@@ -76,7 +76,7 @@ export default {
       </label>
     </div>
   </div>
-  <div v-if="this.opcionInicial">
+  <div v-if="opcionInicial">
     <ListadoServiciosInterpretacion />
   </div>
   <div v-else>

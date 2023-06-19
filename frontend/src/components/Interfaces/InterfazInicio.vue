@@ -1,6 +1,6 @@
 <script>
-
 </script>
+
 <template>
   <main>
     <div class="logo-container">
@@ -15,7 +15,6 @@
       </figure>
       <p>TRADUCPOL</p>
     </div>
-
     <div class="card-container">
       <div class="card bg-warning col-12 col-md-4">
         <img

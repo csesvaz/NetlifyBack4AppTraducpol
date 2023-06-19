@@ -71,13 +71,9 @@ fixed-top {
   font-size: 2.1vh;
   font-weight: bold;
 }
-:deep(.p-menubar) {
+.p-menubar {
   background-color: var(--primary-200);
   border-color: var(--primary-200);
   color: #000000;
-}
-:deep(a:hover) {
-  background-color: var(--primary-400);
-  color: white;
 }
 </style>

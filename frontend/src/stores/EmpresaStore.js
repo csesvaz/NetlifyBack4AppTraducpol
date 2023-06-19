@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import getIdURL from "../service/ApiService";
-
 export const useEmpresaStore = defineStore("empresas", {
   state: () => ({
     empresas: [],
@@ -85,7 +84,6 @@ export const useEmpresaStore = defineStore("empresas", {
 
       return this.empresas;
     },
-
     async fetchServicios() {
       const serviciosData = await axios.get(
         import.meta.env.VITE_APP_API + "servicios"
@@ -104,7 +102,6 @@ export const useEmpresaStore = defineStore("empresas", {
             ((a.tipo === "TRADUCCION" && b.tipo === "TRADUCCION") ?
               a.tipoDocumento.localeCompare(b.tipoDocumento) : 0));
       });
-
       return this.servicios;
     },
     async getServicios() {
@@ -156,7 +153,6 @@ export const useEmpresaStore = defineStore("empresas", {
       }
       return empresaData.data;
     },
-
     async deleteServicio(id) {
       await axios.delete(import.meta.env.VITE_APP_API + "servicios/" + id);
 
@@ -170,7 +166,7 @@ export const useEmpresaStore = defineStore("empresas", {
         const index = empresa.servicios.findIndex((serv) => serv.id === id);
         if (index !== -1) {
           empresa.servicios.splice(index, 1);
-          break; // Salir del bucle si se encuentra la empresa con el servicio
+          break; 
         }
       }
     },
@@ -188,7 +184,6 @@ export const useEmpresaStore = defineStore("empresas", {
       await this.fetchServicios();
       return this.servicios;
     },
-
     async busquedaAvanzada(hora, idioma, provincia, online) {
       let serviciosBusqueda = await axios.get(
         import.meta.env.VITE_APP_API +
@@ -226,7 +221,6 @@ export const useEmpresaStore = defineStore("empresas", {
     cambioOpcionFalse() {
       this.opcionInicial = false;
     },
-
     convertirHora(fecha) {
       const hora = fecha.toLocaleTimeString([], {
         hour: "2-digit",

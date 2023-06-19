@@ -103,3 +103,5 @@ export default {
     </DataTable>
   </div>
 </template>
+
+<style></style>

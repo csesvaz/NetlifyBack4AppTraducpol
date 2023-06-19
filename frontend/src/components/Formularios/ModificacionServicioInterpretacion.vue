@@ -11,9 +11,7 @@ export default {
     ComponenteProvincias,
     ComponenteIdiomas,
   },
-  computed: {
-    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
-  },
+
   data() {
     return {
       servicio: {
@@ -29,15 +27,8 @@ export default {
       servicioEntrada: null,
     };
   },
-
-  async beforeMount() {
-    this.id = this.$route.params.id;
-    this.servicio = await this.getServicio(this.id);
-    this.servicioEntrada = { ...this.servicio };
-    this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
-    this.$refs.componenteProvincias.provinciaSeleccionada =
-      this.servicio.provincia;
-    this.empresa = await this.getEmpresaDeServicio(this.id);
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
   },
   methods: {
     ...mapActions(useEmpresaStore, [
@@ -76,6 +67,15 @@ export default {
       await this.updateServicio(this.servicio);
       this.$router.push("/interfazGestionServicios");
     },
+  },
+  async beforeMount() {
+    this.id = this.$route.params.id;
+    this.servicio = await this.getServicio(this.id);
+    this.servicioEntrada = { ...this.servicio };
+    this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
+    this.$refs.componenteProvincias.provinciaSeleccionada =
+      this.servicio.provincia;
+    this.empresa = await this.getEmpresaDeServicio(this.id);
   },
 };
 </script>
@@ -120,7 +120,7 @@ export default {
               >Horario de Inicio del Servicio</label
             >
           </div>
-          
+
           <div class="col-md-2">
             <Calendar
               id="calendar-timeonly"

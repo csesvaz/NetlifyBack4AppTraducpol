@@ -93,8 +93,6 @@ export default {
             Valores Iniciales
           </button>
         </div>
-
-       
       </div>
     </form>
   </div>

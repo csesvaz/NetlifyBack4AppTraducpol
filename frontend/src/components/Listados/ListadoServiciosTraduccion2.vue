@@ -1,22 +1,21 @@
 <script>
 import { useEmpresaStore } from "@/stores/EmpresaStore";
 import { mapActions, mapState } from "pinia";
-import Column from "primevue/column";
-import DataTable from "primevue/datatable";
-import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import Dialog from "primevue/dialog";
-import { FilterMatchMode } from "primevue/api";
+import Column from "primevue/column";
 import ComponenteEmpresa from "../ComponenteEmpresa.vue";
-
+import DataTable from "primevue/datatable";
+import Dialog from "primevue/dialog";
+import InputText from "primevue/inputtext";
+import { FilterMatchMode } from "primevue/api";
 export default {
   components: {
-    Column,
-    DataTable,
-    InputText,
     Button,
-    Dialog,
+    Column,
     ComponenteEmpresa,
+    DataTable,
+    Dialog,
+    InputText,
   },
   data() {
     return {

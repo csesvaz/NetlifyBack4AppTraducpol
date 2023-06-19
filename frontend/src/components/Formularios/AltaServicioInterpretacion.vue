@@ -10,9 +10,6 @@ export default {
     ComponenteIdiomas,
     ComponenteProvincias,
   },
-  computed: {
-    ...mapState(useEmpresaStore, ["servicios"]),
-  },
   data() {
     return {
       empresas: [],
@@ -29,8 +26,8 @@ export default {
       provincias: [],
     };
   },
-  async beforeMount() {
-    this.empresas = await this.getEmpresas();
+  computed: {
+    ...mapState(useEmpresaStore, ["servicios"]),
   },
   methods: {
     ...mapActions(useEmpresaStore, [
@@ -53,7 +50,6 @@ export default {
       this.servicio.horarioFinServicio = this.formatearHora(
         this.servicio.horarioFinServicio
       );
-
       for (let i = 0; i < this.idiomas.length; i++) {
         for (let j = 0; j < this.provincias.length; j++) {
           const nuevoServicio = { ...this.servicio };
@@ -78,6 +74,9 @@ export default {
       this.$refs.componenteIdiomas.idiomaSeleccionado = [];
       this.$refs.componenteProvincias.provinciaSeleccionada = [];
     },
+  },
+  async beforeMount() {
+    this.empresas = await this.getEmpresas();
   },
 };
 </script>
