@@ -15,7 +15,6 @@ export default {
   <h3>Listado de todas las empresas disponibles</h3>
   <div class="table-responsive">
     <table class="table table-bordered table-hover border border-dark">
-      <caption>Lista de empresas registradas</caption>
       <thead class="thead-dark bg-primary">
         <tr>
           <th class="text-center">Nombre de la Empresa</th>

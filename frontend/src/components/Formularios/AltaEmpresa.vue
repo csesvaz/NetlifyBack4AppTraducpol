@@ -116,9 +116,6 @@ export default {
             />
           </div>
         </div>
-
-        <div class="col-md-4"></div>
-
         <div class="row inicial">
           <div class="col-md-2">
             <button type="submit" class="btn btn-primary">
