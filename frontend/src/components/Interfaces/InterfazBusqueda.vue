@@ -1,12 +1,12 @@
 <script>
 import Calendar from "primevue/calendar";
-import ComponenteIdiomas from "../ComponenteIdiomas.vue";
-import ComponenteProvincias from "../ComponenteProvincias.vue";
-import ComponenteEmpresa from "../ComponenteEmpresa.vue";
+import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
+import ComponenteProvincias from "@/components/ComponenteProvincias.vue";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import {mapActions, mapState} from "pinia";
-import {useEmpresaStore} from "../../stores/EmpresaStore";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
 
 export default {
   components: {

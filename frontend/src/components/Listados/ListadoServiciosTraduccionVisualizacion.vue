@@ -3,7 +3,7 @@ import { useEmpresaStore } from "@/stores/EmpresaStore";
 import { mapActions, mapState } from "pinia";
 import Button from "primevue/button";
 import Column from "primevue/column";
-import ComponenteEmpresa from "../ComponenteEmpresa.vue";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
 import DataTable from "primevue/datatable";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";

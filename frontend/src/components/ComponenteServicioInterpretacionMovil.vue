@@ -1,15 +1,22 @@
 <script>
-import {mapActions, mapState} from "pinia";
-import {useEmpresaStore} from "@/stores/EmpresaStore";
+import { mapActions, mapState } from "pinia";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
 import Button from "primevue/button";
 import Card from "primevue/card";
-import ComponenteEmpresa from "./ComponenteEmpresa.vue";
-import ComponenteIdiomas from "./ComponenteIdiomas.vue";
-import ComponenteProvincias from "./ComponenteProvincias.vue";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
+import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
+import ComponenteProvincias from "@/components/ComponenteProvincias.vue";
 import Dialog from "primevue/dialog";
 
 export default {
-  components: {Button, Card, ComponenteEmpresa, ComponenteIdiomas, ComponenteProvincias, Dialog},
+  components: {
+    Button,
+    Card,
+    ComponenteEmpresa,
+    ComponenteIdiomas,
+    ComponenteProvincias,
+    Dialog,
+  },
   data() {
     return {
       idiomaSeleccionado: "",
@@ -29,12 +36,14 @@ export default {
     ...mapState(useEmpresaStore, ["servicios"]),
   },
   methods: {
-    ...mapActions(useEmpresaStore, ["convertirBooleano",
-      "getEmpresaDeServicio"]),
+    ...mapActions(useEmpresaStore, [
+      "convertirBooleano",
+      "getEmpresaDeServicio",
+    ]),
     actualizarServiciosFiltradosPorIdioma(idioma) {
       if (idioma) {
         this.serviciosFiltrados = this.servicios.filter(
-            (servicio) => servicio.idioma === idioma
+          (servicio) => servicio.idioma === idioma
         );
       } else {
         this.serviciosFiltrados = [...this.servicios];
@@ -46,7 +55,7 @@ export default {
     actualizarServiciosFiltradosPorProvincia(provincia) {
       if (provincia) {
         this.serviciosFiltrados = this.servicios.filter(
-            (servicio) => servicio.provincia === provincia
+          (servicio) => servicio.provincia === provincia
         );
       } else {
         this.serviciosFiltrados = [...this.servicios];
@@ -69,12 +78,12 @@ export default {
   </div>
   <div class="row">
     <ComponenteIdiomas
-        :idiomaSeleccionado="idiomaSeleccionado"
-        @idiomaSeleccionado="actualizarServiciosFiltradosPorIdioma($event)"
+      :idiomaSeleccionado="idiomaSeleccionado"
+      @idiomaSeleccionado="actualizarServiciosFiltradosPorIdioma($event)"
     />
     <ComponenteProvincias
-        :provinciaSeleccionada="provinciaSeleccionada"
-        @provinciaSeleccionada="actualizarServiciosFiltradosPorProvincia($event)"
+      :provinciaSeleccionada="provinciaSeleccionada"
+      @provinciaSeleccionada="actualizarServiciosFiltradosPorProvincia($event)"
     />
   </div>
   <div v-for="servicio in serviciosFiltrados">
@@ -93,23 +102,23 @@ export default {
             </p>
             <p>
               Provincia: <strong>{{ servicio.provincia }}</strong
-            >&nbsp&nbsp&nbsp servicioOnline:
+              >&nbsp&nbsp&nbsp servicioOnline:
               <strong>{{ convertirBooleano(servicio.servicioOnline) }}</strong>
             </p>
             <div class="card flex justify-content-center">
               <Button
-                  icon="pi pi-external-link"
-                  label="Mostrar Empresa"
-                  @click="(visible = true), filtrarEmpresa(servicio)"
+                icon="pi pi-external-link"
+                label="Mostrar Empresa"
+                @click="(visible = true), filtrarEmpresa(servicio)"
               />
               <Dialog
-                  v-model:visible="visible"
-                  :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-                  :style="{ width: '50vw' }"
-                  header="Datos de la empresa"
-                  modal
+                v-model:visible="visible"
+                :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+                :style="{ width: '50vw' }"
+                header="Datos de la empresa"
+                modal
               >
-                <ComponenteEmpresa :empresaEntrada="empresaSeleccion"/>
+                <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
               </Dialog>
             </div>
           </template>

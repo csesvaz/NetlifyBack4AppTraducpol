@@ -11,11 +11,11 @@ export default {
 <template>
   <div class="col-md-4">
     <select
-        v-model="plazoEntregaSeleccionado"
-        aria-label=".form-select-sm example"
-        class="form-select form-select-sm"
-        required
-        @change="$emit('plazoEntregaSeleccionado', plazoEntregaSeleccionado)"
+      v-model="plazoEntregaSeleccionado"
+      aria-label=".form-select-sm example"
+      class="form-select form-select-sm"
+      required
+      @change="$emit('plazoEntregaSeleccionado', plazoEntregaSeleccionado)"
     >
       <option value="">Seleccione Plazo de entrega</option>
       <option value="1 hora">1 hora</option>

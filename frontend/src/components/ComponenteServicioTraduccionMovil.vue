@@ -1,12 +1,12 @@
 <script>
-import {mapActions, mapState} from "pinia";
-import {useEmpresaStore} from "@/stores/EmpresaStore";
-import ComponenteIdiomas from "./ComponenteIdiomas.vue";
+import { mapActions, mapState } from "pinia";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
+import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import Card from "primevue/card";
-import ComponenteTipoDocumento from "./ComponenteTipoDocumento.vue";
-import ComponenteEmpresa from "./ComponenteEmpresa.vue";
+import ComponenteTipoDocumento from "@/components/ComponenteTipoDocumento.vue";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
 
 export default {
   components: {
@@ -15,7 +15,7 @@ export default {
     ComponenteEmpresa,
     ComponenteIdiomas,
     ComponenteTipoDocumento,
-    Dialog
+    Dialog,
   },
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
     actualizarServiciosFiltradosPorIdioma(idioma) {
       if (idioma) {
         this.serviciosFiltrados = this.servicios.filter(
-            (servicio) => servicio.idioma === idioma
+          (servicio) => servicio.idioma === idioma
         );
       } else {
         this.serviciosFiltrados = [...this.servicios];
@@ -52,7 +52,7 @@ export default {
     actualizarServiciosFiltradosPorTipoDocumento(tipoDocumento) {
       if (tipoDocumento) {
         this.serviciosFiltrados = this.servicios.filter(
-            (servicio) => servicio.tipoDocumento === tipoDocumento
+          (servicio) => servicio.tipoDocumento === tipoDocumento
         );
       } else {
         this.serviciosFiltrados = [...this.servicios];
@@ -80,13 +80,13 @@ export default {
   </div>
   <div class="row">
     <ComponenteIdiomas
-        :idiomaSeleccionado="idiomaSeleccionado"
-        @idiomaSeleccionado="actualizarServiciosFiltradosPorIdioma($event)"
+      :idiomaSeleccionado="idiomaSeleccionado"
+      @idiomaSeleccionado="actualizarServiciosFiltradosPorIdioma($event)"
     />
     <ComponenteTipoDocumento
-        ref="componenteTipoDocumento"
-        :tipoDocumentoSeleccionado="tipoDocumentoSeleccionado"
-        @tipoDocumentoSeleccionado="
+      ref="componenteTipoDocumento"
+      :tipoDocumentoSeleccionado="tipoDocumentoSeleccionado"
+      @tipoDocumentoSeleccionado="
         actualizarServiciosFiltradosPorTipoDocumento($event)
       "
     />
@@ -105,23 +105,23 @@ export default {
             </p>
             <p>
               Plazo de Entrega: <strong>{{ servicio.plazoEntrega }}</strong
-            >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Traducción Jurada:
+              >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Traducción Jurada:
               <strong>{{ convertirBooleano(servicio.traductorJurado) }}</strong>
             </p>
             <div class="card flex justify-content-center">
               <Button
-                  icon="pi pi-external-link"
-                  label="Mostrar Empresa"
-                  @click="(visible = true), filtrarEmpresa(servicio)"
+                icon="pi pi-external-link"
+                label="Mostrar Empresa"
+                @click="(visible = true), filtrarEmpresa(servicio)"
               />
               <Dialog
-                  v-model:visible="visible"
-                  :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-                  :style="{ width: '50vw' }"
-                  header="Datos de la empresa"
-                  modal
+                v-model:visible="visible"
+                :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+                :style="{ width: '50vw' }"
+                header="Datos de la empresa"
+                modal
               >
-                <ComponenteEmpresa :empresaEntrada="empresaSeleccion"/>
+                <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
               </Dialog>
             </div>
           </template>

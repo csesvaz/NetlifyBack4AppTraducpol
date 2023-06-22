@@ -1,13 +1,13 @@
 <script>
-import {useEmpresaStore} from "@/stores/EmpresaStore";
-import {mapActions, mapState} from "pinia";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
+import { mapActions, mapState } from "pinia";
 import Button from "primevue/button";
 import Column from "primevue/column";
-import ComponenteEmpresa from "../ComponenteEmpresa.vue";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
 import DataTable from "primevue/datatable";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
-import {FilterMatchMode} from "primevue/api";
+import { FilterMatchMode } from "primevue/api";
 
 export default {
   components: {
@@ -32,8 +32,8 @@ export default {
       empresaNombre: null,
       customers: null,
       filters: {
-        idioma: {value: null, matchMode: FilterMatchMode.CONTAINS},
-        provincia: {value: null, matchMode: FilterMatchMode.CONTAINS},
+        idioma: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        provincia: { value: null, matchMode: FilterMatchMode.CONTAINS },
       },
     };
   },
@@ -41,49 +41,44 @@ export default {
     ...mapState(useEmpresaStore, ["empresas", "servicios"]),
   },
   methods: {
-    ...mapActions(useEmpresaStore, [
-      "getEmpresaDeServicio",
-    ]),
+    ...mapActions(useEmpresaStore, ["getEmpresaDeServicio"]),
     filtrarServiciosInterpretacion() {
       for (let i = 0; i < this.servicios.length; i++) {
         if (this.servicios[i].tipo == "INTERPRETACION") {
           this.serviciosInterpretacion.push(this.servicios[i]);
         }
       }
-  ;
     },
     async filtrarEmpresa(servicio) {
-
-     let a = await this.getEmpresaDeServicio(servicio.id);
-     this.empresaSeleccion = a;
-    
+      let a = await this.getEmpresaDeServicio(servicio.id);
+      this.empresaSeleccion = a;
     },
   },
   created() {
     this.filtrarServiciosInterpretacion();
-  }
+  },
 };
 </script>
 
 <template>
   <div class="card">
     <DataTable
-        v-model:filters="filters"
-        :rows="10"
-        :rowsPerPageOptions="[5, 10, 20, 50]"
-        :value="serviciosInterpretacion"
-        Fields="[
+      v-model:filters="filters"
+      :rows="10"
+      :rowsPerPageOptions="[5, 10, 20, 50]"
+      :value="serviciosInterpretacion"
+      Fields="[
         'idioma',
         'horarioInicioServicio',
         'horarioFinServicio',
         'provincia',
         'servicioOnline',
       ]"
-        filterDisplay="row"
-        paginator
-        removableSort
-        showGridlines
-        tableStyle="min-width: 50rem"
+      filterDisplay="row"
+      paginator
+      removableSort
+      showGridlines
+      tableStyle="min-width: 50rem"
     >
       <template #header>
         <div class="flex flex-wrap justify-content-between gap-2">
@@ -91,107 +86,105 @@ export default {
         </div>
       </template>
       <Column
-          bodyClass="text-center"
-          field="idioma"
-          header="Idioma"
-          sortable
-          style="width: 15%"
+        bodyClass="text-center"
+        field="idioma"
+        header="Idioma"
+        sortable
+        style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.idioma }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
           <InputText
-              v-model="filterModel.value"
-              :title="'Introduce el idioma a buscar.'"
-              class="p-column-filter"
-              placeholder="Búsqueda por idioma"
-              type="text"
-              @input="filterCallback()"
+            v-model="filterModel.value"
+            :title="'Introduce el idioma a buscar.'"
+            class="p-column-filter"
+            placeholder="Búsqueda por idioma"
+            type="text"
+            @input="filterCallback()"
           />
-        </template
-        >
+        </template>
       </Column>
       <Column
-          bodyClass="text-center"
-          field="horarioInicioServicio"
-          header="Hora de Inicio"
-          style="width: 15%"
+        bodyClass="text-center"
+        field="horarioInicioServicio"
+        header="Hora de Inicio"
+        style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.horarioInicioServicio }}
         </template>
       </Column>
       <Column
-          bodyClass="text-center"
-          field="horarioFinServicio"
-          header="Hora de Fin"
-          style="width: 15%"
+        bodyClass="text-center"
+        field="horarioFinServicio"
+        header="Hora de Fin"
+        style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.horarioFinServicio }}
         </template>
       </Column>
       <Column
-          bodyClass="text-center"
-          field="provincia"
-          header="Provincia"
-          sortable
-          style="width: 15%"
+        bodyClass="text-center"
+        field="provincia"
+        header="Provincia"
+        sortable
+        style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.provincia }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
           <InputText
-              v-model="filterModel.value"
-              :title="'Introduce la provincia a buscar.'"
-              class="p-column-filter"
-              placeholder="Búsqueda por provincia"
-              type="text"
-              @input="filterCallback()"
+            v-model="filterModel.value"
+            :title="'Introduce la provincia a buscar.'"
+            class="p-column-filter"
+            placeholder="Búsqueda por provincia"
+            type="text"
+            @input="filterCallback()"
           />
-        </template
-        >
+        </template>
       </Column>
       <Column
-          bodyClass="text-center"
-          dataType="boolean"
-          field="servicioOnline"
-          header="Servicio OnLine"
-          style="width: 15%"
+        bodyClass="text-center"
+        dataType="boolean"
+        field="servicioOnline"
+        header="Servicio OnLine"
+        style="width: 15%"
       >
         <template #body="{ data }">
           <i
-              :class="{
+            :class="{
               'pi-check-circle': data.servicioOnline,
               'pi-times-circle': !data.servicioOnline,
             }"
-              class="pi"
+            class="pi"
           ></i>
         </template>
       </Column>
       <Column
-          bodyClass="text-center"
-          field="eye"
-          header="Visualizar Empresa"
-          style="width: 15%"
+        bodyClass="text-center"
+        field="eye"
+        header="Visualizar Empresa"
+        style="width: 15%"
       >
         <template v-if="$route.path === '/servicio'" #body="{ data }">
           <Button
-              :title="'Visualizar datos de contacto de la empresa.'"
-              icon="pi pi-eye"
-              type="Button"
-              @click="(visible = true), filtrarEmpresa(data)"
+            :title="'Visualizar datos de contacto de la empresa.'"
+            icon="pi pi-eye"
+            type="Button"
+            @click="(visible = true), filtrarEmpresa(data)"
           />
           <Dialog
-              v-model:visible="visible"
-              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-              :style="{ width: '50vw' }"
-              header="Datos de la empresa"
-              modal
+            v-model:visible="visible"
+            :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+            :style="{ width: '50vw' }"
+            header="Datos de la empresa"
+            modal
           >
-            <ComponenteEmpresa :empresaEntrada="empresaSeleccion"/>
+            <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
           </Dialog>
         </template>
       </Column>
@@ -203,5 +196,4 @@ export default {
   </div>
 </template>
 
-<style>
-</style>
+<style></style>

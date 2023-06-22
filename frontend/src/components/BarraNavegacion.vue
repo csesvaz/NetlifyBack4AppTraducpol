@@ -2,7 +2,7 @@
 import Menubar from "primevue/menubar";
 
 export default {
-  components: {Menubar},
+  components: { Menubar },
   data() {
     return {
       items: [
@@ -48,10 +48,10 @@ export default {
       <Menubar :model="items">
         <template #start>
           <img
-              alt="logo"
-              class="mr-2"
-              height="60"
-              src="../images/LogoEmpresa.png"
+            alt="logo"
+            class="mr-2"
+            height="60"
+            src="/LogoEmpresa.png"
           />
         </template>
       </Menubar>

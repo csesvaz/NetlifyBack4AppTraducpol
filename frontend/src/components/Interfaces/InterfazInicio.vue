@@ -9,7 +9,7 @@
             alt="Logo TRADUCPOL"
             class="figure-img img-fluid rounded"
             height="200"
-            src="@/images/logoTraducpol.png"
+            src="/logoTraducpol.png"
             width="200"
         />
       </figure>
@@ -20,7 +20,7 @@
         <img
             alt="Lista servicios"
             class="card-img-top"
-            src="@/images/ESM-scaled.jpg"
+            src="/ESM-scaled.jpg"
         />
 
         <div class="card-body" title="Servicios disponibles">
@@ -38,7 +38,7 @@
         <img
             alt="Lista servicios"
             class="card-img-top"
-            src="@/images/La-Busqueda-de-Informacion.png"
+            src="/La-Busqueda-de-Informacion.png"
         />
 
         <div class="card-body" title="Busqueda Servicios">
@@ -59,7 +59,7 @@
         <img
             alt="Lista servicios"
             class="card-img-top"
-            src="@/images/ayuda.jpg"
+            src="/ayuda.jpg"
         />
         <div class="card-body" title="Ayuda">
           <h5 class="card-title">Ayuda</h5>
@@ -104,10 +104,10 @@
         <div class="col-md-12 text-center">
           <p>Síguenos en:</p>
           <div class="socialMedia">
-            <fa icon="fa-brands fa-square-facebook"/>
-            <fa icon="fa-brands fa-twitter"/>
-            <fa icon="fa-brands fa-linkedin"/>
-            <fa icon="fa-brands fa-instagram"/>
+            <font-awesome-icon class="icono-fontawesome" icon="fa-brands fa-square-facebook"/>
+            <font-awesome-icon class="icono-fontawesome" icon="fa-brands fa-twitter"/>
+            <font-awesome-icon class="icono-fontawesome" icon="fa-brands fa-linkedin"/>
+            <font-awesome-icon class="icono-fontawesome" icon="fa-brands fa-instagram"/>
           </div>
           <p>
             Contacto: email apoyoTraucpol@mmmm.com o teléfono (+34 655-566778

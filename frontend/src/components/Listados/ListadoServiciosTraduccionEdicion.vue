@@ -1,12 +1,12 @@
 <script>
-import {mapActions, mapState} from "pinia";
-import {useEmpresaStore} from "@/stores/EmpresaStore";
-import ComponenteEmpresa from "../ComponenteEmpresa.vue";
+import { mapActions, mapState } from "pinia";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
 export default {
-  components: {Button, Dialog, ComponenteEmpresa},
+  components: { Button, Dialog, ComponenteEmpresa },
   data() {
     return {
       visible: false,
@@ -41,54 +41,57 @@ export default {
       <div v-for="servicio in empresa.servicios" :key="servicio.id">
         <div v-if="servicio.tipo == 'TRADUCCION'" class="row mb-12">
           <span class="col-2 bg-ligth border border-dark">{{
-              empresa.nombre
-            }}</span>
+            empresa.nombre
+          }}</span>
           <span class="col-2 bg-ligth border border-dark">{{
-              servicio.idioma
-            }}</span>
+            servicio.idioma
+          }}</span>
           <span class="col-2 bg-ligth border border-dark">{{
-              servicio.tipoDocumento
-            }}</span>
+            servicio.tipoDocumento
+          }}</span>
           <span class="col-2 bg-ligth border border-dark">{{
-              servicio.plazoEntrega
-            }}</span>
+            servicio.plazoEntrega
+          }}</span>
           <span class="col-2 bg-ligth border border-dark">{{
-              convertirBooleano(servicio.traductorJurado)
-            }}</span>
+            convertirBooleano(servicio.traductorJurado)
+          }}</span>
           <span v-if="$route.path === '/servicio'" class="col-1 mt-2">
             <Button
-                icon="pi pi-eye"
-                label="Ver"
-                @click="(visible = true), empresaSeleccionada(empresa)"
+              icon="pi pi-eye"
+              label="Ver"
+              @click="(visible = true), empresaSeleccionada(empresa)"
             />
             <Dialog
-                v-model:visible="visible"
-                :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-                :style="{ width: '50vw' }"
-                header="Dartos de la empresa"
-                modal
+              v-model:visible="visible"
+              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+              :style="{ width: '50vw' }"
+              header="Dartos de la empresa"
+              modal
             >
-              <ComponenteEmpresa :empresaEntrada="empresaSeleccion"/>
+              <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
             </Dialog>
           </span>
           <span
-              v-if="$route.path === '/interfazGestionServicios'"
-              class="col-1 mt-2"
+            v-if="$route.path === '/interfazGestionServicios'"
+            class="col-1 mt-2"
           >
             <router-link
-                :to="{
+              :to="{
                 name: 'modificacionServicioTraduccion',
                 params: { id: servicio.id },
               }"
             >
-              <fa class="lapiz" icon="fa-solid fa-pencil" size="2xl"
-              /></router-link>
-            <fa
-                class="bin"
-                icon="fa-solid fa-trash-arrow-up"
+              <font-awesome-icon
+                class="lapiz"
+                icon="fa-solid fa-pencil"
                 size="2xl"
-                style="color: #c01c28"
-                @click="eliminarServicio(servicio.id)"
+            /></router-link>
+            <font-awesome-icon
+              class="bin"
+              icon="fa-solid fa-trash-alt"
+              size="2xl"
+              style="color: #c01c28"
+              @click="eliminarServicio(servicio.id)"
             />
           </span>
         </div>

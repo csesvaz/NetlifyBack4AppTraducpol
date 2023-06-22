@@ -1,7 +1,7 @@
 <script>
 import {mapActions, mapState} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore";
-import ComponenteEmpresa from "../ComponenteEmpresa.vue";
+import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 
@@ -92,11 +92,11 @@ export default {
                 params: { id: servicio.id },
               }"
             >
-              <fa class="lapiz" icon="fa-solid fa-pencil" size="2xl"/>
+              <font-awesome-icon class="lapiz" icon="fa-solid fa-pencil" size="2xl"/>
             </router-link>
-            <fa
+            <font-awesome-icon
                 class="bin"
-                icon="fa-solid fa-trash-arrow-up"
+                icon="fa-solid fa-trash-alt"
                 size="2xl"
                 style="color: #c01c28"
                 @click="eliminarServicio(servicio.id)"

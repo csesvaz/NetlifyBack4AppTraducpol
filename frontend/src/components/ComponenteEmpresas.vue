@@ -1,6 +1,6 @@
 <script>
 import { mapActions, mapState } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
 import Button from "primevue/button";
 import Column from "primevue/column";
 import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";

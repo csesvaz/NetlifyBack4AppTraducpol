@@ -1,6 +1,6 @@
 <script>
 import { mapActions } from "pinia";
-import { useEmpresaStore } from "../../stores/EmpresaStore.js";
+import { useEmpresaStore } from "@/stores/EmpresaStore.js";
 
 export default {
   data() {

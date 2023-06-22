@@ -1,5 +1,5 @@
 <script>
-import ListadoEmpresas from "../Listados/ListadoEmpresas.vue";
+import ListadoEmpresas from "@/components/Listados/ListadoEmpresas.vue";
 
 export default {
   components: {ListadoEmpresas},

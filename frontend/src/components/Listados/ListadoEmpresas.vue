@@ -36,11 +36,11 @@ export default {
           <router-link
               :to="{ name: 'modificacionEmpresa', params: { id: empresa.id } }"
           >
-            <fa class="lapiz" icon="fa-solid fa-pencil-alt" size="lg"/>
+            <font-awesome-icon class="lapiz" icon="fa-solid fa-pencil-alt" size="lg"/>
           </router-link>
         </td>
         <td class="text-center">
-          <fa
+          <font-awesome-icon
               class="bin"
               icon="fa-solid fa-trash-alt"
               size="lg"

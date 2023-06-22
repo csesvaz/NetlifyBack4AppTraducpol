@@ -1,13 +1,13 @@
 <script>
-import ListadoServiciosInterpretacion from "../Listados/ListadoServiciosInterpretacion.vue";
-import ListadoServiciosTraduccion from "../Listados/ListadoServiciosTraduccion.vue";
+import ListadoServiciosInterpretacionEdicion from "@/components/Listados/ListadoServiciosInterpretacionEdicion.vue";
+import ListadoServiciosTraduccionEdicion from "@/components/Listados/ListadoServiciosTraduccionEdicion.vue";
 import {mapActions, mapState} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore";
 
 export default {
   components: {
-    ListadoServiciosInterpretacion,
-    ListadoServiciosTraduccion,
+    ListadoServiciosInterpretacionEdicion,
+    ListadoServiciosTraduccionEdicion,
   },
   computed: {
     ...mapState(useEmpresaStore, ["opcionInicial"]),
@@ -79,10 +79,10 @@ export default {
     </div>
   </div>
   <div v-if="opcionInicial">
-    <ListadoServiciosInterpretacion/>
+    <ListadoServiciosInterpretacionEdicion/>
   </div>
   <div v-else>
-    <ListadoServiciosTraduccion/>
+    <ListadoServiciosTraduccionEdicion/>
   </div>
 </template>
 

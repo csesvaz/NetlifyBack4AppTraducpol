@@ -1,6 +1,6 @@
 <script>
 import { mapActions } from "pinia";
-import { useEmpresaStore } from "../stores/EmpresaStore";
+import { useEmpresaStore } from "@/stores/EmpresaStore";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
@@ -34,7 +34,8 @@ export default {
         <h4>Teléfono: {{ empresa.telefono }}</h4>
         <h4>email: {{ empresa.email }}</h4>
         <div class="card flex justify-content-center">
-          <Button label="Ver servicios"
+          <Button
+            label="Ver servicios"
             class="botonEmpresa p-d-flex p-jc-center"
             :title="'Visualizar servicios.'"
             icon="pi pi-eye"

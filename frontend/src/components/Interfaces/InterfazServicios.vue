@@ -1,15 +1,15 @@
 <script>
-import ComponenteServicioInterpretacionMovil from "../ComponenteServicioInterpretacionMovil.vue";
-import ComponenteServicioTraduccionMovil from "../ComponenteServicioTraduccionMovil.vue";
-import ListadoServiciosInterpretacion2 from "../Listados/ListadoServiciosInterpretacion2.vue";
-import ListadoServiciosTraduccion2 from "../Listados/ListadoServiciosTraduccion2.vue";
+import ComponenteServicioInterpretacionMovil from "@/components/ComponenteServicioInterpretacionMovil.vue";
+import ComponenteServicioTraduccionMovil from "@/components/ComponenteServicioTraduccionMovil.vue";
+import ListadoServiciosInterpretacionVisualizacion from "@/components/Listados/ListadoServiciosInterpretacionVisualizacion.vue";
+import ListadoServiciosTraduccionVisualizacion from "@/components/Listados/ListadoServiciosTraduccionVisualizacion.vue";
 import {mapActions, mapState} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore";
 
 export default {
   components: {
-    ListadoServiciosInterpretacion2,
-    ListadoServiciosTraduccion2,
+    ListadoServiciosInterpretacionVisualizacion,
+    ListadoServiciosTraduccionVisualizacion,
     ComponenteServicioInterpretacionMovil,
     ComponenteServicioTraduccionMovil
   },
@@ -83,10 +83,10 @@ export default {
   </div>
   <div v-else>
     <div v-if="this.opcionInicial">
-      <ListadoServiciosInterpretacion2/>
+      <ListadoServiciosInterpretacionVisualizacion/>
     </div>
     <div v-else>
-      <ListadoServiciosTraduccion2/>
+      <ListadoServiciosTraduccionVisualizacion/>
     </div>
   </div>
 </template>
