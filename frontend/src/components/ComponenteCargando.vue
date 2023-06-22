@@ -14,7 +14,7 @@ export default {
     <p>Por favor espere.</p>
   </div>
   <div class="card flex justify-content-center">
-    <ProgressSpinner />
+    <ProgressSpinner/>
   </div>
 </template>
 

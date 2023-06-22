@@ -6,11 +6,11 @@
     <div class="logo-container">
       <figure class="figure">
         <img
-          src="@/images/logoTraducpol.png"
-          class="figure-img img-fluid rounded"
-          width="200"
-          height="200"
-          alt="Logo TRADUCPOL"
+            alt="Logo TRADUCPOL"
+            class="figure-img img-fluid rounded"
+            height="200"
+            src="@/images/logoTraducpol.png"
+            width="200"
         />
       </figure>
       <p>TRADUCPOL</p>
@@ -18,9 +18,9 @@
     <div class="card-container">
       <div class="card bg-warning col-12 col-md-4">
         <img
-          src="@/images/ESM-scaled.jpg"
-          class="card-img-top"
-          alt="Lista servicios"
+            alt="Lista servicios"
+            class="card-img-top"
+            src="@/images/ESM-scaled.jpg"
         />
 
         <div class="card-body" title="Servicios disponibles">
@@ -28,16 +28,17 @@
           <p class="card-text">Consulta todos nuestros servicios.</p>
           <div class="boton">
             <router-link class="btn btn-primary" to="/servicio"
-              >Servicios Disponibles</router-link
+            >Servicios Disponibles
+            </router-link
             >
           </div>
         </div>
       </div>
       <div class="card bg-info col-12 col-md-4">
         <img
-          src="@/images/La-Busqueda-de-Informacion.png"
-          class="card-img-top"
-          alt="Lista servicios"
+            alt="Lista servicios"
+            class="card-img-top"
+            src="@/images/La-Busqueda-de-Informacion.png"
         />
 
         <div class="card-body" title="Busqueda Servicios">
@@ -48,16 +49,17 @@
           </p>
           <div class="boton">
             <router-link class="btn btn-primary" to="/busqueda"
-              >Búsqueda</router-link
+            >Búsqueda
+            </router-link
             >
           </div>
         </div>
       </div>
       <div class="card bg-danger col-12 col-md-4">
         <img
-          src="@/images/ayuda.jpg"
-          class="card-img-top"
-          alt="Lista servicios"
+            alt="Lista servicios"
+            class="card-img-top"
+            src="@/images/ayuda.jpg"
         />
         <div class="card-body" title="Ayuda">
           <h5 class="card-title">Ayuda</h5>
@@ -97,15 +99,15 @@
           </p>
         </div>
       </div>
-      <hr />
+      <hr/>
       <div class="row">
         <div class="col-md-12 text-center">
           <p>Síguenos en:</p>
           <div class="socialMedia">
-            <fa icon="fa-brands fa-square-facebook" />
-            <fa icon="fa-brands fa-twitter" />
-            <fa icon="fa-brands fa-linkedin" />
-            <fa icon="fa-brands fa-instagram" />
+            <fa icon="fa-brands fa-square-facebook"/>
+            <fa icon="fa-brands fa-twitter"/>
+            <fa icon="fa-brands fa-linkedin"/>
+            <fa icon="fa-brands fa-instagram"/>
           </div>
           <p>
             Contacto: email apoyoTraucpol@mmmm.com o teléfono (+34 655-566778
@@ -125,37 +127,46 @@
   justify-content: center;
   margin-top: 6vh;
 }
+
 figure + p {
   font-size: 4vw;
   color: blue;
   margin-left: 2vw;
   margin-top: 2vh;
 }
+
 main {
   margin-top: 4vh;
 }
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
 }
+
 .card-title {
   text-align: center;
 }
+
 .card-text {
   text-align: center;
 }
+
 .boton {
   text-align: center;
 }
+
 footer {
   margin-top: 3vh;
 }
+
 .socialMedia > * {
   margin-right: 1vw;
   margin-bottom: 1vh;
 }
+
 @media (max-width: 768px) {
   .logo-container {
     margin-top: 10vh;

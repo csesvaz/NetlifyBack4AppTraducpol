@@ -1,7 +1,8 @@
 <script>
 import ListadoEmpresas from "../Listados/ListadoEmpresas.vue";
+
 export default {
-  components: { ListadoEmpresas },
+  components: {ListadoEmpresas},
 };
 </script>
 
@@ -17,7 +18,7 @@ export default {
     </div>
   </div>
   <div class="row ms-4 mt-4 me-3 listado">
-    <ListadoEmpresas />
+    <ListadoEmpresas/>
   </div>
 </template>
 

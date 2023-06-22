@@ -5,8 +5,9 @@ import ComponenteProvincias from "../ComponenteProvincias.vue";
 import ComponenteEmpresa from "../ComponenteEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
-import { mapState, mapActions } from "pinia";
-import { useEmpresaStore } from "../../stores/EmpresaStore";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "../../stores/EmpresaStore";
+
 export default {
   components: {
     Calendar,
@@ -56,10 +57,10 @@ export default {
     async buscarEmpresas() {
       let serviciosDeBusqueda = [];
       serviciosDeBusqueda = await this.busquedaAvanzada(
-        this.convertirHora(this.servicio.horaSeleccionada),
-        this.servicio.idioma,
-        this.servicio.provincia,
-        this.servicio.servicioOnline
+          this.convertirHora(this.servicio.horaSeleccionada),
+          this.servicio.idioma,
+          this.servicio.provincia,
+          this.servicio.servicioOnline
       );
       this.empresasConServicio = serviciosDeBusqueda;
       this.visible = true;
@@ -86,15 +87,15 @@ export default {
         </div>
         <div class="col-4 col-md-2">
           <Calendar
-            id="calendar-timeonly"
-            v-model="servicio.horaSeleccionada"
-            required
-            timeOnly
+              id="calendar-timeonly"
+              v-model="servicio.horaSeleccionada"
+              required
+              timeOnly
           />
         </div>
         <div class="col-1 col-md-2"></div>
       </div>
-      <br />
+      <br/>
       <p>
         2. Seleccione la localización en la que necesita el apoyo de Servicio
         Lingüítico.
@@ -104,25 +105,25 @@ export default {
         <div class="col-2">Provincia*</div>
         <div class="col-1"></div>
         <div class="col-9 col-md-6">
-          <ComponenteProvincias @provinciaSeleccionada="provincia" required />
+          <ComponenteProvincias required @provinciaSeleccionada="provincia"/>
         </div>
       </div>
 
-      <br />
+      <br/>
       <p>3. Seleccione el idioma y el tipo de servicio que necesita.</p>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-3 col-md-2">Idioma*</div>
-        <ComponenteIdiomas @idiomaSeleccionado="idioma" required />
+        <ComponenteIdiomas required @idiomaSeleccionado="idioma"/>
       </div>
       <div class="row">
         <div class="col-12 mt-4">
           <div class="form-check">
             <input
-              class="form-check-input"
-              type="checkbox"
-              v-model="servicio.servicioOnline"
-              id="flexCheckDefault"
+                id="flexCheckDefault"
+                v-model="servicio.servicioOnline"
+                class="form-check-input"
+                type="checkbox"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Selecciona si desea ver únicamente los servicios que tienen
@@ -131,7 +132,7 @@ export default {
           </div>
         </div>
       </div>
-      <br />
+      <br/>
       <p>
         4. Una vez comprobado que tiene todos los campos obligatorios (Marcados
         con *) rellenos seleccione el botón de Búsqueda.
@@ -140,13 +141,13 @@ export default {
         <div class="col-3"></div>
         <div class="col-3 col-md-4">
           <button
-            type="submit"
-            class="btn btn-primary"
-            :disabled="
+              :disabled="
               !servicio.provincia ||
               !servicio.idioma ||
               !servicio.horaSeleccionada
             "
+              class="btn btn-primary"
+              type="submit"
           >
             Búsqueda
           </button>
@@ -154,11 +155,11 @@ export default {
       </div>
     </form>
     <Dialog
-      v-model:visible="visible"
-      modal
-      header="Datos de las empresas que tienen ese servicio"
-      :style="{ width: '50vw' }"
-      :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+        v-model:visible="visible"
+        :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+        :style="{ width: '50vw' }"
+        header="Datos de las empresas que tienen ese servicio"
+        modal
     >
       <p>
         La hora seleccionada ha sido
@@ -175,10 +176,10 @@ export default {
         <p>
           <strong>No se ha encontrado ninguna empresa que cumpla sus requisitos.</strong>
           <p>Puede
-          contactar con el servicio central de interpretes enviando un mensaje a
-          la dirección apoyoTraucpol@mmmm.com o llamando al teléfono +34
-          655-566778 (Horario telefónico de 9:00 a 15:00)
-          </p> 
+            contactar con el servicio central de interpretes enviando un mensaje a
+            la dirección apoyoTraucpol@mmmm.com o llamando al teléfono +34
+            655-566778 (Horario telefónico de 9:00 a 15:00)
+          </p>
         </p>
       </div>
       <div v-else>
@@ -187,19 +188,19 @@ export default {
           - {{ servicio.empresa.nombre }} con telefono
           {{ servicio.empresa.telefono }}, con dirección
           {{ servicio.empresa.direccion }}&nbsp;&nbsp;&nbsp;&nbsp;<Button
-            type="button"
-            icon="pi pi-eye"
-            @click="(visibleSegundoModal = true), filtrarEmpresa(servicio)"
             :title="'Visualizar datos de contacto de la empresa.'"
-          />
+            icon="pi pi-eye"
+            type="button"
+            @click="(visibleSegundoModal = true), filtrarEmpresa(servicio)"
+        />
           <Dialog
-            v-model:visible="visibleSegundoModal"
-            modal
-            header="Datos de la empresa"
-            :style="{ width: '50vw' }"
-            :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+              v-model:visible="visibleSegundoModal"
+              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+              :style="{ width: '50vw' }"
+              header="Datos de la empresa"
+              modal
           >
-            <ComponenteEmpresa :empresaEntrada="empresaSeleccionada" />
+            <ComponenteEmpresa :empresaEntrada="empresaSeleccionada"/>
           </Dialog>
         </p>
       </div>
@@ -212,33 +213,41 @@ export default {
   margin-left: 3vw;
   margin-top: 2vh;
 }
+
 form {
   width: 90vw;
 }
+
 h3 {
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
+
 .row {
   font-size: x-large;
 }
+
 p {
   font-size: x-large;
 }
+
 @media (max-width: 768px) {
   p {
     text-align: center;
     font-style: oblique;
     font-size: medium;
   }
+
   .row {
     font-size: medium;
   }
+
   h3 {
     text-align: center;
     margin-top: 4vh;
   }
 }
+
 .container {
   margin-top: 10vh;
 }

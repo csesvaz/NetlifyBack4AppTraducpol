@@ -15,21 +15,21 @@ import es.mdef.traducpol.entidades.EmpresaConId;
 @Component
 public class EmpresaListaAssembler implements RepresentationModelAssembler<EmpresaConId, EmpresaListaModel> {
 
-	public EmpresaListaModel toModel(EmpresaConId entity) {
-		EmpresaListaModel model = new EmpresaListaModel();
-		model.setNombre(entity.getNombre());
-		model.setDireccion(entity.getDireccion());
-		model.setTelefono(entity.getTelefono());
-		model.setEmail(entity.getEmail());
-		model.add(linkTo(methodOn(EmpresaController.class).one(entity.getId())).withSelfRel());
-		return model;
+    public EmpresaListaModel toModel(EmpresaConId entity) {
+        EmpresaListaModel model = new EmpresaListaModel();
+        model.setNombre(entity.getNombre());
+        model.setDireccion(entity.getDireccion());
+        model.setTelefono(entity.getTelefono());
+        model.setEmail(entity.getEmail());
+        model.add(linkTo(methodOn(EmpresaController.class).one(entity.getId())).withSelfRel());
+        return model;
 
-	}
+    }
 
-	public CollectionModel<EmpresaListaModel> toCollection(List<EmpresaConId> lista) {
-		CollectionModel<EmpresaListaModel> collection = CollectionModel
-				.of(lista.stream().map(this::toModel).collect(Collectors.toList()));
-		collection.add(linkTo(methodOn(EmpresaController.class).all()).withRel("empresas"));
-		return collection;
-	}
+    public CollectionModel<EmpresaListaModel> toCollection(List<EmpresaConId> lista) {
+        CollectionModel<EmpresaListaModel> collection = CollectionModel
+                .of(lista.stream().map(this::toModel).collect(Collectors.toList()));
+        collection.add(linkTo(methodOn(EmpresaController.class).all()).withRel("empresas"));
+        return collection;
+    }
 }

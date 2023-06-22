@@ -31,14 +31,14 @@ export default {
     <form @submit.prevent="modificarEmpresa">
       <div class="row formulario">
         <div class="col-md-2">
-          <label for="nombre" class="form-label">Nombre</label>
+          <label class="form-label" for="nombre">Nombre</label>
         </div>
         <div class="col-md-5">
           <input
-            type="text"
-            class="form-control"
             id="nombre"
             v-model="empresa.nombre"
+            class="form-control"
+            type="text"
           />
         </div>
 
@@ -46,50 +46,50 @@ export default {
       </div>
       <div class="row formulario">
         <div class="col-md-2">
-          <label for="direccion" class="form-label">Dirección</label>
+          <label class="form-label" for="direccion">Dirección</label>
         </div>
         <div class="col-md-8">
           <input
-            type="text"
-            class="form-control"
             id="direccion"
             v-model="empresa.direccion"
+            class="form-control"
+            type="text"
           />
         </div>
       </div>
       <div class="row formulario">
         <div class="col-md-3">
-          <label for="telefono" class="form-label">Teléfono de contacto</label>
+          <label class="form-label" for="telefono">Teléfono de contacto</label>
         </div>
         <div class="col-md-4">
           <input
-            type="telephone"
-            class="form-control"
             id="telefono"
             v-model="empresa.telefono"
+            class="form-control"
+            type="telephone"
           />
         </div>
       </div>
       <div class="row formulario">
         <div class="col-md-2">
-          <label for="email" class="form-label">Dirección E-mail</label>
+          <label class="form-label" for="email">Dirección E-mail</label>
         </div>
         <div class="col-md-4">
           <input
-            type="email"
-            class="form-control"
             id="email"
             v-model="empresa.email"
+            class="form-control"
+            type="email"
           />
         </div>
       </div>
       <div class="row formulario">
         <div class="col-md-2">
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button class="btn btn-primary" type="submit">Guardar Cambios</button>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-warning" @click="borrarDatos">
+          <button class="btn btn-warning" type="button" @click="borrarDatos">
             Valores Iniciales
           </button>
         </div>
@@ -102,9 +102,11 @@ export default {
 .row {
   margin-left: 0.5vw;
 }
+
 .inicial {
   margin-top: 6vh;
 }
+
 .formulario {
   margin-top: 3vh;
 }

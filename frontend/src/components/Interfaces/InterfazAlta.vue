@@ -1,6 +1,7 @@
 <script>
-import { useAuthStore } from "../../stores/AuthStore";
-import { mapActions, mapState } from "pinia";
+import {useAuthStore} from "@/stores/AuthStore.js";
+import {mapActions, mapState} from "pinia";
+
 export default {
   data() {
     return {
@@ -9,10 +10,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(useAuthStore, { esAdminintrador: "esAdminintrador" }),
+    ...mapState(useAuthStore, {esAdminintrador: "getIsAdmin"}),
   },
   methods: {
-    ...mapActions(useAuthStore, { cambiarAdmin: "cambiarAdmin" }),
+    ...mapActions(useAuthStore, {cambiarAdmin: "cambiarAdmin"}),
     validarPassword() {
       if (this.password === "1234") {
         this.cambiarAdmin(true);
@@ -22,6 +23,10 @@ export default {
         this.cambiarAdmin(false);
       }
     },
+    login() {
+      this.cambiarAdmin(true);
+      this.passwordIncorrecto = false;
+    }
   },
 };
 </script>
@@ -31,47 +36,48 @@ export default {
     <h4 class="col-6">
       Para dar de alta o modificar una empresa o un servicio debe entrar en MODO
       ADMINISTRADOR
-  </h4>
+    </h4>
     <div class="col-6">
       <button
-        type="button"
-        class="btn btn-success"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        ref="myModal"
+          ref="myModal"
+          class="btn btn-success"
+          data-bs-target="#exampleModal"
+          data-bs-toggle="modal"
+          type="button"
+          @click="login"
       >
         Entrar como administrador.
       </button>
     </div>
     <div
-      class="modal fade success"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-      ref="modal"
+        id="exampleModal"
+        ref="modal"
+        aria-hidden="true"
+        aria-labelledby="exampleModalLabel"
+        class="modal fade success"
+        tabindex="-1"
     >
       <div class="modal-dialog" @keydown.enter="validarPassword()">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
+            <h1 id="exampleModalLabel" class="modal-title fs-5">
               Entrar como administrador
             </h1>
             <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
+                aria-label="Close"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                type="button"
             ></button>
           </div>
           <div class="modal-body">
-            <label for="password" class="form-label">Password</label>
+            <label class="form-label" for="password">Password</label>
             <input
-              type="password"
-              id="password"
-              class="form-control"
-              aria-labelledby="passwordHelpBlock"
-              v-model="password"
+                id="password"
+                v-model="password"
+                aria-labelledby="passwordHelpBlock"
+                class="form-control"
+                type="password"
             />
             <div id="passwordHelpBlock" class="form-text">
               Introduzca su password de administrador y seleccione Aceptar
@@ -80,8 +86,8 @@ export default {
               Código incorrecto. Por favor, inténtalo de nuevo.
             </div>
             <div
-              v-else-if="passwordIncorrecto != null"
-              class="text-success text-align-center"
+                v-else-if="passwordIncorrecto != null"
+                class="text-success text-align-center"
             >
               Código Correcto. Ya puede seleccionar la empresa o servicio para
               dar de alta. Por favor cierre el modal.
@@ -89,17 +95,17 @@ export default {
           </div>
           <div class="modal-footer">
             <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                type="button"
             >
               Cerrar
             </button>
             <button
-              type="button"
-              class="btn btn-primary"
-              @click="validarPassword()"
-              :data-bs-dismiss="esAdminintrador ? 'modal' : null"
+                :data-bs-dismiss="esAdminintrador ? 'modal' : null"
+                class="btn btn-primary"
+                type="button"
+                @click="validarPassword()"
             >
               Aceptar
             </button>
@@ -135,6 +141,7 @@ export default {
 .text-align-center {
   text-align: center;
 }
+
 .col-6 {
   margin-top: 3vh;
 }

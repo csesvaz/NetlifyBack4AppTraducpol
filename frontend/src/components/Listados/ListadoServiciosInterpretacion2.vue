@@ -1,13 +1,14 @@
 <script>
-import { useEmpresaStore } from "@/stores/EmpresaStore";
-import { mapActions, mapState } from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
+import {mapActions, mapState} from "pinia";
 import Button from "primevue/button";
 import Column from "primevue/column";
 import ComponenteEmpresa from "../ComponenteEmpresa.vue";
 import DataTable from "primevue/datatable";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
-import { FilterMatchMode } from "primevue/api";
+import {FilterMatchMode} from "primevue/api";
+
 export default {
   components: {
     Button,
@@ -20,7 +21,6 @@ export default {
   data() {
     return {
       visible: false,
-      servicios: [],
       empresaSeleccion: {
         id: null,
         nombre: null,
@@ -28,63 +28,62 @@ export default {
         telefono: null,
         email: null,
       },
+      serviciosInterpretacion: [],
       empresaNombre: null,
       customers: null,
       filters: {
-        idioma: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        provincia: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        idioma: {value: null, matchMode: FilterMatchMode.CONTAINS},
+        provincia: {value: null, matchMode: FilterMatchMode.CONTAINS},
       },
     };
   },
   computed: {
-    ...mapState(useEmpresaStore, ["empresas"]),
+    ...mapState(useEmpresaStore, ["empresas", "servicios"]),
   },
   methods: {
     ...mapActions(useEmpresaStore, [
       "getEmpresaDeServicio",
     ]),
-    serviciosInterpretacion() {
-      let serviciosInterpretacion = [];
+    filtrarServiciosInterpretacion() {
       for (let i = 0; i < this.servicios.length; i++) {
         if (this.servicios[i].tipo == "INTERPRETACION") {
-          serviciosInterpretacion.push(this.servicios[i]);
+          this.serviciosInterpretacion.push(this.servicios[i]);
         }
       }
-      return serviciosInterpretacion;
+  ;
     },
     async filtrarEmpresa(servicio) {
-      
-      this.empresaSeleccion = await this.getEmpresaDeServicio(servicio.id);
-      
+
+     let a = await this.getEmpresaDeServicio(servicio.id);
+     this.empresaSeleccion = a;
+    
     },
   },
-  async created() {
-    const empresaStore = useEmpresaStore();
-    this.servicios = await empresaStore.getServicios();
-    this.servicios = this.serviciosInterpretacion();
-  },
+  created() {
+    this.filtrarServiciosInterpretacion();
+  }
 };
 </script>
 
 <template>
   <div class="card">
     <DataTable
-      v-model:filters="filters"
-      :value="servicios"
-      paginator
-      :rows="10"
-      filterDisplay="row"
-      :rowsPerPageOptions="[5, 10, 20, 50]"
-      showGridlines
-      removableSort
-      tableStyle="min-width: 50rem"
-      Fields="[
+        v-model:filters="filters"
+        :rows="10"
+        :rowsPerPageOptions="[5, 10, 20, 50]"
+        :value="serviciosInterpretacion"
+        Fields="[
         'idioma',
         'horarioInicioServicio',
         'horarioFinServicio',
         'provincia',
         'servicioOnline',
       ]"
+        filterDisplay="row"
+        paginator
+        removableSort
+        showGridlines
+        tableStyle="min-width: 50rem"
     >
       <template #header>
         <div class="flex flex-wrap justify-content-between gap-2">
@@ -92,102 +91,107 @@ export default {
         </div>
       </template>
       <Column
-        bodyClass="text-center"
-        field="idioma"
-        header="Idioma"
-        sortable
-        style="width: 15%"
+          bodyClass="text-center"
+          field="idioma"
+          header="Idioma"
+          sortable
+          style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.idioma }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
           <InputText
-            v-model="filterModel.value"
-            type="text"
-            @input="filterCallback()"
-            class="p-column-filter"
-            placeholder="Búsqueda por idioma"
-            :title="'Introduce el idioma a buscar.'"
-          /> </template
-      ></Column>
+              v-model="filterModel.value"
+              :title="'Introduce el idioma a buscar.'"
+              class="p-column-filter"
+              placeholder="Búsqueda por idioma"
+              type="text"
+              @input="filterCallback()"
+          />
+        </template
+        >
+      </Column>
       <Column
-        bodyClass="text-center"
-        field="horarioInicioServicio"
-        header="Hora de Inicio"
-        style="width: 15%"
+          bodyClass="text-center"
+          field="horarioInicioServicio"
+          header="Hora de Inicio"
+          style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.horarioInicioServicio }}
         </template>
       </Column>
       <Column
-        bodyClass="text-center"
-        field="horarioFinServicio"
-        header="Hora de Fin"
-        style="width: 15%"
-        ><template #body="{ data }">
+          bodyClass="text-center"
+          field="horarioFinServicio"
+          header="Hora de Fin"
+          style="width: 15%"
+      >
+        <template #body="{ data }">
           {{ data.horarioFinServicio }}
         </template>
       </Column>
       <Column
-        bodyClass="text-center"
-        field="provincia"
-        header="Provincia"
-        sortable
-        style="width: 15%"
+          bodyClass="text-center"
+          field="provincia"
+          header="Provincia"
+          sortable
+          style="width: 15%"
       >
         <template #body="{ data }">
           {{ data.provincia }}
         </template>
         <template #filter="{ filterModel, filterCallback }">
           <InputText
-            v-model="filterModel.value"
-            type="text"
-            @input="filterCallback()"
-            class="p-column-filter"
-            placeholder="Búsqueda por provincia"
-            :title="'Introduce la provincia a buscar.'"
-          /> </template
-      ></Column>
+              v-model="filterModel.value"
+              :title="'Introduce la provincia a buscar.'"
+              class="p-column-filter"
+              placeholder="Búsqueda por provincia"
+              type="text"
+              @input="filterCallback()"
+          />
+        </template
+        >
+      </Column>
       <Column
-        field="servicioOnline"
-        header="Servicio OnLine"
-        dataType="boolean"
-        bodyClass="text-center"
-        style="width: 15%"
+          bodyClass="text-center"
+          dataType="boolean"
+          field="servicioOnline"
+          header="Servicio OnLine"
+          style="width: 15%"
       >
         <template #body="{ data }">
           <i
-            class="pi"
-            :class="{
+              :class="{
               'pi-check-circle': data.servicioOnline,
               'pi-times-circle': !data.servicioOnline,
             }"
+              class="pi"
           ></i>
         </template>
       </Column>
       <Column
-        bodyClass="text-center"
-        field="eye"
-        header="Visualizar Empresa"
-        style="width: 15%"
+          bodyClass="text-center"
+          field="eye"
+          header="Visualizar Empresa"
+          style="width: 15%"
       >
-        <template #body="{ data }" v-if="$route.path === '/servicio'">
+        <template v-if="$route.path === '/servicio'" #body="{ data }">
           <Button
-            type="Button"
-            icon="pi pi-eye"
-            @click="(visible = true), filtrarEmpresa(data)"
-            :title="'Visualizar datos de contacto de la empresa.'"
+              :title="'Visualizar datos de contacto de la empresa.'"
+              icon="pi pi-eye"
+              type="Button"
+              @click="(visible = true), filtrarEmpresa(data)"
           />
           <Dialog
-            v-model:visible="visible"
-            modal
-            header="Datos de la empresa"
-            :style="{ width: '50vw' }"
-            :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+              v-model:visible="visible"
+              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+              :style="{ width: '50vw' }"
+              header="Datos de la empresa"
+              modal
           >
-            <ComponenteEmpresa :empresaEntrada="empresaSeleccion" />
+            <ComponenteEmpresa :empresaEntrada="empresaSeleccion"/>
           </Dialog>
         </template>
       </Column>

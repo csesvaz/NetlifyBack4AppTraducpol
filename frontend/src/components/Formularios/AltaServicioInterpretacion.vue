@@ -1,9 +1,10 @@
 <script>
 import Calendar from "primevue/calendar";
-import { mapState, mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../../stores/EmpresaStore";
 import ComponenteIdiomas from "../ComponenteIdiomas.vue";
 import ComponenteProvincias from "../ComponenteProvincias.vue";
+
 export default {
   components: {
     Calendar,
@@ -96,16 +97,16 @@ export default {
       </div>
       <div class="row mb-3 mt-3">
         <div class="col-md-2">
-          <label for="empresa" class="form-label">Empresa</label>
+          <label class="form-label" for="empresa">Empresa</label>
         </div>
         <div class="col-md-4">
           <select
-            required
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm example"
             v-model="servicio.empresa"
+            aria-label=".form-select-sm example"
+            class="form-select form-select-sm"
+            required
           >
-            <option value="" selected="">Seleccione una empresa</option>
+            <option selected="" value="">Seleccione una empresa</option>
             <option
               v-for="empresa in empresas"
               :key="empresa.id"
@@ -118,7 +119,7 @@ export default {
       </div>
       <div class="row mb-3 mt-3">
         <div class="col-md-2">
-          <label for="idioma" class="form-label">Idioma</label>
+          <label class="form-label" for="idioma">Idioma</label>
         </div>
         <ComponenteIdiomas
           ref="componenteIdiomas"
@@ -129,7 +130,7 @@ export default {
 
       <div class="row formulario">
         <div class="col-md-3">
-          <label for="horarioInicioServicio" class="form-label"
+          <label class="form-label" for="horarioInicioServicio"
             >Horario de Inicio del Servicio</label
           >
         </div>
@@ -142,7 +143,7 @@ export default {
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-3">
-          <label for="horarioFinServicio" class="form-label"
+          <label class="form-label" for="horarioFinServicio"
             >Horario de Finalización del Servicio</label
           >
         </div>
@@ -156,7 +157,7 @@ export default {
       </div>
       <div class="row formulario">
         <div class="col-md-2">
-          <label for="provincia" class="form-label">Provincia</label>
+          <label class="form-label" for="provincia">Provincia</label>
         </div>
         <ComponenteProvincias
           ref="componenteProvincias"
@@ -168,10 +169,10 @@ export default {
         <div class="col-7">
           <div class="form-check">
             <input
+              id="flexCheckDefault1"
+              v-model="servicio.servicioOnline"
               class="form-check-input"
               type="checkbox"
-              v-model="servicio.servicioOnline"
-              id="flexCheckDefault1"
             />
             <label class="form-check-label" for="flexCheckDefault1">
               Dispone de asistencia Online.
@@ -182,13 +183,13 @@ export default {
 
         <div class="row formulario">
           <div class="col-md-2">
-            <button type="submit" class="btn btn-primary">
+            <button class="btn btn-primary" type="submit">
               Guardar Cambios
             </button>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-warning" @click="borrarDatos">
+            <button class="btn btn-warning" type="button" @click="borrarDatos">
               Borrar Datos
             </button>
           </div>
@@ -202,12 +203,15 @@ export default {
 .row {
   margin-left: 0.5vw;
 }
+
 .inicial {
   margin-top: 5vh;
 }
+
 .formulario {
   margin-top: 3vh;
 }
+
 .final {
   margin-top: 4vh;
 }

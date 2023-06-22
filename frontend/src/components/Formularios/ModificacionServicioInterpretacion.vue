@@ -1,6 +1,6 @@
 <script>
 import Calendar from "primevue/calendar";
-import { mapState, mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../../stores/EmpresaStore";
 import ComponenteIdiomas from "../ComponenteIdiomas.vue";
 import ComponenteProvincias from "../ComponenteProvincias.vue";
@@ -92,21 +92,21 @@ export default {
         </div>
         <div class="row formulario">
           <div class="col-md-4">
-            <label for="empresa1" class="form-label">Empresa</label>
+            <label class="form-label" for="empresa1">Empresa</label>
           </div>
           <div class="col-md-4">
             <input
-              disabled
-              type="text"
-              class="form-control"
               id="nombre"
               v-model="empresa.nombre"
+              class="form-control"
+              disabled
+              type="text"
             />
           </div>
         </div>
         <div class="row formulario">
           <div class="col-md-2">
-            <label for="idioma" class="form-label">Idioma</label>
+            <label class="form-label" for="idioma">Idioma</label>
           </div>
           <ComponenteIdiomas
             ref="componenteIdiomas"
@@ -116,7 +116,7 @@ export default {
         </div>
         <div class="row formulario">
           <div class="col-md-3">
-            <label for="tiempoInicio" class="form-label"
+            <label class="form-label" for="tiempoInicio"
               >Horario de Inicio del Servicio</label
             >
           </div>
@@ -130,7 +130,7 @@ export default {
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-3">
-            <label for="tiempoFinal" class="form-label"
+            <label class="form-label" for="tiempoFinal"
               >Horario de Finalización del Servicio</label
             >
           </div>
@@ -144,7 +144,7 @@ export default {
         </div>
         <div class="row formulario">
           <div class="col-md-2">
-            <label for="provincia" class="form-label">Provincia</label>
+            <label class="form-label" for="provincia">Provincia</label>
           </div>
           <ComponenteProvincias
             ref="componenteProvincias"
@@ -156,10 +156,10 @@ export default {
           <div class="col-7">
             <div class="form-check">
               <input
+                id="flexCheckDefault"
+                v-model="servicio.servicioOnline"
                 class="form-check-input"
                 type="checkbox"
-                v-model="servicio.servicioOnline"
-                id="flexCheckDefault"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 Dispone de asistencia Online.
@@ -169,15 +169,15 @@ export default {
           <br />
           <div class="row formulario">
             <div class="col-md-2">
-              <button type="submit" class="btn btn-primary">
+              <button class="btn btn-primary" type="submit">
                 Guardar Cambios
               </button>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-2">
               <button
-                type="button"
                 class="btn btn-warning"
+                type="button"
                 @click="borrarDatos"
               >
                 Restaurar Valores Iniciales
@@ -194,9 +194,11 @@ export default {
 .row {
   margin-left: 0.5vw;
 }
+
 .inicial {
   margin-top: 8vh;
 }
+
 .formulario {
   margin-top: 3vh;
 }

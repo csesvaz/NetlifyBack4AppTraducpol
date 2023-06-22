@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../../stores/EmpresaStore";
 import ComponenteIdiomas from "../ComponenteIdiomas.vue";
 import ComponentePlazoEntrega from "../ComponentePlazoEntrega.vue";
@@ -76,21 +76,21 @@ export default {
         </div>
         <div class="row formulario">
           <div class="col-md-4">
-            <label for="empresa1" class="form-label">Empresa</label>
+            <label class="form-label" for="empresa1">Empresa</label>
           </div>
           <div class="col-md-4">
             <input
-              disabled
-              type="text"
-              class="form-control"
               id="nombre1"
               v-model="empresa.nombre"
+              class="form-control"
+              disabled
+              type="text"
             />
           </div>
         </div>
         <div class="row formulario">
           <div class="col-md-2">
-            <label for="idioma" class="form-label">Idioma</label>
+            <label class="form-label" for="idioma">Idioma</label>
           </div>
           <ComponenteIdiomas
             ref="componenteIdiomas"
@@ -100,7 +100,7 @@ export default {
         </div>
         <div class="row formulario">
           <div class="col-md-3">
-            <label for="tipoDocumento" class="form-label"
+            <label class="form-label" for="tipoDocumento"
               >Tipo de Documento</label
             >
           </div>
@@ -112,7 +112,7 @@ export default {
         </div>
         <div class="row formulario">
           <div class="col-md-3">
-            <label for="plazoEntrega" class="form-label"
+            <label class="form-label" for="plazoEntrega"
               >Plazo de Entrega</label
             >
           </div>
@@ -127,10 +127,10 @@ export default {
           <div class="col-7">
             <div class="form-check">
               <input
+                id="flexCheckDefault"
+                v-model="servicio.traductorJurado"
                 class="form-check-input"
                 type="checkbox"
-                v-model="servicio.traductorJurado"
-                id="flexCheckDefault"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 Dispone de Traducción Jurada.
@@ -139,15 +139,15 @@ export default {
           </div>
           <div class="row formulario">
             <div class="col-md-2">
-              <button type="submit" class="btn btn-primary">
+              <button class="btn btn-primary" type="submit">
                 Guardar Cambios
               </button>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-2">
               <button
-                type="button"
                 class="btn btn-warning"
+                type="button"
                 @click="borrarDatos"
               >
                 Restaurar Valores Iniciales
@@ -160,20 +160,21 @@ export default {
   </div>
 </template>
 <style scoped>
-
 .row {
-margin-left: 0.5vw;
+  margin-left: 0.5vw;
 }
+
 .inicial {
-margin-top: 8vh;
+  margin-top: 8vh;
 }
+
 .formulario {
-margin-top: 3vh;
+  margin-top: 3vh;
 }
 
 @media (max-width: 768px) {
-.inicial {
-  margin-top: 10vh;
-}
+  .inicial {
+    margin-top: 10vh;
+  }
 }
 </style>

@@ -1,10 +1,11 @@
 <script>
 import Calendar from "primevue/calendar";
-import { mapState, mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useEmpresaStore } from "../../stores/EmpresaStore";
 import ComponenteIdiomas from "../ComponenteIdiomas.vue";
 import ComponentePlazoEntrega from "../ComponentePlazoEntrega.vue";
 import ComponenteTipoDocumento from "../ComponenteTipoDocumento.vue";
+
 export default {
   components: {
     Calendar,
@@ -77,16 +78,16 @@ export default {
       </div>
       <div class="row mb-3 mt-3">
         <div class="col-md-2">
-          <label for="empresa" class="form-label">Empresa</label>
+          <label class="form-label" for="empresa">Empresa</label>
         </div>
         <div class="col-md-4">
           <select
-            class="form-select form-select-sm"
-            aria-label=".form-select-sm example"
             v-model="servicio.empresa"
+            aria-label=".form-select-sm example"
+            class="form-select form-select-sm"
             required
           >
-            <option value="" selected="">Seleccione una empresa</option>
+            <option selected="" value="">Seleccione una empresa</option>
 
             <option
               v-for="empresa in empresas"
@@ -100,7 +101,7 @@ export default {
       </div>
       <div class="row">
         <div class="col-md-2">
-          <label for="idioma" class="form-label">Idioma</label>
+          <label class="form-label" for="idioma">Idioma</label>
         </div>
         <ComponenteIdiomas
           ref="componenteIdiomas"
@@ -111,7 +112,7 @@ export default {
 
       <div class="row formulario">
         <div class="col-md-3">
-          <label for="tipoDocumento" class="form-label"
+          <label class="form-label" for="tipoDocumento"
             >Tipo de Documento</label
           >
         </div>
@@ -123,7 +124,7 @@ export default {
       </div>
       <div class="row formulario">
         <div class="col-md-3">
-          <label for="tiempoMaxEntrega" class="form-label"
+          <label class="form-label" for="tiempoMaxEntrega"
             >Tiempo máximo de Entrega</label
           >
         </div>
@@ -137,10 +138,10 @@ export default {
         <div class="col-7">
           <div class="form-check">
             <input
+              id="flexCheckDefault"
+              v-model="servicio.traductorJurado"
               class="form-check-input"
               type="checkbox"
-              v-model="servicio.traductorJurado"
-              id="flexCheckDefault"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Dispone de traducción Jurada.
@@ -150,11 +151,11 @@ export default {
       </div>
       <div class="row mt-4">
         <div class="col-md-3">
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button class="btn btn-primary" type="submit">Guardar Cambios</button>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-warning" @click="borrarDatos">
+          <button class="btn btn-warning" type="button" @click="borrarDatos">
             Borrar Datos
           </button>
         </div>
@@ -166,9 +167,11 @@ export default {
 .row {
   margin-left: 0.5vw;
 }
+
 .inicial {
   margin-top: 8vh;
 }
+
 .formulario {
   margin-top: 3vh;
 }

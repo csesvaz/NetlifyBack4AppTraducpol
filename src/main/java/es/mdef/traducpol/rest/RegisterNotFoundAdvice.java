@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class RegisterNotFoundAdvice {
-	@ResponseBody
-	@ExceptionHandler(RegisterNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String servicioNotFoundHandler(RegisterNotFoundException ex) {
-		return ex.getMessage();
-	}
+    @ResponseBody
+    @ExceptionHandler(RegisterNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String servicioNotFoundHandler(RegisterNotFoundException ex) {
+        return ex.getMessage();
+    }
 }

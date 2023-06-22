@@ -41,90 +41,90 @@ export default {
       <form @submit.prevent="guardarEmpresa">
         <div class="row inicial">
           <div class="col-md-2">
-            <label for="nombre" class="form-label">Nombre</label>
+            <label class="form-label" for="nombre">Nombre</label>
           </div>
           <div class="col-md-5">
             <input
-              type="text"
-              class="form-control"
               id="nombre"
+              v-model="empresa.nombre"
+              class="form-control"
               placeholder="Nombre"
               required
-              v-model="empresa.nombre"
+              type="text"
             />
           </div>
         </div>
         <div class="row inicial">
           <div class="col-md-2">
-            <label for="direccion" class="form-label">Dirección</label>
+            <label class="form-label" for="direccion">Dirección</label>
           </div>
           <div class="col-md-6">
             <input
-              type="text"
-              class="form-control"
               id="direccion"
+              v-model="empresa.direccion"
+              class="form-control"
               placeholder="Dirección"
               required
-              v-model="empresa.direccion"
+              type="text"
             />
           </div>
         </div>
         <div class="row inicial">
           <div class="col-md-2">
-            <label for="cif" class="form-label">Cif de la empresa.</label>
+            <label class="form-label" for="cif">Cif de la empresa.</label>
           </div>
           <div class="col-md-4">
             <input
-              type="text"
-              class="form-control"
               id="cif"
+              v-model="empresa.cif"
+              class="form-control"
               placeholder="Cif"
               required
-              v-model="empresa.cif"
+              type="text"
             />
           </div>
         </div>
         <div class="row inicial">
           <div class="col-md-2">
-            <label for="telefono" class="form-label"
+            <label class="form-label" for="telefono"
               >Teléfono de contacto</label
             >
           </div>
           <div class="col-md-4">
             <input
-              type="telephone"
-              class="form-control"
               id="telefono"
+              v-model="empresa.telefono"
+              class="form-control"
               placeholder="Teléfono"
               required
-              v-model="empresa.telefono"
+              type="telephone"
             />
           </div>
         </div>
         <div class="row inicial">
           <div class="col-md-2">
-            <label for="email" class="form-label">Dirección E-mail</label>
+            <label class="form-label" for="email">Dirección E-mail</label>
           </div>
           <div class="col-md-3">
             <input
-              type="email"
-              class="form-control"
               id="email"
+              v-model="empresa.email"
+              class="form-control"
               placeholder="Dirección E-mail"
               required
-              v-model="empresa.email"
+              type="email"
             />
           </div>
         </div>
         <div class="row inicial">
           <div class="col-md-2">
-            <button type="submit" class="btn btn-primary">
+            <button class="btn btn-primary" type="submit">
               Guardar Cambios
             </button>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-warning" @click="borrarDatos">
+            <button class="btn btn-warning" type="button" @click="borrarDatos">
               Borrar Datos
             </button>
           </div>
@@ -138,10 +138,12 @@ export default {
 .inicial {
   margin-top: 3vw;
 }
+
 @media (max-width: 768px) {
   .formulario {
     margin-top: 20vw;
   }
+
   button {
     margin-top: 2vw;
   }

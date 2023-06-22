@@ -1,8 +1,8 @@
 <script>
 import ListadoServiciosInterpretacion from "../Listados/ListadoServiciosInterpretacion.vue";
 import ListadoServiciosTraduccion from "../Listados/ListadoServiciosTraduccion.vue";
-import { mapState, mapActions } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
 
 export default {
   components: {
@@ -26,7 +26,8 @@ export default {
     </div>
     <div class="col-2 col-md-2">
       <router-link class="btn btn-primary" to="/altaServicioInterpretacion">
-        Servicio Interpertación</router-link
+        Servicio Interpertación
+      </router-link
       >
     </div>
   </div>
@@ -36,26 +37,27 @@ export default {
     </div>
     <div class="col-2 col-md-2">
       <router-link class="btn btn-primary" to="/altaServicioTraduccion">
-        Servicio Traducción</router-link
+        Servicio Traducción
+      </router-link
       >
     </div>
   </div>
 
   <div class="container align-items-start">
-    <br />
+    <br/>
     <h3 class="listado">
       Listado de todos los servicios lingüisticos disponibles:
     </h3>
 
     <div class="form-check ml-0">
       <input
-        class="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="flexRadioDefault3"
-        @click="cambioOpcion"
-        :checked="opcionInicial"
-        :disabled="opcionInicial"
+          id="flexRadioDefault3"
+          :checked="opcionInicial"
+          :disabled="opcionInicial"
+          class="form-check-input"
+          name="flexRadioDefault"
+          type="radio"
+          @click="cambioOpcion"
       />
       <label class="form-check-label" for="flexRadioDefault3">
         Visualizar Servicios de Interpretación.
@@ -63,13 +65,13 @@ export default {
     </div>
     <div class="form-check">
       <input
-        class="form-check-input"
-        type="radio"
-        name="flexRadioDefault"
-        id="flexRadioDefault4"
-        @click="cambioOpcion"
-        :checked="!opcionInicial"
-        :disabled="!opcionInicial"
+          id="flexRadioDefault4"
+          :checked="!opcionInicial"
+          :disabled="!opcionInicial"
+          class="form-check-input"
+          name="flexRadioDefault"
+          type="radio"
+          @click="cambioOpcion"
       />
       <label class="form-check-label" for="flexRadioDefault4">
         Visualizar Servicios de Traducción.
@@ -77,10 +79,10 @@ export default {
     </div>
   </div>
   <div v-if="opcionInicial">
-    <ListadoServiciosInterpretacion />
+    <ListadoServiciosInterpretacion/>
   </div>
   <div v-else>
-    <ListadoServiciosTraduccion />
+    <ListadoServiciosTraduccion/>
   </div>
 </template>
 
@@ -89,6 +91,7 @@ export default {
   margin-bottom: 1vh;
   margin-left: 4vw;
 }
+
 .inicial {
   margin-top: 10vh;
 }

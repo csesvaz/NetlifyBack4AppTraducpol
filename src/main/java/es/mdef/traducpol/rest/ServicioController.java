@@ -27,96 +27,96 @@ import es.mdef.traducpol.repositorios.ServicioRepositorio;
 @CrossOrigin(origins = "*")
 @RequestMapping("/servicios")
 public class ServicioController {
-	private final ServicioRepositorio repositorio;
-	private final EmpresaAssembler assemblerEmpresa;
-	private final ServicioAssembler assembler;
-	private final ServicioListaAssembler listaAssembler;
-	private final Logger log;
-	private final ServicioService servicioService;
+    private final ServicioRepositorio repositorio;
+    private final EmpresaAssembler assemblerEmpresa;
+    private final ServicioAssembler assembler;
+    private final ServicioListaAssembler listaAssembler;
+    private final Logger log;
+    private final ServicioService servicioService;
 
-	ServicioController(ServicioRepositorio repositorio, ServicioAssembler assembler,
-			ServicioListaAssembler listaAssembler, EmpresaAssembler assemblerEmpresa, ServicioService servicioService) {
-		this.repositorio = repositorio;
-		this.assembler = assembler;
-		this.listaAssembler = listaAssembler;
-		this.assemblerEmpresa = assemblerEmpresa;
-		this.log = TraducpolApplication.log;
-		this.servicioService = servicioService;
-	}
+    ServicioController(ServicioRepositorio repositorio, ServicioAssembler assembler,
+                       ServicioListaAssembler listaAssembler, EmpresaAssembler assemblerEmpresa, ServicioService servicioService) {
+        this.repositorio = repositorio;
+        this.assembler = assembler;
+        this.listaAssembler = listaAssembler;
+        this.assemblerEmpresa = assemblerEmpresa;
+        this.log = TraducpolApplication.log;
+        this.servicioService = servicioService;
+    }
 
-	@GetMapping("{id}")
-	public ServicioModel one(@PathVariable Long id) {
-		ServicioConId servicio = repositorio.findById(id).orElseThrow();
-		log.info("Recuperado " + servicio);
-		return assembler.toModel(servicio);
-	}
+    @GetMapping("{id}")
+    public ServicioModel one(@PathVariable Long id) {
+        ServicioConId servicio = repositorio.findById(id).orElseThrow();
+        log.info("Recuperado " + servicio);
+        return assembler.toModel(servicio);
+    }
 
-	@GetMapping
-	public CollectionModel<ServicioListaModel> all() {
-		return listaAssembler.toCollection(repositorio.findAll());
-	}
+    @GetMapping
+    public CollectionModel<ServicioListaModel> all() {
+        return listaAssembler.toCollection(repositorio.findAll());
+    }
 
-	@GetMapping("/busqueda")
-	public CollectionModel<ServicioListaModel> busquedaAvanzada(@RequestParam String idioma,
-			@RequestParam String provincia, @RequestParam boolean online, @RequestParam String hora) {
+    @GetMapping("/busqueda")
+    public CollectionModel<ServicioListaModel> busquedaAvanzada(@RequestParam String idioma,
+                                                                @RequestParam String provincia, @RequestParam boolean online, @RequestParam String hora) {
 
-		List<ServicioConId> serviciosEncontrados = servicioService.buscarServicios(idioma, provincia, hora, online);
+        List<ServicioConId> serviciosEncontrados = servicioService.buscarServicios(idioma, provincia, hora, online);
 
-		CollectionModel<ServicioListaModel> servicioLista = listaAssembler.toCollection(serviciosEncontrados);
+        CollectionModel<ServicioListaModel> servicioLista = listaAssembler.toCollection(serviciosEncontrados);
 
-		return servicioLista;
-	}
+        return servicioLista;
+    }
 
-	@GetMapping("{id}/empresa")
-	public EmpresaModel empresaDeServicio(@PathVariable Long id) {
-		ServicioConId servicio = repositorio.findById(id).orElseThrow();
-		EmpresaConId empresa = (EmpresaConId) servicio.getEmpresa();
-		return assemblerEmpresa.toModel(empresa);
-	}
+    @GetMapping("{id}/empresa")
+    public EmpresaModel empresaDeServicio(@PathVariable Long id) {
+        ServicioConId servicio = repositorio.findById(id).orElseThrow();
+        EmpresaConId empresa = (EmpresaConId) servicio.getEmpresa();
+        return assemblerEmpresa.toModel(empresa);
+    }
 
-	@PostMapping
-	public ServicioModel add(@RequestBody ServicioPostModel model) {
-		ServicioConId servicio = repositorio.save(assembler.toEntity(model));
-		log.info("Añadido " + servicio);
-		return assembler.toModel(servicio);
-	}
+    @PostMapping
+    public ServicioModel add(@RequestBody ServicioPostModel model) {
+        ServicioConId servicio = repositorio.save(assembler.toEntity(model));
+        log.info("Añadido " + servicio);
+        return assembler.toModel(servicio);
+    }
 
-	@PutMapping("{id}")
-	public ServicioModel edit(@PathVariable Long id, @RequestBody ServicioPostModel model) {
-		ServicioConId servicio = repositorio.findById(id).map(ped -> {
-			ped.setIdioma(model.getIdioma());
-			switch (ped.getTipo()) {
-			case TRADUCCION: {
-				ServicioTraduccionImpl traductor = (ServicioTraduccionImpl) ped;
-				traductor.setPlazoEntrega(model.getPlazoEntrega());
-				traductor.setTipoDocumento(model.getTipoDocumento());
-				traductor.setTraductorJurado(model.isTraductorJurado());
-				ped = traductor;
-				break;
-			}
-			case INTERPRETACION: {
-				ServicioInterpretacionImpl interprete = (ServicioInterpretacionImpl) ped;
-				interprete.setProvincia(model.getProvincia());
-				interprete.setHorarioInicioServicio(model.getHorarioInicioServicio());
-				interprete.setHorarioFinServicio(model.getHorarioFinServicio());
-				interprete.setServicioOnline(model.isServicioOnline());
-				ped = interprete;
-				break;
-			}
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + ped.getTipo());
-			}
+    @PutMapping("{id}")
+    public ServicioModel edit(@PathVariable Long id, @RequestBody ServicioPostModel model) {
+        ServicioConId servicio = repositorio.findById(id).map(ped -> {
+            ped.setIdioma(model.getIdioma());
+            switch (ped.getTipo()) {
+                case TRADUCCION: {
+                    ServicioTraduccionImpl traductor = (ServicioTraduccionImpl) ped;
+                    traductor.setPlazoEntrega(model.getPlazoEntrega());
+                    traductor.setTipoDocumento(model.getTipoDocumento());
+                    traductor.setTraductorJurado(model.isTraductorJurado());
+                    ped = traductor;
+                    break;
+                }
+                case INTERPRETACION: {
+                    ServicioInterpretacionImpl interprete = (ServicioInterpretacionImpl) ped;
+                    interprete.setProvincia(model.getProvincia());
+                    interprete.setHorarioInicioServicio(model.getHorarioInicioServicio());
+                    interprete.setHorarioFinServicio(model.getHorarioFinServicio());
+                    interprete.setServicioOnline(model.isServicioOnline());
+                    ped = interprete;
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unexpected value: " + ped.getTipo());
+            }
 
-			return repositorio.save(ped);
-		}).orElseThrow();
-		log.info("Actualizado " + servicio);
-		return assembler.toModel(servicio);
-	}
+            return repositorio.save(ped);
+        }).orElseThrow();
+        log.info("Actualizado " + servicio);
+        return assembler.toModel(servicio);
+    }
 
-	@DeleteMapping("{id}")
-	public void delete(@PathVariable Long id) {
-		log.info("Borrado Servicio " + id);
-		repositorio.deleteById(id);
-	}
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        log.info("Borrado Servicio " + id);
+        repositorio.deleteById(id);
+    }
 
 }

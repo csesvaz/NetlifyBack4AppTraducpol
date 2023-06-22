@@ -1,7 +1,8 @@
 <script>
 import Menubar from "primevue/menubar";
+
 export default {
-  components: { Menubar },
+  components: {Menubar},
   data() {
     return {
       items: [
@@ -47,10 +48,10 @@ export default {
       <Menubar :model="items">
         <template #start>
           <img
-            alt="logo"
-            src="../images/LogoEmpresa.png"
-            height="60"
-            class="mr-2"
+              alt="logo"
+              class="mr-2"
+              height="60"
+              src="../images/LogoEmpresa.png"
           />
         </template>
       </Menubar>
@@ -67,10 +68,12 @@ fixed-top {
   z-index: 999;
   width: 100%;
 }
+
 .card .p-menubar {
   font-size: 2.1vh;
   font-weight: bold;
 }
+
 .p-menubar {
   background-color: var(--primary-200);
   border-color: var(--primary-200);

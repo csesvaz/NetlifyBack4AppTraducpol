@@ -10,9 +10,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @EntityScan("es.mdef.traducpolPrueba.entidades")
 public class TraducpolApplication {
-	public static final Logger log = LoggerFactory.getLogger(TraducpolApplication.class);
-	public static void main(String[] args) {
-	SpringApplication.run(TraducpolApplication.class, args);
-	}
+    public static final Logger log = LoggerFactory.getLogger(TraducpolApplication.class);
+
+    public static void main(String[] args) {
+        SpringApplication.run(TraducpolApplication.class, args);
+    }
 
 }
