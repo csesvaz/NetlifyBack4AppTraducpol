@@ -4,7 +4,7 @@ const host = "https://traducpol-camilocococo.b4a.run/api/"
 //const host = "http://localhost:8085/api/";
 
 export function cambiarHttpPorHttps(enlace) {
-  return enlace.replace("http", "http");
+  return enlace.replace("http", "https");
 }
 export function getIdURL(url) {
   return parseInt(url.split("/").pop());
