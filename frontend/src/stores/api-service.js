@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const host = "https://traducpol-camilocococo.b4a.run/api"
-const host = "http://localhost:8085/api/";
+const host = "https://traducpol-camilocococo.b4a.run/api"
+//const host = "http://localhost:8085/api/";
 
 export function cambiarHttpPorHttps(enlace) {
   return enlace.replace("http", "http");
