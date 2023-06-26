@@ -53,7 +53,7 @@ export default {
           </div>
           <div class="col-12 col-md-6 mb-4">
             <h4>Seleccione gestión de Servicios</h4>
-            <router-link class="btn btn-primary" to="/interfazGestionServicios">
+            <router-link class="btn btn-primary" to="/GestionServicios">
               Servicios
             </router-link>
           </div>

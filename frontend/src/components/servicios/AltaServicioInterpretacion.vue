@@ -60,7 +60,7 @@ export default {
         }
       }
 
-      this.$router.push("/interfazGestionServicios");
+      this.$router.push("/GestionServicios");
     },
     borrarDatos() {
       this.servicio = {

@@ -65,7 +65,7 @@ export default {
           this.servicio.horarioFinServicio
       );
       await this.updateServicio(this.servicio);
-      this.$router.push("/interfazGestionServicios");
+      this.$router.push("/GestionServicios");
     },
   },
   async beforeMount() {

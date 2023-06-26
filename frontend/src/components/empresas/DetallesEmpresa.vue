@@ -2,12 +2,12 @@
 import {mapActions} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore.js";
 import {getIdURL} from "@/stores/api-service.js";
-import ComponenteCargando from '@/components/Cargando.vue';
+import Cargando from '@/components/Cargando.vue';
 import {convertirBooleano} from '@/utils/utils.js';
 
 export default {
   props: ["empresaEntrada"],
-  components: {ComponenteCargando},
+  components: {Cargando},
   data() {
     return {
       cargando: true,
@@ -129,7 +129,7 @@ export default {
     </div>
   </div>
   <div v-else>
-    <ComponenteCargando/>
+    <Cargando/>
   </div>
 </template>
 

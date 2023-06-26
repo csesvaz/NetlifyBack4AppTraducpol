@@ -48,7 +48,7 @@ export default {
     async modificarServicio() {
       this.servicio.tipo = "TRADUCCION";
       await this.updateServicio(this.servicio);
-      this.$router.push("/interfazGestionServicios");
+      this.$router.push("/GestionServicios");
     },
   },
   async beforeMount() {

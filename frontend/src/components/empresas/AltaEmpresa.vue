@@ -26,7 +26,7 @@ export default {
     },
     guardarEmpresa() {
       this.addEmpresa(this.empresa);
-      this.$router.push("interfazGestionEmpresa");
+      this.$router.push("GestionEmpresa");
     },
     borrarDatos() {
       this.empresa = {nombre: "", direccion: "", telefono: "", email: ""};

@@ -1,9 +1,9 @@
 <script>
 import Calendar from "primevue/calendar";
-import ComponenteIdiomas from "@/components/servicios/Idiomas.vue";
-import ComponenteProvincias from "@/components/servicios/Provincias.vue";
-import ComponenteEmpresa from "@/components/empresas/DetallesEmpresa.vue";
+import Idiomas from "@/components/servicios/Idiomas.vue";
+import Provincias from "@/components/servicios/Provincias.vue";
 import Button from "primevue/button";
+import DetallesEmpresa from "@/components/empresas/DetallesEmpresa.vue";
 import Dialog from "primevue/dialog";
 import {mapActions, mapState} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore.js";
@@ -12,9 +12,9 @@ import {convertirBooleano, convertirHora} from "@/utils/utils.js";
 export default {
   components: {
     Calendar,
-    ComponenteIdiomas,
-    ComponenteProvincias,
-    ComponenteEmpresa,
+    Idiomas,
+    Provincias,
+    DetallesEmpresa,
     Button,
     Dialog,
   },
@@ -33,7 +33,7 @@ export default {
       mostrarModal: false,
       visible: false,
       visibleSegundoModal: false,
-      empresaSeleccionada: null,
+      datosEmpresa: undefined,
     };
   },
   computed: {
@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     ...mapActions(useEmpresaStore, [
-      "convertirBooleano",
       "busquedaAvanzada",
       "getEmpresaDeServicio",
     ]),
@@ -58,7 +57,8 @@ export default {
       return convertirBooleano(booleano)
     },
     async filtrarEmpresa(servicio) {
-      this.empresaSeleccionada = await this.getEmpresaDeServicio(servicio.id);
+      this.datosEmpresa = await this.getEmpresaDeServicio(servicio);
+      this.visibleSegundoModal=true;
     },
     async buscarEmpresas() {
       let serviciosDeBusqueda = [];
@@ -111,7 +111,7 @@ export default {
         <div class="col-2">Provincia*</div>
         <div class="col-1"></div>
         <div class="col-9 col-md-6">
-          <ComponenteProvincias required @provinciaSeleccionada="provincia"/>
+          <Provincias required @provinciaSeleccionada="provincia"/>
         </div>
       </div>
 
@@ -120,7 +120,7 @@ export default {
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-3 col-md-2">Idioma*</div>
-        <ComponenteIdiomas required @idiomaSeleccionado="idioma"/>
+        <Idiomas required @idiomaSeleccionado="idioma"/>
       </div>
       <div class="row">
         <div class="col-12 mt-4">
@@ -197,21 +197,21 @@ export default {
             :title="'Visualizar datos de contacto de la empresa.'"
             icon="pi pi-eye"
             type="button"
-            @click="(visibleSegundoModal = true), filtrarEmpresa(servicio)"
+            @click="filtrarEmpresa(servicio)"
         />
-          <Dialog
-              v-model:visible="visibleSegundoModal"
-              :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
-              :style="{ width: '50vw' }"
-              header="Datos de la empresa"
-              modal
-          >
-            <ComponenteEmpresa :empresaEntrada="empresaSeleccionada"/>
-          </Dialog>
         </p>
       </div>
     </Dialog>
   </div>
+  <Dialog
+        v-model:visible="visibleSegundoModal"
+        :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+        :style="{ width: '50vw' }"
+        header="Datos de la empresa"
+        modal
+    >
+      <DetallesEmpresa :empresaEntrada="datosEmpresa"/>
+    </Dialog>
 </template>
 
 <style scoped>

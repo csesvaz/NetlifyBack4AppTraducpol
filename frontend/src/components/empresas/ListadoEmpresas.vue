@@ -2,12 +2,12 @@
 import Empresa from "@/components/empresas/Empresa.vue";
 import {mapActions, mapState} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore.js";
-import ComponenteEmpresa from "@/components/empresas/DetallesEmpresa.vue";
+import DetallesEmpresa from "@/components/empresas/DetallesEmpresa.vue";
 import Dialog from "primevue/dialog";
 import Cargando from "@/components/Cargando.vue";
 
 export default {
-  components: {Cargando, ComponenteEmpresa, Empresa, Dialog},
+  components: {Cargando, DetallesEmpresa, Empresa, Dialog},
   props: ["esAdministrador"],
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
         modal
     >
 
-      <ComponenteEmpresa v-if="cargadosDatos" :empresaEntrada="datosEmpresa"/>
+      <DetallesEmpresa v-if="cargadosDatos" :empresaEntrada="datosEmpresa"/>
       <Cargando v-else/>
     </Dialog>
   </div>

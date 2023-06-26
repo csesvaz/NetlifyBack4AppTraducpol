@@ -13,7 +13,7 @@ export default {
     },
     modificarEmpresa() {
       this.updateEmpresa(this.empresa);
-      this.$router.push("/interfazGestionEmpresa");
+      this.$router.push("/GestionEmpresa");
     },
   },
   async beforeMount() {

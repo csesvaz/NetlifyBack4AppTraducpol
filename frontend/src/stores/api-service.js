@@ -1,12 +1,12 @@
 import axios from "axios";
 
-//const host = "https://traducpol-camilocococo.b4a.run/api/"
+const host = "https://traducpol-camilocococo.b4a.run/api/"
 
-const host = "http://localhost:8085/api/";
+// const host = "http://localhost:8085/api/";
 
 export function cambiarHttpPorHttps(enlace) {
-  //Importante cambiar en BAck4App a https y a http en h2
-  return enlace.replace("http", "http");
+  //Importante cambiar en Back4App a https y a http en h2
+  return enlace.replace("http", "https");
 }
 
 export function getIdURL(url) {
