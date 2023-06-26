@@ -24,7 +24,7 @@ export default {
         {
           label: "Gestión",
           icon: "pi pi-fw pi-pencil",
-          to: "/alta",
+          to: "/gestion-principal",
         },
         {
           label: "Empresas",

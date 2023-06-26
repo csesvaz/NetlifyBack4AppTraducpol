@@ -1,6 +1,6 @@
 <script>
-import { mapActions, mapState } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
 
 export default {
   data() {
@@ -21,7 +21,7 @@ export default {
 
   methods: {
     ...mapActions(useEmpresaStore, ["addEmpresa"]),
-    getEmpresa: function () {
+    getEmpresa() {
       return this.empresas[this.id];
     },
     guardarEmpresa() {
@@ -29,7 +29,7 @@ export default {
       this.$router.push("interfazGestionEmpresa");
     },
     borrarDatos() {
-      this.empresa = { nombre: "", direccion: "", telefono: "", email: "" };
+      this.empresa = {nombre: "", direccion: "", telefono: "", email: ""};
     },
   },
 };
@@ -45,12 +45,12 @@ export default {
           </div>
           <div class="col-md-5">
             <input
-              id="nombre"
-              v-model="empresa.nombre"
-              class="form-control"
-              placeholder="Nombre"
-              required
-              type="text"
+                id="nombre"
+                v-model="empresa.nombre"
+                class="form-control"
+                placeholder="Nombre"
+                required
+                type="text"
             />
           </div>
         </div>
@@ -60,12 +60,12 @@ export default {
           </div>
           <div class="col-md-6">
             <input
-              id="direccion"
-              v-model="empresa.direccion"
-              class="form-control"
-              placeholder="Dirección"
-              required
-              type="text"
+                id="direccion"
+                v-model="empresa.direccion"
+                class="form-control"
+                placeholder="Dirección"
+                required
+                type="text"
             />
           </div>
         </div>
@@ -75,29 +75,29 @@ export default {
           </div>
           <div class="col-md-4">
             <input
-              id="cif"
-              v-model="empresa.cif"
-              class="form-control"
-              placeholder="Cif"
-              required
-              type="text"
+                id="cif"
+                v-model="empresa.cif"
+                class="form-control"
+                placeholder="Cif"
+                required
+                type="text"
             />
           </div>
         </div>
         <div class="row inicial">
           <div class="col-md-2">
             <label class="form-label" for="telefono"
-              >Teléfono de contacto</label
+            >Teléfono de contacto</label
             >
           </div>
           <div class="col-md-4">
             <input
-              id="telefono"
-              v-model="empresa.telefono"
-              class="form-control"
-              placeholder="Teléfono"
-              required
-              type="telephone"
+                id="telefono"
+                v-model="empresa.telefono"
+                class="form-control"
+                placeholder="Teléfono"
+                required
+                type="telephone"
             />
           </div>
         </div>
@@ -107,12 +107,12 @@ export default {
           </div>
           <div class="col-md-3">
             <input
-              id="email"
-              v-model="empresa.email"
-              class="form-control"
-              placeholder="Dirección E-mail"
-              required
-              type="email"
+                id="email"
+                v-model="empresa.email"
+                class="form-control"
+                placeholder="Dirección E-mail"
+                required
+                type="email"
             />
           </div>
         </div>

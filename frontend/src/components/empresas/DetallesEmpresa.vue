@@ -1,14 +1,16 @@
 <script>
-import { mapActions } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
-import { getIdURL } from "@/stores/api-service";
-import ComponenteCargando from '@/components/ComponenteCargando.vue';
+import {mapActions} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore.js";
+import {getIdURL} from "@/stores/api-service.js";
+import ComponenteCargando from '@/components/Cargando.vue';
+import {convertirBooleano} from '@/utils/utils.js';
 
 export default {
   props: ["empresaEntrada"],
-  components: { ComponenteCargando },
+  components: {ComponenteCargando},
   data() {
     return {
+      cargando: true,
       serviciosFiltro: null,
       empresa: {
         id: null,
@@ -19,66 +21,47 @@ export default {
       },
       hayServiciosInterpretacion: false,
       hayServiciosTraduccion: false,
-      cargadosDatos: false,
     };
   },
   methods: {
     ...mapActions(useEmpresaStore, [
-      "convertirBooleano",
       "getIdURL",
       "getServiciosDeEmpresa",
     ]),
+    convertirBooleano(a) {
+      return convertirBooleano(a);
+    },
+    async getIdURL() {
+      this.empresa.id = await this.getIdURL();
+    },
   },
-  async updated() {
-    this.empresa = await this.empresaEntrada;
-    this.empresa.id = getIdURL(this.empresaEntrada._links.self.href);
+  async beforeMount() {
     this.serviciosFiltro = await this.getServiciosDeEmpresa(
-      this.empresaEntrada.id
+        this.empresaEntrada.id
     );
-    if (
-      this.empresa.id !== null &&
-      this.empresa.nombre !== null &&
-      this.empresa.direccion !== null &&
-      this.empresa.telefono !== null &&
-      this.empresa.email !== null &&
-      this.serviciosFiltro !== null
-    ) {
-      this.hayServiciosInterpretacion = this.serviciosFiltro.some(
+    this.hayServiciosInterpretacion = this.serviciosFiltro.some(
         (element) => element.tipo === "INTERPRETACION"
-      );
-
-      this.hayServiciosTraduccion = this.serviciosFiltro.some(
+    );
+    this.hayServiciosTraduccion = this.serviciosFiltro.some(
         (element) => element.tipo === "TRADUCCION"
-      );
-
-      this.cargadosDatos = true;
-    }
-  },
-  async beforeUnmount() {
-    this.serviciosFiltro = null;
-    this.empresa = {
-      id: null,
-      nombre: null,
-      direccion: null,
-      telefono: null,
-      email: null,
-    };
+    );
+    this.cargando = false;
   },
 };
 </script>
 <template>
-  <div v-if="cargadosDatos" class="fondo">
+  <div v-if="!cargando" class="fondo">
     <div class="row ms-2 mt-2">
-      <h4>Nombre de la empresa: {{ empresa.nombre }}</h4>
+      <h4>Nombre de la empresa: {{ empresaEntrada.nombre }}</h4>
     </div>
     <div class="row ms-2">
-      <h5>Dirección: {{ empresa.direccion }}</h5>
+      <h5>Dirección: {{ empresaEntrada.direccion }}</h5>
     </div>
     <div class="row ms-2">
-      <h5>Teléfono de contacto: {{ empresa.telefono }}</h5>
+      <h5>Teléfono de contacto: {{ empresaEntrada.telefono }}</h5>
     </div>
     <div class="row ms-2">
-      <h5>Email de contacto: {{ empresa.email }}</h5>
+      <h5>Email de contacto: {{ empresaEntrada.email }}</h5>
     </div>
     <div class="row mb-3">
       <div class="col-12 ms-2 mt-3">
@@ -104,15 +87,15 @@ export default {
                 <span class="col-md-1"></span>
                 <span class="col-2 col-md-2">{{ interprete.idioma }}</span>
                 <span class="col-2 col-md-2">{{
-                  interprete.horarioInicioServicio
-                }}</span>
+                    interprete.horarioInicioServicio
+                  }}</span>
                 <span class="col-2 col-md-2">{{
-                  interprete.horarioFinServicio
-                }}</span>
+                    interprete.horarioFinServicio
+                  }}</span>
                 <span class="col-3 col-md-2">{{ interprete.provincia }}</span>
                 <span class="col-2 col-md-3">{{
-                  convertirBooleano(interprete.servicioOnline)
-                }}</span>
+                    convertirBooleano(interprete.servicioOnline)
+                  }}</span>
               </div>
             </div>
           </div>
@@ -137,8 +120,8 @@ export default {
               <span class="col-3 col-md-3">{{ traductor.tipoDocumento }}</span>
               <span class="col-3 col-md-3">{{ traductor.plazoEntrega }}</span>
               <span class="col-2 col-md-3">{{
-                convertirBooleano(traductor.traductorJurado)
-              }}</span>
+                  convertirBooleano(traductor.traductorJurado)
+                }}</span>
             </div>
           </div>
         </div>
@@ -146,7 +129,7 @@ export default {
     </div>
   </div>
   <div v-else>
-    <ComponenteCargando />
+    <ComponenteCargando/>
   </div>
 </template>
 

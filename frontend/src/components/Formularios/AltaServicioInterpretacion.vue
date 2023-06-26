@@ -1,9 +1,9 @@
 <script>
 import Calendar from "primevue/calendar";
-import { mapActions, mapState } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
-import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
-import ComponenteProvincias from "@/components/ComponenteProvincias.vue";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
+import ComponenteIdiomas from "@/components/servicios/Idiomas.vue";
+import ComponenteProvincias from "@/components/servicios/Provincias.vue";
 
 export default {
   components: {
@@ -40,20 +40,20 @@ export default {
       const hora1 = hora.getHours();
       const minutos = hora.getMinutes();
       return `${hora1.toString().padStart(2, "0")}:${minutos
-        .toString()
-        .padStart(2, "0")}`;
+          .toString()
+          .padStart(2, "0")}`;
     },
     guardarServicio() {
       this.servicio.tipo = "INTERPRETACION";
       this.servicio.horarioInicioServicio = this.formatearHora(
-        this.servicio.horarioInicioServicio
+          this.servicio.horarioInicioServicio
       );
       this.servicio.horarioFinServicio = this.formatearHora(
-        this.servicio.horarioFinServicio
+          this.servicio.horarioFinServicio
       );
       for (let i = 0; i < this.idiomas.length; i++) {
         for (let j = 0; j < this.provincias.length; j++) {
-          const nuevoServicio = { ...this.servicio };
+          const nuevoServicio = {...this.servicio};
           nuevoServicio.provincia = this.provincias[j];
           nuevoServicio.idioma = this.idiomas[i];
           this.addServicio(nuevoServicio);
@@ -101,16 +101,16 @@ export default {
         </div>
         <div class="col-md-4">
           <select
-            v-model="servicio.empresa"
-            aria-label=".form-select-sm example"
-            class="form-select form-select-sm"
-            required
+              v-model="servicio.empresa"
+              aria-label=".form-select-sm example"
+              class="form-select form-select-sm"
+              required
           >
             <option selected="" value="">Seleccione una empresa</option>
             <option
-              v-for="empresa in empresas"
-              :key="empresa.id"
-              :value="empresa"
+                v-for="empresa in empresas"
+                :key="empresa.id"
+                :value="empresa"
             >
               {{ empresa.nombre }}
             </option>
@@ -122,36 +122,36 @@ export default {
           <label class="form-label" for="idioma">Idioma</label>
         </div>
         <ComponenteIdiomas
-          ref="componenteIdiomas"
-          :idiomaSeleccionado="idiomas"
-          @idiomaSeleccionado="idiomas = $event"
+            ref="componenteIdiomas"
+            :idiomaSeleccionado="idiomas"
+            @idiomaSeleccionado="idiomas = $event"
         />
       </div>
 
       <div class="row formulario">
         <div class="col-md-3">
           <label class="form-label" for="horarioInicioServicio"
-            >Horario de Inicio del Servicio</label
+          >Horario de Inicio del Servicio</label
           >
         </div>
         <div class="col-md-2">
           <Calendar
-            id="calendar-timeonly"
-            v-model="servicio.horarioInicioServicio"
-            timeOnly
+              id="calendar-timeonly"
+              v-model="servicio.horarioInicioServicio"
+              timeOnly
           />
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-3">
           <label class="form-label" for="horarioFinServicio"
-            >Horario de Finalización del Servicio</label
+          >Horario de Finalización del Servicio</label
           >
         </div>
         <div class="col-md-2">
           <Calendar
-            id="calendar-timeonly"
-            v-model="servicio.horarioFinServicio"
-            timeOnly
+              id="calendar-timeonly"
+              v-model="servicio.horarioFinServicio"
+              timeOnly
           />
         </div>
       </div>
@@ -160,26 +160,26 @@ export default {
           <label class="form-label" for="provincia">Provincia</label>
         </div>
         <ComponenteProvincias
-          ref="componenteProvincias"
-          :provinciaSeleccionada="provincias"
-          @provinciaSeleccionada="provincias = $event"
+            ref="componenteProvincias"
+            :provinciaSeleccionada="provincias"
+            @provinciaSeleccionada="provincias = $event"
         />
       </div>
       <div class="row formulario">
         <div class="col-7">
           <div class="form-check">
             <input
-              id="flexCheckDefault1"
-              v-model="servicio.servicioOnline"
-              class="form-check-input"
-              type="checkbox"
+                id="flexCheckDefault1"
+                v-model="servicio.servicioOnline"
+                class="form-check-input"
+                type="checkbox"
             />
             <label class="form-check-label" for="flexCheckDefault1">
               Dispone de asistencia Online.
             </label>
           </div>
         </div>
-        <br />
+        <br/>
 
         <div class="row formulario">
           <div class="col-md-2">

@@ -1,10 +1,10 @@
 <script>
 import Calendar from "primevue/calendar";
-import { mapActions, mapState } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
-import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
-import ComponentePlazoEntrega from "@/components/ComponentePlazoEntrega.vue";
-import ComponenteTipoDocumento from "@/components/ComponenteTipoDocumento.vue";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
+import ComponenteIdiomas from "@/components/servicios/Idiomas.vue";
+import ComponentePlazoEntrega from "@/components/servicios/PlazoEntrega.vue";
+import ComponenteTipoDocumento from "@/components/servicios/TipoDocumento.vue";
 
 export default {
   components: {
@@ -37,7 +37,7 @@ export default {
       this.servicio.tipo = "TRADUCCION";
       for (let i = 0; i < this.idiomas.length; i++) {
         for (let j = 0; j < this.documentos.length; j++) {
-          const nuevoServicio = { ...this.servicio };
+          const nuevoServicio = {...this.servicio};
           nuevoServicio.tipoDocumento = this.documentos[j];
           nuevoServicio.idioma = this.idiomas[i];
           this.addServicio(nuevoServicio);
@@ -82,17 +82,17 @@ export default {
         </div>
         <div class="col-md-4">
           <select
-            v-model="servicio.empresa"
-            aria-label=".form-select-sm example"
-            class="form-select form-select-sm"
-            required
+              v-model="servicio.empresa"
+              aria-label=".form-select-sm example"
+              class="form-select form-select-sm"
+              required
           >
             <option selected="" value="">Seleccione una empresa</option>
 
             <option
-              v-for="empresa in empresas"
-              :key="empresa.id"
-              :value="empresa"
+                v-for="empresa in empresas"
+                :key="empresa.id"
+                :value="empresa"
             >
               {{ empresa.nombre }}
             </option>
@@ -104,44 +104,44 @@ export default {
           <label class="form-label" for="idioma">Idioma</label>
         </div>
         <ComponenteIdiomas
-          ref="componenteIdiomas"
-          :idiomaSeleccionado="idiomas"
-          @idiomaSeleccionado="idiomas = $event"
+            ref="componenteIdiomas"
+            :idiomaSeleccionado="idiomas"
+            @idiomaSeleccionado="idiomas = $event"
         />
       </div>
 
       <div class="row formulario">
         <div class="col-md-3">
           <label class="form-label" for="tipoDocumento"
-            >Tipo de Documento</label
+          >Tipo de Documento</label
           >
         </div>
         <ComponenteTipoDocumento
-          ref="componenteTipoDocumento"
-          :tipoDocumentoSeleccionado="documentos"
-          @tipoDocumentoSeleccionado="documentos = $event"
+            ref="componenteTipoDocumento"
+            :tipoDocumentoSeleccionado="documentos"
+            @tipoDocumentoSeleccionado="documentos = $event"
         />
       </div>
       <div class="row formulario">
         <div class="col-md-3">
           <label class="form-label" for="tiempoMaxEntrega"
-            >Tiempo máximo de Entrega</label
+          >Tiempo máximo de Entrega</label
           >
         </div>
         <ComponentePlazoEntrega
-          ref="componentePlazoEntrega"
-          :plazoEntregaSeleccionado="servicio.plazoEntrega"
-          @plazoEntregaSeleccionado="servicio.plazoEntrega = $event"
+            ref="componentePlazoEntrega"
+            :plazoEntregaSeleccionado="servicio.plazoEntrega"
+            @plazoEntregaSeleccionado="servicio.plazoEntrega = $event"
         />
       </div>
       <div class="row formulario">
         <div class="col-7">
           <div class="form-check">
             <input
-              id="flexCheckDefault"
-              v-model="servicio.traductorJurado"
-              class="form-check-input"
-              type="checkbox"
+                id="flexCheckDefault"
+                v-model="servicio.traductorJurado"
+                class="form-check-input"
+                type="checkbox"
             />
             <label class="form-check-label" for="flexCheckDefault">
               Dispone de traducción Jurada.

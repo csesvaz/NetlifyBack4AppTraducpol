@@ -1,15 +1,18 @@
 import axios from "axios";
 
-const host = "https://traducpol-camilocococo.b4a.run/api/"
-//const host = "http://localhost:8085/api/";
+//const host = "https://traducpol-camilocococo.b4a.run/api/"
+
+const host = "http://localhost:8085/api/";
 
 export function cambiarHttpPorHttps(enlace) {
   //Importante cambiar en BAck4App a https y a http en h2
-  return enlace.replace("http", "https");
+  return enlace.replace("http", "http");
 }
+
 export function getIdURL(url) {
   return parseInt(url.split("/").pop());
 }
+
 export function llamadaApi(path, method, body) {
   return llamadaApiConConfiguracion(
     configuracionPorDefecto(path, method, body)
@@ -45,7 +48,7 @@ export async function getEmpresas() {
       empresa.id = getIdURL(empresa._links.self.href);
       empresa.servicios = [];
       const serviciosData = await llamadaApi(
-        import.meta.env.VITE_APP_API + "empresas/" + empresa.id + "/servicios"
+        host + "empresas/" + empresa.id + "/servicios"
       );
       if (serviciosData.data._embedded) {
         empresa.servicios = serviciosData.data._embedded.servicios;
@@ -68,9 +71,8 @@ export async function getEmpresa(id) {
 
 export async function addEmpresa(empresa) {
   const empresaData = await llamadaApi(host + "empresas", "post", empresa);
-
-  empresa.id = getIdURL(empresaData.data._links.self.href);
-  return empresa;
+  empresaData.data.id = getIdURL(empresaData.data._links.self.href);
+  return empresaData.data;
 }
 
 export async function updateEmpresa(empresa) {
@@ -91,7 +93,6 @@ export async function getServicios() {
       servicio.id = getIdURL(servicio._links.self.href);
     });
   }
-
   return servicios;
 }
 
@@ -102,7 +103,7 @@ export async function getServicio(id) {
 }
 
 export async function addServicio(servicio) {
-  servicio.empresa = host +"empresas/" + servicio.empresa.id;
+  servicio.empresa = host + "empresas/" + servicio.empresa.id;
   const servicioData = await llamadaApi(host + "servicios", "post", servicio);
   servicioData.data.id = getIdURL(servicioData.data._links.self.href);
   return servicioData.data;
@@ -115,14 +116,14 @@ export async function updateServicio(servicio) {
 export async function busquedaAvanzada(hora, idioma, provincia, online) {
   let serviciosBusqueda = await llamadaApi(
     host +
-      "servicios/busqueda?idioma=" +
-      idioma +
-      "&provincia=" +
-      provincia +
-      "&online=" +
-      online +
-      "&hora=" +
-      hora
+    "servicios/busqueda?idioma=" +
+    idioma +
+    "&provincia=" +
+    provincia +
+    "&online=" +
+    online +
+    "&hora=" +
+    hora
   );
 
   if (serviciosBusqueda.data._embedded) {
@@ -144,6 +145,7 @@ export function borrarEntidad(entidad) {
 export function getEntidades(nombre) {
   return llamadaApi(`${host}${nombre}`);
 }
+
 export async function getServiciosDeEmpresa(id) {
   let servicios = [];
   let serviciosEmpresa = await getEntidades(`empresas/${id}/servicios`);

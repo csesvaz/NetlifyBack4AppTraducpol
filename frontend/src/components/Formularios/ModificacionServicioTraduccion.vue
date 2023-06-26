@@ -1,9 +1,9 @@
 <script>
-import { mapActions, mapState } from "pinia";
-import { useEmpresaStore } from "@/stores/EmpresaStore";
-import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
-import ComponentePlazoEntrega from "@/components/ComponentePlazoEntrega.vue";
-import ComponenteTipoDocumento from "@/components/ComponenteTipoDocumento.vue";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore";
+import ComponenteIdiomas from "@/components/servicios/Idiomas.vue";
+import ComponentePlazoEntrega from "@/components/servicios/PlazoEntrega.vue";
+import ComponenteTipoDocumento from "@/components/servicios/TipoDocumento.vue";
 
 export default {
   components: {
@@ -22,7 +22,7 @@ export default {
         id: 0,
       },
       servicioEntrada: null,
-      empresa: { nombre: "" },
+      empresa: {nombre: ""},
     };
   },
   computed: {
@@ -41,9 +41,9 @@ export default {
       };
       this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
       this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
-        this.servicio.tipoDocumento;
+          this.servicio.tipoDocumento;
       this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
-        this.servicio.plazoEntrega;
+          this.servicio.plazoEntrega;
     },
     async modificarServicio() {
       this.servicio.tipo = "TRADUCCION";
@@ -54,13 +54,13 @@ export default {
   async beforeMount() {
     this.id = this.$route.params.id;
     this.servicio = await this.getServicio(this.id);
-    this.servicioEntrada = { ...this.servicio };
-    this.empresa = await this.getEmpresaDeServicio(this.id);
+    this.servicioEntrada = {...this.servicio};
+    this.empresa = this.servicio.empresa;
     this.$refs.componenteIdiomas.idiomaSeleccionado = this.servicio.idioma;
     this.$refs.componenteTipoDocumento.tipoDocumentoSeleccionado =
-      this.servicio.tipoDocumento;
+        this.servicio.tipoDocumento;
     this.$refs.componentePlazoEntrega.plazoEntregaSeleccionado =
-      this.servicio.plazoEntrega;
+        this.servicio.plazoEntrega;
   },
 };
 </script>
@@ -80,11 +80,11 @@ export default {
           </div>
           <div class="col-md-4">
             <input
-              id="nombre1"
-              v-model="empresa.nombre"
-              class="form-control"
-              disabled
-              type="text"
+                id="nombre1"
+                v-model="empresa.nombre"
+                class="form-control"
+                disabled
+                type="text"
             />
           </div>
         </div>
@@ -93,33 +93,33 @@ export default {
             <label class="form-label" for="idioma">Idioma</label>
           </div>
           <ComponenteIdiomas
-            ref="componenteIdiomas"
-            :idiomaSeleccionado="servicio.idioma"
-            @idiomaSeleccionado="servicio.idioma = $event"
+              ref="componenteIdiomas"
+              :idiomaSeleccionado="servicio.idioma"
+              @idiomaSeleccionado="servicio.idioma = $event"
           />
         </div>
         <div class="row formulario">
           <div class="col-md-3">
             <label class="form-label" for="tipoDocumento"
-              >Tipo de Documento</label
+            >Tipo de Documento</label
             >
           </div>
           <ComponenteTipoDocumento
-            ref="componenteTipoDocumento"
-            :tipoDocumentoSeleccionado="servicio.tipoDocumento"
-            @tipoDocumentoSeleccionado="servicio.tipoDocumento = $event"
+              ref="componenteTipoDocumento"
+              :tipoDocumentoSeleccionado="servicio.tipoDocumento"
+              @tipoDocumentoSeleccionado="servicio.tipoDocumento = $event"
           />
         </div>
         <div class="row formulario">
           <div class="col-md-3">
             <label class="form-label" for="plazoEntrega"
-              >Plazo de Entrega</label
+            >Plazo de Entrega</label
             >
           </div>
           <ComponentePlazoEntrega
-            ref="componentePlazoEntrega"
-            :plazoEntregaSeleccionado="servicio.plazoEntrega"
-            @plazoEntregaSeleccionado="servicio.plazoEntrega = $event"
+              ref="componentePlazoEntrega"
+              :plazoEntregaSeleccionado="servicio.plazoEntrega"
+              @plazoEntregaSeleccionado="servicio.plazoEntrega = $event"
           />
           <div class="col-md-1"></div>
         </div>
@@ -127,10 +127,10 @@ export default {
           <div class="col-7">
             <div class="form-check">
               <input
-                id="flexCheckDefault"
-                v-model="servicio.traductorJurado"
-                class="form-check-input"
-                type="checkbox"
+                  id="flexCheckDefault"
+                  v-model="servicio.traductorJurado"
+                  class="form-check-input"
+                  type="checkbox"
               />
               <label class="form-check-label" for="flexCheckDefault">
                 Dispone de Traducción Jurada.
@@ -146,9 +146,9 @@ export default {
             <div class="col-md-1"></div>
             <div class="col-md-2">
               <button
-                class="btn btn-warning"
-                type="button"
-                @click="borrarDatos"
+                  class="btn btn-warning"
+                  type="button"
+                  @click="borrarDatos"
               >
                 Restaurar Valores Iniciales
               </button>

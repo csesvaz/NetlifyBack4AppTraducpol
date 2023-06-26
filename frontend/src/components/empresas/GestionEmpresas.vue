@@ -1,8 +1,16 @@
 <script>
-import ListadoEmpresas from "@/components/Listados/ListadoEmpresas.vue";
+import {mapActions, mapState} from "pinia";
+import {useEmpresaStore} from "@/stores/EmpresaStore.js";
+import ListadoEmpresas from "@/components/empresas/ListadoEmpresas.vue";
 
 export default {
   components: {ListadoEmpresas},
+  computed: {
+    ...mapState(useEmpresaStore, ["empresas"]),
+  },
+  methods: {
+    ...mapActions(useEmpresaStore, ["deleteEmpresa"]),
+  },
 };
 </script>
 
@@ -18,14 +26,9 @@ export default {
     </div>
   </div>
   <div class="row ms-4 mt-4 me-3 listado">
-    <ListadoEmpresas/>
+    <ListadoEmpresas :esAdministrador="true"/>
   </div>
 </template>
 
 <style scoped>
-@media (max-width: 768px) {
-  .container {
-    margin-top: 12vh !important;
-  }
-}
 </style>

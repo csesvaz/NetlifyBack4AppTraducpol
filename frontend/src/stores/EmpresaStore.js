@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import {defineStore} from "pinia";
 import {
   addEmpresa,
   addServicio,
@@ -6,19 +6,19 @@ import {
   busquedaAvanzada,
   cambiarHttpPorHttps,
   getEmpresa,
-  getServiciosDeEmpresa,
   getEmpresas,
+  getIdURL,
   getServicio,
   getServicios,
+  getServiciosDeEmpresa,
+  llamadaApi,
   updateEmpresa,
   updateServicio,
-  llamadaApi,
 } from "./api-service.js";
 
 export const useEmpresaStore = defineStore("empresas", {
   state: () => ({
     empresas: [],
-    opcionInicial: true,
     servicios: [],
   }),
   actions: {
@@ -73,8 +73,8 @@ export const useEmpresaStore = defineStore("empresas", {
           (a.tipo === "INTERPRETACION" && b.tipo === "INTERPRETACION"
             ? a.provincia.localeCompare(b.provincia)
             : a.tipo === "TRADUCCION" && b.tipo === "TRADUCCION"
-            ? a.tipoDocumento.localeCompare(b.tipoDocumento)
-            : 0)
+              ? a.tipoDocumento.localeCompare(b.tipoDocumento)
+              : 0)
         );
       });
       return this.servicios;
@@ -92,7 +92,7 @@ export const useEmpresaStore = defineStore("empresas", {
     },
 
     async addServicio(servicio) {
-      const empresa=this.empresas.find((emp) => emp.id == servicio.empresa.id);
+      const empresa = this.empresas.find((emp) => emp.id == servicio.empresa.id);
       servicio = await addServicio(servicio);
       empresa.servicios.push(servicio);
       this.servicios.push(servicio);
@@ -102,12 +102,12 @@ export const useEmpresaStore = defineStore("empresas", {
       return await getServiciosDeEmpresa(id);
     },
 
-    async getEmpresaDeServicio(id) {
-      
-      const servicio = this.servicios.find((serv) => serv.id == id);
+    async getEmpresaDeServicio(servicio) {
       const empresa = await llamadaApi(
         cambiarHttpPorHttps(servicio._links.empresa.href)
       );
+      empresa.data.id = getIdURL(empresa.data._links.self.href);
+
       return empresa.data;
     },
 
@@ -142,29 +142,6 @@ export const useEmpresaStore = defineStore("empresas", {
 
     async busquedaAvanzada(hora, idioma, provincia, online) {
       return await busquedaAvanzada(hora, idioma, provincia, online);
-    },
-
-    convertirBooleano(a) {
-      let variable = "Si";
-      if (a == true) {
-        variable = "Si";
-      } else {
-        variable = "No";
-      }
-      return variable;
-    },
-    cambioOpcion() {
-      this.opcionInicial = !this.opcionInicial;
-    },
-    cambioOpcionFalse() {
-      this.opcionInicial = false;
-    },
-    convertirHora(fecha) {
-      const hora = fecha.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      return hora;
     },
   },
 });

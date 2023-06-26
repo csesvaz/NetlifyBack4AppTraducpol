@@ -1,12 +1,13 @@
 <script>
 import Calendar from "primevue/calendar";
-import ComponenteIdiomas from "@/components/ComponenteIdiomas.vue";
-import ComponenteProvincias from "@/components/ComponenteProvincias.vue";
-import ComponenteEmpresa from "@/components/ComponenteEmpresa.vue";
+import ComponenteIdiomas from "@/components/servicios/Idiomas.vue";
+import ComponenteProvincias from "@/components/servicios/Provincias.vue";
+import ComponenteEmpresa from "@/components/empresas/DetallesEmpresa.vue";
 import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import {mapActions, mapState} from "pinia";
-import {useEmpresaStore} from "@/stores/EmpresaStore";
+import {useEmpresaStore} from "@/stores/EmpresaStore.js";
+import {convertirBooleano, convertirHora} from "@/utils/utils.js";
 
 export default {
   components: {
@@ -42,7 +43,6 @@ export default {
     ...mapActions(useEmpresaStore, [
       "convertirBooleano",
       "busquedaAvanzada",
-      "convertirHora",
       "getEmpresaDeServicio",
     ]),
     provincia(provinciaSeleccionada) {
@@ -51,13 +51,19 @@ export default {
     idioma(idiomaSeleccionado) {
       this.servicio.idioma = idiomaSeleccionado;
     },
+    convertirHora(hora) {
+      return convertirHora(hora)
+    },
+    convertirBooleano(booleano) {
+      return convertirBooleano(booleano)
+    },
     async filtrarEmpresa(servicio) {
       this.empresaSeleccionada = await this.getEmpresaDeServicio(servicio.id);
     },
     async buscarEmpresas() {
       let serviciosDeBusqueda = [];
       serviciosDeBusqueda = await this.busquedaAvanzada(
-          this.convertirHora(this.servicio.horaSeleccionada),
+          convertirHora(this.servicio.horaSeleccionada),
           this.servicio.idioma,
           this.servicio.provincia,
           this.servicio.servicioOnline

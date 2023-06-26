@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import {createApp} from "vue";
 import "./style.css";
 import App from "./App.vue";
 import "./scss/styles.scss";
@@ -7,23 +7,18 @@ import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
 // Importar Pinia
-import { createPinia } from "pinia";
+import {createPinia} from "pinia";
 // Importar fontawesome
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {library} from "@fortawesome/fontawesome-svg-core";
 
-import {
-  faSquareFacebook,
-  faTwitter,
-  faLinkedin,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {faInstagram, faLinkedin, faSquareFacebook, faTwitter,} from "@fortawesome/free-brands-svg-icons";
+import {faPencilAlt, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 
 //Router
-import { createRouter, createWebHashHistory } from "vue-router";
-import Inicio from "./components/Interfaces/InterfazInicio.vue";
-import { useAuthStore } from "./stores/AuthStore";
+import {createRouter, createWebHashHistory} from "vue-router";
+import Inicio from "./components/Inicio.vue";
+import {useAuthStore} from "./stores/AuthStore";
 // Importar PrimeVue
 import PrimeVue from "primevue/config";
 
@@ -38,27 +33,27 @@ library.add(
   faTrashAlt
 );
 
-const Servicios = () => import("@/components/Interfaces/InterfazServicios.vue");
-const Busqueda = () => import("@/components/Interfaces/InterfazBusqueda.vue");
-const Alta = () => import("@/components/Interfaces/InterfazAlta.vue");
+const Servicios = () => import("@/components/servicios/VisualizacionServicios.vue");
+const Busqueda = () => import("@/components/BusquedaAvanzada.vue");
+const GestionPrincipal = () => import("@/components/GestionPrincipal.vue");
 const AltaEmpresa = () => import("@/components/Formularios/AltaEmpresa.vue");
-const Ayuda = () => import("@/components/Interfaces/InterfazAyuda.vue");
+const Ayuda = () => import("@/components/Ayuda.vue");
 const ModificacionEmpresa = () =>
   import("@/components/Formularios/ModificacionEmpresa.vue");
 const AltaServicioInterpretacion = () =>
   import("@/components/Formularios/AltaServicioInterpretacion.vue");
 const AltaServicioTraduccion = () =>
   import("@/components/Formularios/AltaServicioTraduccion.vue");
-const InterfazGestionEmpresa = () =>
-  import("@/components/Interfaces/InterfazGestionEmpresa.vue");
+const GestionEmpresa = () =>
+  import("@/components/empresas/GestionEmpresas.vue");
 const InterfazGestionServicios = () =>
-  import("@/components/Interfaces/InterfazGestionServicios.vue");
+  import("@/components/servicios/GestionServicios.vue");
 const ModificacionServicioInterpretacion = () =>
   import("@/components/Formularios/ModificacionServicioInterpretacion.vue");
 const ModificacionServicioTraduccion = () =>
   import("@/components/Formularios/ModificacionServicioTraduccion.vue");
 const InterfazEmpresas = () =>
-  import("@/components/Interfaces/InterfazEmpresas.vue");
+  import("@/components/empresas/ConsultaEmpresas.vue");
 const routes = [
   {
     path: "/",
@@ -74,9 +69,9 @@ const routes = [
     component: Busqueda,
   },
   {
-    path: "/alta",
-    component: Alta,
-    name: "Alta",
+    path: "/gestion-principal",
+    component: GestionPrincipal,
+    name: "GestionPrincipal",
   },
   {
     path: "/empresas",
@@ -117,9 +112,9 @@ const routes = [
     name: "altaServicioTraduccion",
   },
   {
-    path: "/interfazGestionEmpresa",
-    component: InterfazGestionEmpresa,
-    name: "interfazGestionEmpresa",
+    path: "/GestionEmpresa",
+    component: GestionEmpresa,
+    name: "GestionEmpresa",
   },
   {
     path: "/interfazGestionServicios",
@@ -133,7 +128,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
-  const autorizado = useAuthStore().esAdminintrador;
+  const autorizado = useAuthStore().esAdministrador;
   if (
     !autorizado &&
     (to.name === "altaEmpresa" ||
@@ -145,7 +140,7 @@ router.beforeEach(async (to, from) => {
       to.name === "modificacionServicioTraduccion" ||
       to.name === "modificacionEmpresa")
   ) {
-    return { name: "Inicio" };
+    return {name: "Inicio"};
   }
 });
 
