@@ -72,6 +72,7 @@ export async function getEmpresa(id) {
 export async function addEmpresa(empresa) {
   const empresaData = await llamadaApi(host + "empresas", "post", empresa);
   empresaData.data.id = getIdURL(empresaData.data._links.self.href);
+  empresaData.data.servicios = [];
   return empresaData.data;
 }
 

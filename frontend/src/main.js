@@ -1,9 +1,9 @@
 import { createApp } from "vue";
-import "@/style.css";
 import App from "@/App.vue";
+
+import "@/style.css";
 import "@/scss/styles.scss";
-import Inicio from "@/components/Inicio.vue";
-import * as bootstrap from "bootstrap";
+
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -14,6 +14,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 library.add(faSquareFacebook, faTwitter, faLinkedin, faInstagram);
 
+import PrimeVue from "primevue/config";
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
@@ -22,8 +23,9 @@ import { createPinia } from "pinia";
 const pinia = createPinia();
 
 import { useAuthStore } from "@/stores/AuthStore";
-import PrimeVue from "primevue/config";
+
 import { createRouter, createWebHashHistory } from "vue-router";
+import Inicio from "@/components/Inicio.vue";
 const Servicios = () =>
   import("@/components/servicios/VisualizacionServicios.vue");
 const Busqueda = () => import("@/components/BusquedaAvanzada.vue");
@@ -117,7 +119,6 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-
 router.beforeEach(async (to, from) => {
   const autorizado = useAuthStore().esAdministrador;
   if (
@@ -134,6 +135,7 @@ router.beforeEach(async (to, from) => {
     return { name: "Inicio" };
   }
 });
+
 const app = createApp(App);
 app.use(pinia);
 app.use(PrimeVue);
