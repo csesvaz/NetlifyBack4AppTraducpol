@@ -33,3 +33,6 @@ build
 .settings
 .gradle
 .vscode
+
+.classpath
+.project

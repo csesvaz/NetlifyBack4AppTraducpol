@@ -2,13 +2,8 @@ import { createApp } from "vue";
 import "@/style.css";
 import App from "@/App.vue";
 import "@/scss/styles.scss";
-import "primevue/resources/themes/saga-blue/theme.css";
-import "primevue/resources/primevue.min.css";
-import "primeicons/primeicons.css";
-
-// Importar Pinia
-import { createPinia } from "pinia";
-// Importar fontawesome
+import Inicio from "@/components/Inicio.vue";
+import * as bootstrap from "bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -17,18 +12,18 @@ import {
   faSquareFacebook,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-
-//Router
-import { createRouter, createWebHashHistory } from "vue-router";
-import Inicio from "@/components/Inicio.vue";
-import { useAuthStore } from "@/stores/AuthStore";
-// Importar PrimeVue
-import PrimeVue from "primevue/config";
-
-const pinia = createPinia();
-
 library.add(faSquareFacebook, faTwitter, faLinkedin, faInstagram);
 
+import "primevue/resources/themes/saga-blue/theme.css";
+import "primevue/resources/primevue.min.css";
+import "primeicons/primeicons.css";
+
+import { createPinia } from "pinia";
+const pinia = createPinia();
+
+import { useAuthStore } from "@/stores/AuthStore";
+import PrimeVue from "primevue/config";
+import { createRouter, createWebHashHistory } from "vue-router";
 const Servicios = () =>
   import("@/components/servicios/VisualizacionServicios.vue");
 const Busqueda = () => import("@/components/BusquedaAvanzada.vue");
@@ -49,8 +44,7 @@ const ModificacionServicioInterpretacion = () =>
   import("@/components/servicios/ModificacionServicioInterpretacion.vue");
 const ModificacionServicioTraduccion = () =>
   import("@/components/servicios/ModificacionServicioTraduccion.vue");
-const Empresas = () =>
-  import("@/components/empresas/ConsultaEmpresas.vue");
+const Empresas = () => import("@/components/empresas/ConsultaEmpresas.vue");
 const routes = [
   {
     path: "/",
@@ -140,10 +134,9 @@ router.beforeEach(async (to, from) => {
     return { name: "Inicio" };
   }
 });
-
-createApp(App)
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .use(pinia)
-  .use(PrimeVue)
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
+app.use(pinia);
+app.use(PrimeVue);
+app.use(router);
+app.component("font-awesome-icon", FontAwesomeIcon);
+app.mount("#app");
