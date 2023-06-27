@@ -31,3 +31,6 @@ build/
 .settings
 .gradle
 bin/
+
+.classpath
+.project
