@@ -7,7 +7,7 @@ import ComponenteEmpresa from "@/components/empresas/DetallesEmpresa.vue";
 import ComponenteIdiomas from "@/components/servicios/Idiomas.vue";
 import ComponenteProvincias from "@/components/servicios/Provincias.vue";
 import Dialog from "primevue/dialog";
-import {convertirBooleano} from "../../utils/utils.js";
+import {convertirBooleano} from "@/utils/utils.js";
 import ComponenteTipoDocumento from "@/components/servicios/TipoDocumento.vue";
 import Cargando from "@/components/Cargando.vue";
 
@@ -92,8 +92,8 @@ export default {
         this.$router.push({name: 'modificacionServicioTraduccion', params: {id: servicio.id}});
       }
     },
-    eliminarServicio(id) {
-      this.deleteServicio(id);
+    eliminarServicio(servicio) {
+      this.deleteServicio(servicio);
     },
   },
 };
@@ -174,7 +174,7 @@ export default {
                     icon="pi pi-trash"
                     label="Borrar"
                     type="button"
-                    @click="eliminarServicio(servicio.id)"
+                    @click="eliminarServicio(servicio)"
                 />
               </div>
             </template>

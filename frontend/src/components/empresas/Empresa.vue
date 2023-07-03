@@ -18,6 +18,7 @@ export default {
     ...mapActions(useEmpresaStore, ["deleteEmpresa"]),
     verServicios(empresa) {
       this.$emit("verServicios", empresa);
+      
     },
     modificarEmpresa(empresa) {
       this.$router.push({name: 'modificacionEmpresa', params: {id: empresa.id}});
@@ -60,7 +61,7 @@ export default {
               icon="pi pi-trash"
               label="Borrar"
               type="button"
-              @click="deleteEmpresa(empresa.id)"
+              @click="deleteEmpresa(empresa)"
           />
         </div>
       </template>

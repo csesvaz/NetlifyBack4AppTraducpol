@@ -14,7 +14,7 @@ import {
   llamadaApi,
   updateEmpresa,
   updateServicio,
-} from "./api-service.js";
+} from "@/stores/api-service.js";
 
 export const useEmpresaStore = defineStore("empresas", {
   state: () => ({
@@ -43,17 +43,15 @@ export const useEmpresaStore = defineStore("empresas", {
 
     async updateEmpresa(empresa) {
       await updateEmpresa(empresa);
-      const index = this.empresas.findIndex((emp) => emp.id == empresa.id);
+      const index = this.empresas.findIndex((emp) => emp._links.self.href == empresa._links.self.href);
       this.empresas[index] = empresa;
+
       return this.empresas;
     },
 
-    async deleteEmpresa(id) {
-      const empresa = this.empresas.find((emp) => emp.id == id);
+    async deleteEmpresa(empresa) {
       await borrarEntidad(empresa);
-
-      const index = this.empresas.findIndex((emp) => emp.id == id);
-      this.empresas.splice(index, 1);
+      this.empresas.splice(this.empresas.indexOf(empresa), 1)
 
       this.servicios = this.servicios.filter((serv) => {
         return !this.empresas.some(
@@ -92,7 +90,7 @@ export const useEmpresaStore = defineStore("empresas", {
     },
 
     async addServicio(servicio) {
-      const empresa = this.empresas.find((emp) => emp.id == servicio.empresa.id);
+      const empresa = this.empresas.find((emp) => emp._links.self.href == servicio.empresa._links.self.href);
       servicio = await addServicio(servicio);
       empresa.servicios.push(servicio);
       this.servicios.push(servicio);
@@ -111,15 +109,12 @@ export const useEmpresaStore = defineStore("empresas", {
       return empresa.data;
     },
 
-    async deleteServicio(id) {
-      const servicio = this.servicios.find((serv) => serv.id == id);
+    async deleteServicio(servicio) {
       await borrarEntidad(servicio);
-
-      const index = this.servicios.findIndex((serv) => serv.id == id);
-      this.servicios.splice(index, 1);
-
+      this.servicios.splice(this.servicios.indexOf(servicio), 1);
+      
       for (const empresa of this.empresas) {
-        const index = empresa.servicios.findIndex((serv) => serv.id == id);
+        const index = empresa.servicios.findIndex((serv) => serv._links.self.href== servicio._links.self.href);
         if (index !== -1) {
           empresa.servicios.splice(index, 1);
           break;
@@ -130,12 +125,12 @@ export const useEmpresaStore = defineStore("empresas", {
     async updateServicio(servicio) {
       await updateServicio(servicio);
       const empresaConServicio = this.empresas.find((emp) =>
-        emp.servicios.some((ser) => ser.id == servicio.id)
+        emp.servicios.some((ser) => ser._links.self.href == servicio._links.self.href)
       );
 
-      const index = this.servicios.findIndex((serv) => serv.id == servicio.id);
+      const index = this.servicios.findIndex((serv) => serv._links.self.href == servicio._links.self.href);
       this.servicios[index] = servicio;
-      const indexServicioEmpresa = empresaConServicio.servicios.findIndex((serv) => serv.id == servicio.id);
+      const indexServicioEmpresa = empresaConServicio.servicios.findIndex((serv) => serv._links.self.href == servicio._links.self.href);
       empresaConServicio.servicios[indexServicioEmpresa] = servicio;
       return this.servicios;
     },

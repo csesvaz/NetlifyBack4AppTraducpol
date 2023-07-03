@@ -1,5 +1,5 @@
 <script>
-import {mapActions, mapState} from "pinia";
+import {mapState} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore.js";
 import ListadoEmpresas from "@/components/empresas/ListadoEmpresas.vue";
 
@@ -7,9 +7,6 @@ export default {
   components: {ListadoEmpresas},
   computed: {
     ...mapState(useEmpresaStore, ["empresas"]),
-  },
-  methods: {
-    ...mapActions(useEmpresaStore, ["deleteEmpresa"]),
   },
 };
 </script>

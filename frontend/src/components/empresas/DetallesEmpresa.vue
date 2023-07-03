@@ -1,7 +1,6 @@
 <script>
 import {mapActions} from "pinia";
 import {useEmpresaStore} from "@/stores/EmpresaStore.js";
-import {getIdURL} from "@/stores/api-service.js";
 import Cargando from '@/components/Cargando.vue';
 import {convertirBooleano} from '@/utils/utils.js';
 
@@ -25,15 +24,12 @@ export default {
   },
   methods: {
     ...mapActions(useEmpresaStore, [
-      "getIdURL",
       "getServiciosDeEmpresa",
     ]),
     convertirBooleano(a) {
       return convertirBooleano(a);
     },
-    async getIdURL() {
-      this.empresa.id = await this.getIdURL();
-    },
+   
   },
   async beforeMount() {
     this.serviciosFiltro = await this.getServiciosDeEmpresa(

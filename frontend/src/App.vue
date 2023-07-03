@@ -1,7 +1,7 @@
 <script>
-import {useEmpresaStore} from "./stores/EmpresaStore.js";
+import {useEmpresaStore} from "@/stores/EmpresaStore.js";
 import {mapActions} from "pinia";
-import BarraNavegacion from "./components/BarraNavegacion.vue";
+import BarraNavegacion from "@/components/BarraNavegacion.vue";
 
 export default {
   components: {BarraNavegacion},
